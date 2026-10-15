@@ -2,6 +2,8 @@
 
 Apply this lifecycle inside each topic batch. The outer workflow owns project scope, collection checks, and official delivery. A finished article remains a candidate until those checks pass.
 
+Each identified business module has its own main design plus necessary topic articles, as planned in [writing.md](writing.md). A finished article is not a finished module until the required set is checked. After module reading, reconcile the overall module summaries and cross-module links. Incomplete modules remain pending under the outer workflow; do not publish a partial collection merely because some module sets are complete.
+
 ## New article
 
 1. Read original code and project documents. Trace the relevant entrypoint, prerequisites, normal path, branches, errors, and termination. Choose the reader's question, document type, and supported scope.
@@ -20,6 +22,8 @@ The completion condition is supported content, suitable structure, preserved tec
 5. Check the content update and the subsequent expression changes separately. Recheck original evidence, protected literals, conditions, references, and affected card meanings. Return a checked candidate and actual change scope.
 
 Reuse an article when reliable evidence establishes that its content and references remain applicable and output ownership is intact. Preserve its content date. Source verification metadata can change without a knowledge-content revision. Previous partial coverage, unknown source changes, or unverifiable output modifications prevent a no-change shortcut.
+
+Classify module updates before choosing pages to edit. An internal mechanism change with unchanged responsibilities and external contracts may require only the module main design or relevant topics. Changed interfaces, state ownership, dependencies, or backbone interactions also require checking the overall design, participating modules, and principal cross-module flow. Do not rewrite those pages unless their content or references are actually affected.
 
 ## Return paths and boundaries
 

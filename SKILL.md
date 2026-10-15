@@ -19,6 +19,7 @@ The user repeats the same invocation for initial generation and updates. Infer t
 - Put every generated JSON file under `docs/official/.cards/`, including lean term cards, the manifest, and attempt records. Keep temporary Markdown candidates under `.staging/<run_id>/` only when needed.
 - Explain professional terms, abbreviations, and project-specific names in cards. Keep `definition` separate from `project_usage`; associate articles through `articles` and original evidence through `sources`.
 - Build the overall architecture first, then read and draft by topic. Within each article, check content, edit expression, and recheck facts. For updates, edit changed passages and necessary context only; reuse valid unchanged documents.
+- Give every identified business module its own main design article, including small modules. Split complex module detail into topic articles as needed. Keep the global backbone in the overall design and give complex cross-module flows their own principal explanation. Check module discovery and each module's full article set separately.
 - Treat generated content as output and comparison material, never independent evidence of project behavior. Preserve original assets and known conflicting outputs. Partial coverage or failed checks cannot replace the confirmed library.
 
 ## Resources

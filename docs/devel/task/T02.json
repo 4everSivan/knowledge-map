@@ -1,0 +1,91 @@
+{
+  "$schema": "https://ad-flow.org/schemas/task-card.v1.json",
+  "id": "T02",
+  "title": "落实业务模块全覆盖与分层文档规则",
+  "version": "v0.1.0",
+  "milestone": "M2-module-docs",
+  "status": "in_progress",
+  "branch": "feat/T02-module-docs",
+  "depends_on": [
+    "T01"
+  ],
+  "target": {
+    "module": "文档规划与模块覆盖",
+    "design_doc": "docs/devel/design/01-文档库与命名规范.md",
+    "design_topic": "KnowledgeLibrary"
+  },
+  "goal": "每个识别出的业务模块均有独立主设计，复杂模块按需拆专题，复杂跨模块流程独立成文；分别核对模块识别与文档集合覆盖。",
+  "precheck": {
+    "description": "读取已提交写作规则，并结合 workflow 判断是否已有严格模块覆盖要求",
+    "command": "git show HEAD:references/writing.md",
+    "expected": "由实际输出核对模块独立主设计、专题集合完成条件和跨模块内容归属；命令成功本身不证明功能已实现",
+    "is_completed": false,
+    "evidence": "在 feat/T02-module-docs 实际执行 git show HEAD:references/writing.md，Exit 0。输出仅定义按需文类和建议大纲，未要求全部业务模块独立主设计及主设计/专题集合覆盖；结合当前 workflow 审阅，判定本次规则尚未实现。"
+  },
+  "callback": {
+    "before": [
+      "git branch --show-current"
+    ],
+    "after": [
+      "python3 /Users/sivan/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
+      "scripts/adflow-verify --mode init --json",
+      "scripts/adflow-verify --json"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "T02-1",
+      "title": "回写分层规则与写作边界",
+      "capability": "总体主干、全部业务模块主设计、模块专题与跨模块流程有明确内容归属",
+      "done": true
+    },
+    {
+      "id": "T02-2",
+      "title": "落实模块规划、覆盖与续读",
+      "capability": "根据来源识别模块，逐项绑定文章与专题；未完成专题不丢失，也不能由主文件存在替代覆盖",
+      "done": true
+    },
+    {
+      "id": "T02-3",
+      "title": "演练分层输出及增量影响",
+      "capability": "用有来源的多个业务模块验证简单模块独立、复杂专题、跨模块链接、缺口阻断和更新范围",
+      "done": true
+    }
+  ],
+  "acceptance": {
+    "result": true,
+    "run_id": "local-20261015-093841",
+    "checks": [
+      {
+        "item": "设计与执行资源一致",
+        "true_if": "设计、英文入口和 workflow 一致覆盖已确认的三项选择，保持平铺布局且无新增运行脚本",
+        "false_if": "保留简单模块自动合并规则、扩大目录层级或新增脚本引擎",
+        "evidence": "技能基础检查、YAML 7 阶段解析、JSON 与 183 个本地链接核对通过；AI 执行资源英文，所有业务模块独立主设计及专题/跨模块归属已写入设计与入口；无新增运行脚本。",
+        "result": true
+      },
+      {
+        "item": "模块集合与来源覆盖",
+        "true_if": "有来源的每个业务模块均有独立主设计，总体链接齐全，模块主设计和所需专题共同判定完成；缺失专题时保留 partial",
+        "false_if": "遗漏模块或专题却声明 complete，或用目录数量机械代替模块识别",
+        "evidence": "受控 WorkDesk 样例七个原始文件支持三个业务模块，调度跨目录，工具函数未机械当作业务模块；三个独立主设计均存在。缺少必要专题时实际记录 partial，留存计划；补齐后才确认七篇文档和一张术语卡。见 tests/module-docs.md 和 local/acceptance/module-docs/results.json。",
+        "result": true
+      },
+      {
+        "item": "内容归属与更新范围",
+        "true_if": "复杂跨模块流程保留一处主要解释，模块互链；内部机制与跨模块契约变更分别核对适用文档",
+        "false_if": "完整流程在模块间重复维护，或内部修改引起无关全文重写",
+        "evidence": "七个同会话样例有实际文件、哈希及 JSON/链接断言。内部机制变化只更新一篇专题；跨模块结果状态变化更新受影响总体、执行主设计、专题、主要流程和卡片，保留三篇其它文章、原卡 ID 和锚点。未做独立宿主触发、大工程完整发现或业务运行验收。",
+        "result": true
+      }
+    ]
+  },
+  "sync": {
+    "commit": ""
+  },
+  "gate": {
+    "tool": "adflow-verify",
+    "version": "1.4.0",
+    "ran_at": "",
+    "exit_code": null
+  }
+}

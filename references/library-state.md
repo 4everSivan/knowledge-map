@@ -68,6 +68,10 @@ The attempt record may change on a no-change run. It describes work done and is 
 
 When retention is needed, put Markdown candidates and available recovery copies under `.staging/<run_id>/` and JSON candidates or review records under `.cards/runs/<run_id>/`. Use fresh unoccupied run paths; create them only when needed. Pending records should identify completed topics, unread or unfinished scope, reasons, actual writes, and candidate entrypoints. Do not silently clean retained run data.
 
+For unfinished module work, retain `.cards/runs/<run_id>/document-plan.json` and include its path in `candidate_paths`. The working plan has `modules` records with `name`, `responsibility`, `source_paths`, `main_article`, `topic_articles`, and `pending`; `cross_module_articles` records with `path`, participating `modules`, and `source_paths`; and `recognition_pending` for unresolved source or boundary questions. Article paths are document-root relative. These are retained planning notes, not new module identities or an executable state machine; no new manifest fields are required.
+
+On continuation, read that plan as prior working state, recheck its original evidence, and reconcile it with actual candidates and remaining scope. A missing main design, unfinished necessary topic, or unresolved recognition gap prevents complete coverage. Do not rebuild the plan only from existing output files or omit unfinished work. Apply the current module requirements even to libraries created before these rules.
+
 ## Reuse, conflicts, and publication
 
 1. Recover an interrupted attempt before using a no-change shortcut. Compare actual files with the prior manifest and write record; do not assume the old confirmed set is still intact.

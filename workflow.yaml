@@ -54,9 +54,12 @@ stages:
       - For long-running services include background work, coordination, and shutdown where present.
       - Separate implemented wiring, declared goals, inference, and unverified runtime behavior.
       - Plan applicable reader questions and topic batches; adjust the plan as evidence changes.
+      - Identify business modules by responsibilities, contracts, entrypoints, and calls; do not equate source directories with modules or invent business modules for helper code.
+      - Review the module inventory against original evidence for omissions and unresolved boundaries; plan an independent main design article for every identified business module, including small ones.
+      - Record each module's sources, main article, necessary topic articles, and pending work; plan separate principal articles for complex cross-module flows.
       - For updates trace affected consumers and shared contracts; broaden analysis when impact is uncertain.
       - Reuse the prior architecture only after checking that its relevant evidence remains applicable.
-    outputs: Evidence-grounded architecture, provisional article plan, and impact scope.
+    outputs: Evidence-grounded architecture, reviewed business-module inventory, module and cross-module article plan, and impact scope.
     done_if: The plan reflects actual project roles and entrypoints rather than filenames alone.
     on_failure: Return to inventory or evidence reading; do not fill missing architecture with template prose.
 
@@ -66,12 +69,16 @@ stages:
     actions:
       - Work through topic batches using original evidence; collect enough context before drafting each topic.
       - Use the new-article or update lifecycle in authoring.md, including content review before expression editing.
+      - Write each business module's independent main design with its overall mechanism and contracts; do not merge small modules into another article or pad them with unsupported sections.
+      - Put deep module mechanisms in planned topic articles when needed; keep one principal explanation of a complex cross-module flow and link it from participating modules.
       - Load technical-editing.md only for expression work, then compare meaning and recheck original evidence.
       - Carry forward stable card IDs, keep per-field evidence, and bind actual articles and explicit anchors.
       - Review card prose for factual consistency; v0.1 does not run a separate style pass over card JSON by default.
       - Retain valid unchanged articles; record verified scope and unresolved work without polishing unrelated passages.
+      - Refine module boundaries from detailed evidence, then backfill the overall design with every module's concise responsibility, dependencies, and main-article link, plus global constraints and backbone interactions.
+      - Carry the article plan and remaining source work forward; a main file alone does not complete a module whose necessary topic articles are unfinished.
     outputs: Checked article and card candidates, source associations, scoped changes, and remaining gaps.
-    done_if: Each completed topic has supported content, factual recheck, valid associations, and explicit coverage.
+    done_if: Completed topics have supported content and factual rechecks; a completed module has its checked main and necessary topic articles, and unfinished module work remains explicit.
     on_failure: Return factual or structural defects to analysis or drafting; keep unfinished candidates partial.
 
   - id: check_collection
@@ -80,6 +87,9 @@ stages:
       - Check naming, document purposes, heading levels, links, explicit anchors, JSON fields, IDs, and article bindings.
       - Cross-check terminology, shared contracts, evidence categories, dates, and conclusions across articles and cards.
       - Verify that all planned source scope is addressed or explicitly pending; do not silently narrow the claimed scope.
+      - Check module recognition against original source scope separately from checking every identified module's main and necessary topic articles; do not infer coverage from file existence alone.
+      - Check the overall module table against independent main articles, verify topic and cross-module links, and ensure complex flows have one principal explanation.
+      - Reassess these requirements even when source files are unchanged; an old library that lacks required module articles cannot take the no-change shortcut.
       - Use existing JSON or link tools when available and record actual results separately from model semantic review.
       - Reinspect critical sources and available differences before publication; reanalyse affected topics if input changed.
       - Decide coverage_status and validation_status separately using library-state.md.
@@ -104,6 +114,7 @@ stages:
     inputs: Actual coverage, checks, changes, conflicts, manifest, and last attempt.
     actions:
       - Return the project and declared scope, exclusions, new or updated or retired knowledge, and reuse basis.
+      - Report unresolved module boundaries, missing main articles, and pending necessary topics when they affect coverage.
       - Distinguish tool checks from semantic review and software runtime or production acceptance.
       - Link docs/official/README.md when a confirmed entrypoint exists; link retained candidates separately when needed.
       - Explain partial scope, conflicts, interrupted writes, and remaining work with the next repeat-invocation behavior.

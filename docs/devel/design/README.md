@@ -23,7 +23,7 @@
 | 文档名称 | 对应 Topic | 文档 ID | 核心职责概述 | 状态 | 最后更新 |
 |---|---|---|---|---|---|
 | [系统总体设计](00-系统总体设计.md) | KnowledgeMapWorkflow | DESIGN-KM-OVERVIEW | 产品边界、单入口、workflow 文件驱动 AI 与 v0.1 阶段规则 | baseline | 2026-10-15 |
-| [文档库与命名规范](01-文档库与命名规范.md) | KnowledgeLibrary | DESIGN-KM-LIBRARY | 内容分类、平铺目录、中文无编号命名、导航与引用 | baseline | 2026-10-15 |
+| [文档库与命名规范](01-文档库与命名规范.md) | KnowledgeLibrary | DESIGN-KM-LIBRARY | 业务模块独立主设计、专题分层、覆盖、平铺命名与引用 | baseline | 2026-10-15 |
 | [术语知识卡片设计](02-术语知识卡片设计.md) | KnowledgeCards | DESIGN-KM-CARDS | 术语语境、JSON 契约、稳定身份与证据 | baseline | 2026-10-15 |
 | [增量更新与质量控制](03-增量更新与质量控制.md) | IncrementalRefresh、KnowledgeQuality | DESIGN-KM-INCREMENTAL | 来源失效、覆盖、冲突、恢复与检查 | baseline | 2026-10-15 |
 | [生产文档编写规范](04-生产文档编写规范.md) | KnowledgeWriting | DESIGN-KM-WRITING | 页面格式、分类大纲、正文编辑与来源呈现 | baseline | 2026-10-15 |
