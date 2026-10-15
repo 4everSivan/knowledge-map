@@ -5,7 +5,7 @@
   "milestones": {
     "M2-module-docs": {
       "title": "业务模块分层文档",
-      "status": "in_progress",
+      "status": "completed",
       "tasks": [
         "T02"
       ]
@@ -74,7 +74,7 @@
       "title": "落实业务模块全覆盖与分层文档规则",
       "version": "v0.1.0",
       "milestone": "M2-module-docs",
-      "status": "in_progress"
+      "status": "completed"
     },
     "T01": {
       "file": "docs/devel/task/T01.json",

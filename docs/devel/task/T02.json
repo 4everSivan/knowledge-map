@@ -4,7 +4,7 @@
   "title": "落实业务模块全覆盖与分层文档规则",
   "version": "v0.1.0",
   "milestone": "M2-module-docs",
-  "status": "in_progress",
+  "status": "completed",
   "branch": "feat/T02-module-docs",
   "depends_on": [
     "T01"
@@ -80,12 +80,13 @@
     ]
   },
   "sync": {
-    "commit": ""
+    "commit": "0add4f2aac46d4cc7cebf4d7ff72e11deb589756"
   },
   "gate": {
     "tool": "adflow-verify",
     "version": "1.4.0",
-    "ran_at": "",
-    "exit_code": null
+    "ran_at": "2026-10-15",
+    "exit_code": 0,
+    "target_status": "completed"
   }
 }
