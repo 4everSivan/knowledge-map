@@ -1,0 +1,19 @@
+{
+  "$schema": "adflow-guide-index-v1",
+  "project": "knowledge-map",
+  "created": "2026-10-15",
+  "last_change": "2026-10-15",
+  "status": "active",
+  "description": "系统使用与部署指南机器索引，记录施工标准与目标产物",
+  "guides": [
+    {
+      "id": "GUIDE-DEPLOY",
+      "title": "本地使用与验证指南",
+      "file": "01-本地部署指南.md",
+      "category": "deployment",
+      "target_env": "local",
+      "output_artifact": "local/acceptance/km-v0.1/results.json",
+      "description": "km 技能加载、项目调用与本地治理/样例验证；没有应用服务或部署端口"
+    }
+  ]
+}

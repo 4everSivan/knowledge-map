@@ -1,0 +1,6 @@
+/local/
+/_adflow_backup/
+__pycache__/
+.DS_Store
+.env
+.env.*

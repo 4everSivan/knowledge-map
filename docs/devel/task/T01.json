@@ -1,0 +1,89 @@
+{
+  "$schema": "https://ad-flow.org/schemas/task-card.v1.json",
+  "id": "T01",
+  "title": "交付 km v0.1 文档知识库技能",
+  "version": "v0.1.0",
+  "milestone": "M1-km-v0.1",
+  "status": "in_progress",
+  "branch": "feat/T01-km-v0.1",
+  "depends_on": [],
+  "target": {
+    "module": "km 技能与文档知识库工作流",
+    "design_doc": "docs/devel/design/00-系统总体设计.md",
+    "design_topic": "KnowledgeMapWorkflow"
+  },
+  "goal": "以英文技能指引与 workflow 实现单入口生成和更新中文文档及术语卡，落实局部表达修订与事实回查；不增加 km 运行脚本。",
+  "precheck": {
+    "description": "核对技能入口是否已可解析，已有实现则先验收而非覆盖重建",
+    "command": "python3 /Users/sivan/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
+    "expected": "技能入口存在且基础格式检查通过，才表示可能已有实现；仍需核对 workflow 与行为样例",
+    "is_completed": true,
+    "evidence": "2026-10-15 实际执行 precheck.command，Exit 1：SKILL.md not found；未发现已有技能入口。当前真实分支为 feat/T01-km-v0.1。 实现后再次执行同一命令，Exit 0：Skill is valid!；YAML 单独解析通过，初始 YAML 缩进错误已修复。"
+  },
+  "callback": {
+    "before": [
+      "git branch --show-current"
+    ],
+    "after": [
+      "python3 /Users/sivan/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
+      "scripts/adflow-verify --mode init --json",
+      "scripts/adflow-verify --json"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "T01-1",
+      "title": "完成英文入口与两层工作流",
+      "capability": "单入口完成全局架构、专题读写及单篇初次或更新流程，带完成条件和失败返回",
+      "done": true
+    },
+    {
+      "id": "T01-2",
+      "title": "落实文档、术语和增量状态契约",
+      "capability": "稳定术语身份、文章关联、集中核实记录与可靠复用、冲突和中断处理",
+      "done": true
+    },
+    {
+      "id": "T01-3",
+      "title": "完成有界演练与交付说明",
+      "capability": "真实示例验证首次、更新、无变化、部分覆盖和冲突，说明同会话验证及宿主入口限制",
+      "done": true
+    }
+  ],
+  "acceptance": {
+    "result": true,
+    "run_id": "km-v0.1-20261015",
+    "checks": [
+      {
+        "item": "技能与工作流可读取",
+        "true_if": "技能基础检查与 YAML 解析通过，参考路由可达，AI 执行说明英文且无新增运行脚本",
+        "false_if": "入口不可用、参考缺失或依赖脚本引擎",
+        "evidence": "技能基础检查 Exit 0；workflow 7 阶段 YAML 解析、参考路径及英文执行资源核对通过；本轮未增加 km 运行脚本。详见 tests/acceptance.md 与 local/acceptance/km-v0.1/structure-checks.json。",
+        "result": true
+      },
+      {
+        "item": "文档与术语更新契约",
+        "true_if": "样例输出位置、中文命名、卡片分字段依据及文章关联正确，增量沿用身份并只改受影响正文",
+        "false_if": "路径错误、术语无依据、身份漂移或全篇无关改写",
+        "evidence": "12 个同会话流程样例中，首次生成 4 篇中文文档与 1 卡；30→10 只改相关正文和卡片用途，术语改名保留 ID 与锚点；JSON 解析和文件比较真实执行。不是独立宿主触发测试。",
+        "result": true
+      },
+      {
+        "item": "复用与失败保护",
+        "true_if": "有据无变化保留正文和日期，partial 或冲突不替换正式集合，来源变化与失效按实际范围处理",
+        "false_if": "证据不足跳过分析、覆盖不全冒充完整或覆盖外部修改",
+        "evidence": "无变化保留正文、日期与 manifest；partial 保留候选且正式集合不变，续读后核对 6 个来源；外部修改按字节保留并记录 failed/unpublished；来源不可用及受控退役候选有记录。真实并发与多文件中断未验证。",
+        "result": true
+      }
+    ]
+  },
+  "sync": {
+    "commit": ""
+  },
+  "gate": {
+    "tool": "adflow-verify",
+    "version": "1.4.0",
+    "ran_at": "2026-10-15",
+    "exit_code": 0
+  }
+}

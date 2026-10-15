@@ -1,0 +1,67 @@
+{
+  "$schema": "https://ad-flow.org/schemas/task-index.v1.json",
+  "phase": "v0.1.0",
+  "updated_at": "2026-10-15",
+  "milestones": {
+    "M1-km-v0.1": {
+      "title": "km v0.1 文档知识库",
+      "status": "in_progress",
+      "tasks": [
+        "T01"
+      ]
+    }
+  },
+  "topics": {
+    "KnowledgeMapWorkflow": {
+      "design_doc": "docs/devel/design/00-系统总体设计.md",
+      "tasks": [
+        "T01"
+      ]
+    },
+    "KnowledgeLibrary": {
+      "design_doc": "docs/devel/design/01-文档库与命名规范.md",
+      "tasks": [
+        "T01"
+      ]
+    },
+    "KnowledgeCards": {
+      "design_doc": "docs/devel/design/02-术语知识卡片设计.md",
+      "tasks": [
+        "T01"
+      ]
+    },
+    "IncrementalRefresh": {
+      "design_doc": "docs/devel/design/03-增量更新与质量控制.md",
+      "tasks": [
+        "T01"
+      ]
+    },
+    "KnowledgeQuality": {
+      "design_doc": "docs/devel/design/03-增量更新与质量控制.md",
+      "tasks": [
+        "T01"
+      ]
+    },
+    "KnowledgeWriting": {
+      "design_doc": "docs/devel/design/04-生产文档编写规范.md",
+      "tasks": [
+        "T01"
+      ]
+    },
+    "DocumentAuthoring": {
+      "design_doc": "docs/devel/design/05-单篇文档编写流程.md",
+      "tasks": [
+        "T01"
+      ]
+    }
+  },
+  "tasks": {
+    "T01": {
+      "file": "docs/devel/task/T01.json",
+      "title": "交付 km v0.1 文档知识库技能",
+      "version": "v0.1.0",
+      "milestone": "M1-km-v0.1",
+      "status": "in_progress"
+    }
+  }
+}
