@@ -4,7 +4,7 @@
   "title": "交付 km v0.1 文档知识库技能",
   "version": "v0.1.0",
   "milestone": "M1-km-v0.1",
-  "status": "in_progress",
+  "status": "completed",
   "branch": "feat/T01-km-v0.1",
   "depends_on": [],
   "target": {
@@ -52,7 +52,7 @@
   ],
   "acceptance": {
     "result": true,
-    "run_id": "km-v0.1-20261015",
+    "run_id": "local-20261015",
     "checks": [
       {
         "item": "技能与工作流可读取",
@@ -75,15 +75,18 @@
         "evidence": "无变化保留正文、日期与 manifest；partial 保留候选且正式集合不变，续读后核对 6 个来源；外部修改按字节保留并记录 failed/unpublished；来源不可用及受控退役候选有记录。真实并发与多文件中断未验证。",
         "result": true
       }
-    ]
+    ],
+    "user_quote": "允许本地提交并完成 T01 收口",
+    "evidence_batch": "km-v0.1-20261015"
   },
   "sync": {
-    "commit": ""
+    "commit": "18ce120b43f88e5fe4320ee5ddcec53eceb280b3"
   },
   "gate": {
     "tool": "adflow-verify",
     "version": "1.4.0",
     "ran_at": "2026-10-15",
-    "exit_code": 0
+    "exit_code": 0,
+    "target_status": "completed"
   }
 }

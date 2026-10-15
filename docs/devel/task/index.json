@@ -5,7 +5,7 @@
   "milestones": {
     "M1-km-v0.1": {
       "title": "km v0.1 文档知识库",
-      "status": "in_progress",
+      "status": "completed",
       "tasks": [
         "T01"
       ]
@@ -61,7 +61,7 @@
       "title": "交付 km v0.1 文档知识库技能",
       "version": "v0.1.0",
       "milestone": "M1-km-v0.1",
-      "status": "in_progress"
+      "status": "completed"
     }
   }
 }
