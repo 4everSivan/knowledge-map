@@ -19,7 +19,7 @@
     },
     "M3-diagrams": {
       "title": "工程制图",
-      "status": "in_progress",
+      "status": "completed",
       "tasks": [
         "T03"
       ]
@@ -108,7 +108,7 @@
       "title": "集成语义先行的工程制图工作流",
       "version": "v0.1.0",
       "milestone": "M3-diagrams",
-      "status": "in_progress"
+      "status": "completed"
     }
   }
 }

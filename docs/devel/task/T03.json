@@ -4,7 +4,7 @@
   "title": "集成语义先行的工程制图工作流",
   "version": "v0.1.0",
   "milestone": "M3-diagrams",
-  "status": "in_progress",
+  "status": "completed",
   "branch": "feat/T03-engineering-diagrams",
   "depends_on": [
     "T02"
@@ -80,12 +80,13 @@
     ]
   },
   "sync": {
-    "commit": ""
+    "commit": "da66b74781f7b051f1a41465c5fc32aaa4130c44"
   },
   "gate": {
     "tool": "adflow-verify",
     "version": "1.4.0",
-    "ran_at": "",
-    "exit_code": null
+    "ran_at": "2026-10-16",
+    "exit_code": 0,
+    "target_status": "completed"
   }
 }
