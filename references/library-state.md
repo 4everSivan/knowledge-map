@@ -4,7 +4,7 @@
 
 The fixed output root is `docs/official/`; official Markdown is flat, with `README.md` as navigation. Every generated JSON file is under `.cards/`. Cards are directly `.cards/k_<uuid>.json`. Reserve `.cards/manifest.json`, optional `.cards/config.json`, and `.cards/last_attempt.json` for their stated purposes.
 
-Read original first-party code, configuration, tests, and project documents. Exclude the whole output subtree from factual input. Also exclude VCS internals, dependencies, build products, caches, backups, obvious secrets, and symlinks outside the target. Do not exclude the rest of `docs/`. Inspect uncommitted and relevant untracked files; a non-Git project is supported through actual file reading and comparison.
+Read original first-party code, configuration, tests, and project documents. Exclude the whole output subtree from factual input. Exclude `docs/assets/km/`, including its staging and retained generation material, from factual input as well. Original assets outside the generated roots remain input; inspect unowned occupied output paths as conflicts. Also exclude VCS internals, dependencies, build products, caches, backups, obvious secrets, and symlinks outside the target. Do not exclude the rest of `docs/`. Inspect uncommitted and relevant untracked files; a non-Git project is supported through actual file reading and comparison.
 
 No-change decisions require reliable evidence about current sources, effective configuration, workflow rules, and managed outputs; an unchanged commit, timestamp, or run record alone is insufficient. An architecture or coverage inventory is not deep source analysis.
 
@@ -19,15 +19,15 @@ Initial use requires no configuration file. If `.cards/config.json` exists, read
 
 Keep defaults in `effective_config` without creating a configuration file. Reject malformed, unknown, or unsupported settings before applying them. Preferences cannot expand access outside the project, override source exclusions protecting secrets, change ownership, or authorize commands. Explain a narrowed scope accurately; do not call it whole-project coverage.
 
-## Manifest protocol 1.0
+## Manifest protocol 2.0
 
 The confirmed manifest records the last confirmed collection. Update it last after writes and checks. The following is a structural example with empty collections, not evidence of a successful run:
 
 ```json
 {
-  "schema_version": "1.0",
+  "schema_version": "2.0",
   "skill_version": "0.1.0",
-  "workflow_version": "1.0",
+  "workflow_version": "2.0",
   "project": {"name": "example-project"},
   "library_revision": 1,
   "effective_config": {
@@ -37,6 +37,7 @@ The confirmed manifest records the last confirmed collection. Update it last aft
   "coverage": {"status": "complete", "scope": ["."], "reviewed_paths": [], "excluded": [], "pending": []},
   "documents": {},
   "cards": {},
+  "figures": {},
   "sources": {},
   "verification_batches": {}
 }
@@ -47,30 +48,33 @@ The confirmed manifest records the last confirmed collection. Update it last aft
 | `project` | Actual project name and optional safe identity information; no credential-bearing remote URLs |
 | `library_revision` | Positive integer, incremented only when confirmed knowledge content or its references change |
 | `coverage` | Actual declared scope, reviewed paths, exclusions with reasons, and pending work; confirmed collection requires `complete` and no pending scope |
-| `documents` | Object keyed by document-root-relative Markdown path; each record has `source_paths`, derived `card_ids`, and `verified_in` |
+| `documents` | Object keyed by document-root-relative Markdown path; each record has `source_paths`, derived `card_ids`, derived `figure_ids`, and `verified_in` |
 | `cards` | Object keyed by stable card ID; each record has `path`, `source_paths`, `verified_in`, and optional `issues` |
+| `figures` | Stable figure IDs and their SVG/list paths, article uses, source paths, actual hashes and checks under [diagram-state.md](diagram-state.md) |
 | `sources` | Object keyed by project-root-relative original source path or consulted URL; each record has `kind`, `available`, and `last_read_in` |
 | `verification_batches` | Object keyed by actual run ID; each batch has `checked_at`, `reviewed_paths`, and actual `checks` |
 
-Ownership is limited to `documents` keys and `cards[*].path`, plus recognized state files. These paths must stay within their stated document or card roots; state cannot grant authority over arbitrary project paths. Document `card_ids` must agree with cards' article bindings. Card and document source paths must resolve in `sources`, and verification references must resolve in `verification_batches`. A delivered collection needs `README.md` and the actual applicable content, not just an empty manifest.
+Ownership is limited to `documents` keys, `cards[*].path`, validated active/retained figure pairs under [diagram-state.md](diagram-state.md), and recognized state files. These paths must stay within their stated document, card or figure roots; state cannot grant authority over arbitrary project paths. Document `card_ids` must agree with cards' article bindings. Card and document source paths must resolve in `sources`, and verification references must resolve in `verification_batches`. A delivered collection needs `README.md` and the actual applicable content, not just an empty manifest.
 
 Records can include `content_hash: {algorithm, value}` only when an actual tool computed that hash for the specific current content. Use a known supported algorithm such as `sha256`, and preserve what was hashed. Source availability can be false for recorded historical evidence; expose current evidence gaps. Retain batches referenced by current records; full snapshot history is not required.
 
 Verification metadata can advance when content remains unchanged, without changing the knowledge revision or article dates. Keep content hashes independent of volatile attempt timestamps. Do not treat configuration, attempt records, or retained candidates changing as knowledge changes by themselves. If workflow or preferences changed, reassess their effect rather than automatically rewriting everything.
 
-## Coverage and attempt protocol 1.0
+## Coverage and attempt protocol 2.0
 
 Keep `coverage_status` (`complete` or `partial`) separate from `validation_status` (`passed`, `failed`, or `not_run`). Complete means the declared scope was actually addressed, not necessarily the whole project. Passed means the listed required checks were performed and passed, not production runtime acceptance or deterministic AI correctness.
 
-Write `.cards/last_attempt.json` with `schema_version`, `run_id`, actual `started_at`, both statuses, `published` (boolean), `reviewed_paths`, `excluded`, `pending`, `conflicts`, `candidate_paths`, `written_paths`, and `checks`. Each check records `name`, `method`, `result` (`passed`, `failed`, or `not_run`), and actual `evidence`. Timestamps and IDs come from host observations or clearly identified host run context; do not fabricate tool outputs.
+Write `.cards/last_attempt.json` with `schema_version` set to `2.0`, `run_id`, actual `started_at`, both statuses, `published` (boolean), `reviewed_paths`, `excluded`, `pending`, `conflicts`, `candidate_paths`, `written_paths`, and `checks`, plus `deferred_figures` (empty when none). Official-collection checks and candidate checks follow diagram-state.md, including required/optional scope. Each check records `name`, `method`, `result` (`passed`, `failed`, or `not_run`), and actual `evidence`. Timestamps and IDs come from host observations or clearly identified host run context; do not fabricate tool outputs.
 
-The attempt record may change on a no-change run. It describes work done and is not the confirmed manifest. Unknown or incompatible state versions are conflicts; do not overwrite them or invent a migration.
+The attempt record may change on a no-change run. It describes work done and is not the confirmed manifest. Unknown or incompatible state versions are conflicts; do not overwrite them or invent a migration. There is no legacy conversion in this release. Term cards/configuration use their own 1.0 contracts, not the manifest version.
 
 When retention is needed, put Markdown candidates and available recovery copies under `.staging/<run_id>/` and JSON candidates or review records under `.cards/runs/<run_id>/`. Use fresh unoccupied run paths; create them only when needed. Pending records should identify completed topics, unread or unfinished scope, reasons, actual writes, and candidate entrypoints. Do not silently clean retained run data.
 
 For unfinished module work, retain `.cards/runs/<run_id>/document-plan.json` and include its path in `candidate_paths`. The working plan has `modules` records with `name`, `responsibility`, `source_paths`, `main_article`, `topic_articles`, and `pending`; `cross_module_articles` records with `path`, participating `modules`, and `source_paths`; and `recognition_pending` for unresolved source or boundary questions. Article paths are document-root relative. These are retained planning notes, not new module identities or an executable state machine; no new manifest fields are required.
 
-On continuation, read that plan as prior working state, recheck its original evidence, and reconcile it with actual candidates and remaining scope. A missing main design, unfinished necessary topic, or unresolved recognition gap prevents complete coverage. Do not rebuild the plan only from existing output files or omit unfinished work. Apply the current module requirements even to libraries created before these rules.
+On continuation, read that plan as prior working state, recheck its original evidence, and reconcile it with actual candidates and remaining scope. A missing main design, unfinished necessary topic, or unresolved recognition gap prevents complete coverage. Do not rebuild the plan only from existing output files or omit unfinished work. Apply current requirements on repeat invocations of this protocol; do not invent a legacy migration.
+
+Retain diagram plans, SVG/JSON candidates and trusted recovery material using [diagram-state.md](diagram-state.md). Optional drawing deferrals are not unread source scope; preserve their actual failures separately.
 
 ## Reuse, conflicts, and publication
 

@@ -1,6 +1,6 @@
 # 系统设计中心 (design/)
 
-> **created**: 2026-10-15 ｜ **last-change**: 2026-10-15 ｜ **status**: active
+> **created**: 2026-10-15 ｜ **last-change**: 2026-10-16 ｜ **status**: active
 
 ## 1. 简介
 
@@ -28,6 +28,8 @@
 | [增量更新与质量控制](03-增量更新与质量控制.md) | IncrementalRefresh、KnowledgeQuality | DESIGN-KM-INCREMENTAL | 来源失效、覆盖、冲突、恢复与检查 | baseline | 2026-10-15 |
 | [生产文档编写规范](04-生产文档编写规范.md) | KnowledgeWriting | DESIGN-KM-WRITING | 页面格式、分类大纲、正文编辑与来源呈现 | baseline | 2026-10-15 |
 | [单篇文档编写流程](05-单篇文档编写流程.md) | DocumentAuthoring | DESIGN-KM-AUTHORING | 初次与更新、局部表达修订、事实回查和本地英文提示词集成 | baseline | 2026-10-15 |
+
+| [工程制图](06-工程制图.md) | EngineeringDiagrams | DESIGN-KM-DIAGRAMS | 图稿触发、语义与证据、SVG、双环境检查和受控交付 | baseline | 2026-10-16 |
 
 只登记已生成且有真实来源的设计，同时在 [研发索引](../index.json) 登记其路由；空项目保持清单为空。状态如实区分草稿与已批准基线，不把示例登记成项目能力。
 
@@ -70,7 +72,7 @@
 
 ### 4.1 架构与行为
 
-说明模块关系、数据流与核心流程；按需要使用 Mermaid 图。
+说明模块关系、数据流与核心流程；按项目约定选择图示。km 产出的正式图稿遵循[工程制图设计](06-工程制图.md)的静态 SVG 契约。
 
 ### 4.2 核心业务规则
 

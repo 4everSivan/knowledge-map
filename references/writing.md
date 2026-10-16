@@ -61,7 +61,7 @@ State the needed conclusion or relationship early, then explain reasons, boundar
 
 Keep commands grounded in actual project entrypoints or original operating instructions. Explain placeholders and never fill them with real secrets. Label expected output as expected; observed output requires an actual run and its environment. Writing instructions does not authorize running the project's service, deployment, tests, or external operations.
 
-Mermaid can help readers whose viewer supports it. Preserve the important relationships in surrounding prose and do not require a renderer or website. Use diagrams only when they improve understanding.
+Apply the evidence-grounded required triggers and optional choices in [diagrams.md](diagrams.md). Official generated engineering figures are static SVG referenced with normal Markdown image syntax, meaningful alt text and a scope caption; keep key explanations in prose. Mermaid already present in original materials may be read as declarations, not automatically treated as current implementation. Do not maintain duplicate active graph sources for the same figure or require a website.
 
 ## Evidence and limitations
 

@@ -38,3 +38,7 @@ Classify module updates before choosing pages to edit. An internal mechanism cha
 Keep review notes in attempt records or candidate notes, not as repetitive process narration in the article. Reader-relevant limitations belong near the affected claims. Do not add per-stage user approvals.
 
 For cards, verify `definition` and `project_usage` against their respective evidence and affected articles. The default v0.1 style pass covers Markdown only; do not use prose editing to mutate card identity, fields, source links, or article bindings. Necessary card content updates belong in the topic's evidence and drafting work.
+
+## Figures within the article lifecycle
+
+Plan reader-grounded figure uses before drafting and check the semantic list against original evidence before making SVG, following [diagrams.md](diagrams.md). Preserve figure/list identities and meaningful literals through expression editing. Check every shared use and actual Markdown embedding as well as standalone SVG. An article with an unfinished required figure remains a candidate. Optional figures may be deferred only when complete prose and repaired references pass collection checks; record their actual candidate results separately from source coverage. Revisit fact errors in source analysis and list drafting, and layout errors in SVG.

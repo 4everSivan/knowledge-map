@@ -1,0 +1,91 @@
+{
+  "$schema": "https://ad-flow.org/schemas/task-card.v1.json",
+  "id": "T03",
+  "title": "集成语义先行的工程制图工作流",
+  "version": "v0.1.0",
+  "milestone": "M3-diagrams",
+  "status": "in_progress",
+  "branch": "feat/T03-engineering-diagrams",
+  "depends_on": [
+    "T02"
+  ],
+  "target": {
+    "module": "工程制图",
+    "design_doc": "docs/devel/design/06-工程制图.md",
+    "design_topic": "EngineeringDiagrams"
+  },
+  "goal": "按已批准设计，通过英文参考和 workflow 生成有据 SVG、独立语义清单，完成双阅读环境检查与整库更新。",
+  "precheck": {
+    "description": "核对已提交 workflow 是否包含图稿规划、语义先行、渲染与受控交付",
+    "command": "git show HEAD:workflow.yaml",
+    "expected": "实际审阅输出中的制图规则，而非仅凭命令 Exit 0 判断实现",
+    "is_completed": false,
+    "evidence": "实际运行 Exit 0；输出为七阶段文档与术语卡流程，缺少独立图稿路径、语义清单和渲染检查，判定尚未实现。"
+  },
+  "callback": {
+    "before": [
+      "git branch --show-current"
+    ],
+    "after": [
+      "python3 /Users/sivan/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
+      "scripts/adflow-verify --mode init --json",
+      "scripts/adflow-verify --json"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "T03-1",
+      "title": "建立设计与新图稿协议",
+      "capability": "十二项选择与双文件索引、证据映射、候选和正式集合状态一致",
+      "done": true
+    },
+    {
+      "id": "T03-2",
+      "title": "接入英文制图参考与模板",
+      "capability": "八种图型语义、SVG 静态模板、上游声明及七阶段指引",
+      "done": true
+    },
+    {
+      "id": "T03-3",
+      "title": "演练生成更新与失败恢复",
+      "capability": "实际双阅读环境预览及来源、引用、暂缓、冲突和中断场景",
+      "done": true
+    }
+  ],
+  "acceptance": {
+    "result": true,
+    "run_id": "local-20261016-061219",
+    "checks": [
+      {
+        "item": "执行资源与范围",
+        "true_if": "无新增运行脚本，八类图型按需加载，新协议无迁移",
+        "false_if": "依赖上游安装、脚本或新增网站",
+        "evidence": "英文执行资源 14 个文件检查通过；YAML 七阶段、11 个项目 JSON、19 个样例 JSON、225 个本地文档目标和 SVG 模板 XML 核对通过。无新增 km 运行/测试脚本、网站、模型服务或旧库迁移。见 local/acceptance/diagrams/local-20261016-061219/development-checks.json。",
+        "result": true
+      },
+      {
+        "item": "结构与来源闭环",
+        "true_if": "节点关系证据、SVG 映射、哈希、引用和暂缓状态一致",
+        "false_if": "存在悬空标识、无据关系或伪造成功",
+        "evidence": "七个受控原始文件支持八类语义与图稿；节点/关系/分组、类型属性、证据引用和 SVG 对应核对通过；七组语义异常被有限宿主断言识别。11 篇样例文章、8 对 SVG/JSON 的正式路径与实际哈希一致。选配候选实际渲染 Exit 1，移除全部当前引用与活跃索引、保留受管留存后验证独立集合。见 tests/diagrams.md。",
+        "result": true
+      },
+      {
+        "item": "可读性与更新边界",
+        "true_if": "实际 SVG 和 Markdown 预览，并验证局部更新、阻断和中断",
+        "false_if": "只做 XML 解析却宣称渲染通过，或覆盖原始资产",
+        "evidence": "八类 SVG 经 rsvg-convert 2.62.3 实际渲染并查看，八类文章经 Typora 1.12.6 (7588) 实际截图审阅。内部代码变化仍复用 8 对图稿，无变化修订号不增；必需图缺检查/渲染失败阻断；占用和外部修改保留。实际前向引用断言 Exit 1 后记录 20 个已写文件且无 manifest，核对并恢复 27 个内容文件后最后写 manifest。仅同会话受控演练，未验证独立宿主、大工程、并发或文件系统故障。",
+        "result": true
+      }
+    ]
+  },
+  "sync": {
+    "commit": ""
+  },
+  "gate": {
+    "tool": "adflow-verify",
+    "version": "1.4.0",
+    "ran_at": "",
+    "exit_code": null
+  }
+}

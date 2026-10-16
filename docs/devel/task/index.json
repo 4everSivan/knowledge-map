@@ -1,7 +1,7 @@
 {
   "$schema": "https://ad-flow.org/schemas/task-index.v1.json",
   "phase": "v0.1.0",
-  "updated_at": "2026-10-15",
+  "updated_at": "2026-10-16",
   "milestones": {
     "M2-module-docs": {
       "title": "业务模块分层文档",
@@ -16,6 +16,13 @@
       "tasks": [
         "T01"
       ]
+    },
+    "M3-diagrams": {
+      "title": "工程制图",
+      "status": "in_progress",
+      "tasks": [
+        "T03"
+      ]
     }
   },
   "topics": {
@@ -23,48 +30,61 @@
       "design_doc": "docs/devel/design/00-系统总体设计.md",
       "tasks": [
         "T01",
-        "T02"
+        "T02",
+        "T03"
       ]
     },
     "KnowledgeLibrary": {
       "design_doc": "docs/devel/design/01-文档库与命名规范.md",
       "tasks": [
         "T01",
-        "T02"
+        "T02",
+        "T03"
       ]
     },
     "KnowledgeCards": {
       "design_doc": "docs/devel/design/02-术语知识卡片设计.md",
       "tasks": [
-        "T01"
+        "T01",
+        "T03"
       ]
     },
     "IncrementalRefresh": {
       "design_doc": "docs/devel/design/03-增量更新与质量控制.md",
       "tasks": [
         "T01",
-        "T02"
+        "T02",
+        "T03"
       ]
     },
     "KnowledgeQuality": {
       "design_doc": "docs/devel/design/03-增量更新与质量控制.md",
       "tasks": [
         "T01",
-        "T02"
+        "T02",
+        "T03"
       ]
     },
     "KnowledgeWriting": {
       "design_doc": "docs/devel/design/04-生产文档编写规范.md",
       "tasks": [
         "T01",
-        "T02"
+        "T02",
+        "T03"
       ]
     },
     "DocumentAuthoring": {
       "design_doc": "docs/devel/design/05-单篇文档编写流程.md",
       "tasks": [
         "T01",
-        "T02"
+        "T02",
+        "T03"
+      ]
+    },
+    "EngineeringDiagrams": {
+      "design_doc": "docs/devel/design/06-工程制图.md",
+      "tasks": [
+        "T03"
       ]
     }
   },
@@ -82,6 +102,13 @@
       "version": "v0.1.0",
       "milestone": "M1-km-v0.1",
       "status": "completed"
+    },
+    "T03": {
+      "file": "docs/devel/task/T03.json",
+      "title": "集成语义先行的工程制图工作流",
+      "version": "v0.1.0",
+      "milestone": "M3-diagrams",
+      "status": "in_progress"
     }
   }
 }

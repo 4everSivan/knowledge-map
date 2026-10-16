@@ -1,8 +1,10 @@
 # 业务模块分层验收记录
 
-> **created**: 2026-10-15 ｜ **last-change**: 2026-10-15 ｜ **status**: active
+> **created**: 2026-10-15 ｜ **last-change**: 2026-10-16 ｜ **status**: active
 
 ## 范围与方法
+
+本记录保留 T02 当时协议下的历史证据；T03 已将 manifest/尝试/workflow 协议扩展为 2.0，新增图稿验收见[工程制图记录](diagrams.md)。本批次不证明新协议已经验证。
 
 T02 在 v0.1.0 尚未发布的批次内落实模块分层规则。验收批次为 `local-20261015-093841`，由宿主实际时间命令取得；证据保留在 `local/acceptance/module-docs/`。
 
