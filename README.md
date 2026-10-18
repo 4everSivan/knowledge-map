@@ -56,10 +56,10 @@ docs/official/
 
 | 资源 | 职责 |
 |---|---|
-| [SKILL.md](SKILL.md) | 技能名、触发范围、输出边界与资源入口 |
-| [workflow.yaml](workflow.yaml) | 英文阶段说明、完成条件和失败去向 |
+| [SKILL.md](SKILL.md) | 技能名、触发范围、贯穿各阶段的证据与诚实原则，以及各规则的归属参考 |
+| [workflow.yaml](workflow.yaml) | 四个英文阶段（范围、规划、编写、检查与交付）的动作、完成条件、失败去向及运行报告 |
 | [assets/diagrams/base.svg](assets/diagrams/base.svg) | 静态 SVG 基础模板 |
-| [references/](references/) | 按需加载的写作、单篇流程、表达修订、术语及状态契约 |
+| [references/](references/) | 按需加载的写作、单篇流程、表达修订、术语及状态契约；每条规则只在一个参考中完整表述 |
 
 制图采用本地英文参考与八类图型规则；出处和 MIT 声明见[上游说明](references/diagrams/upstream-notice.md)。manifest/尝试协议为 `2.0`，图稿语义清单为 `1.0`；当前不提供旧库迁移。
 
