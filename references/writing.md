@@ -36,7 +36,7 @@ Review module recognition against the declared source scope before judging docum
 
 The overall design keeps a concise table linking every identified business module to its independent main design. Retain system boundaries, major relationships, backbone scenarios, shared state responsibility, and global constraints. Move module internals to their appropriate module articles without reducing the overall design to a bare link catalog.
 
-Each main design must explain the module as a whole, not merely list topic links. Small modules can have short, complete explanations; do not merge them into the overall design or another module, and do not pad them with empty sections. For a complex module, keep the whole-module explanation in the main design and put deep details in focused topic articles.
+Each main design must explain the module as a whole, not merely list topic links. Small modules can have short explanations that still meet the minimum substance below; do not merge them into the overall design or another module, and do not pad them with empty sections. For a complex module, keep the whole-module explanation in the main design and put deep details in focused topic articles.
 
 Give a complex cross-module flow one principal article describing its complete interactions, branches, failures, and recovery. The overall design retains the backbone and global constraints. Each participating module explains its own responsibility and links to the principal flow rather than duplicating the entire sequence. Brief contextual summaries may repeat; do not maintain competing complete explanations.
 
@@ -61,11 +61,83 @@ State the needed conclusion or relationship early, then explain reasons, boundar
 
 Keep commands grounded in actual project entrypoints or original operating instructions. Explain placeholders and never fill them with real secrets. Label expected output as expected; observed output requires an actual run and its environment. Writing instructions does not authorize running the project's service, deployment, tests, or external operations.
 
-Apply the evidence-grounded required triggers and optional choices in [diagrams.md](diagrams.md). Official generated engineering figures are static SVG referenced with normal Markdown image syntax, meaningful alt text and a scope caption; keep key explanations in prose. Mermaid already present in original materials may be read as declarations, not automatically treated as current implementation. Do not maintain duplicate active graph sources for the same figure or require a website.
+Apply the evidence-grounded required triggers and optional choices in [diagrams.md](diagrams.md). Official generated engineering figures are static SVG referenced with normal Markdown image syntax, meaningful alt text and the `图：` caption defined under [figure presentation](#professional-presentation); keep key explanations in prose. Mermaid already present in original materials may be read as declarations, not automatically treated as current implementation. Do not maintain duplicate active graph sources for the same figure or require a website.
+
+## Professional presentation
+
+The library must read as the project's own maintained technical documentation, written for engineers who maintain or integrate the system. These rules govern what readers see; they do not relax the evidence rules below.
+
+### Register
+
+Describe current behavior in neutral declarative sentences. Do not use first person (“我们”); write operation steps as direct imperatives. Do not use exclamation marks, rhetorical questions, promotional adjectives, intensifiers, or emoji.
+
+Never narrate the generation process in reader prose. Words such as “本轮”, “本次生成”, “经分析”, “未读取到”, “已核对”, run IDs, check results, and references to samples or drills belong in `.cards/` and the run report, not in `docs/official/`.
+
+### Evidence status, stated once
+
+State the library's evidential basis once in the `README.md` introduction, for example “本知识库依据当前源码与原项目文档编写，不包含运行实测数据。”. Repeat it in an article only when it changes that article's conclusions, and then once in the introduction or scope.
+
+In body text, state facts in domain terms. When the source scope that would contain a mechanism was fully read, write “当前实现不提供持久化”, not “没有读取到持久化”. When it was not fully read, give the scope and reason at that claim. Put claim-specific uncertainty at the claim once; do not end paragraphs with repeated “未经运行验证” disclaimers.
+
+### Page skeleton and fixed labels
+
+Every article follows this skeleton, omitting parts that do not apply:
+
+```markdown
+# <title matching the filename topic>
+
+<introduction: 1–3 sentences stating the question answered and the key conclusion>
+
+<scope or prerequisites, only when they affect conclusions>
+
+## <body sections>
+
+依据：[`tasks/dispatcher.py`](../../tasks/dispatcher.py) 的 `dispatch()`；[原项目说明](../../domain.md)。
+
+## 相关文档
+
+- [任务分派流程](任务分派流程.md)：完整的跨模块交互与失败处理。
+
+最后更新：YYYY-MM-DD
+```
+
+| Purpose | Only allowed form |
+|---|---|
+| Section source note | A separate paragraph starting `依据：` at the end of the section it supports. Link text is the path or document title; symbols follow in inline code. Never `来源：` or `实现依据：` |
+| Supplementary note / risk | `> **说明**：` / `> **注意**：`; no other callout labels |
+| Further reading | Final `## 相关文档` section; each link carries one descriptive clause |
+| Update date | The last line of the page: `最后更新：YYYY-MM-DD` |
+| Figure | Lead-in sentence → image → caption line `图：<figure title>。<scope>` → prose interpreting the key points. The H1 never comes from a figure title |
+
+### Minimum substance
+
+Every article has an introduction and at least one substantive body section. A figure, a table, or a link list never constitutes an article on its own.
+
+| Document | Must cover at least |
+|---|---|
+| `README.md` | Title `<project name> 知识库`; introduction stating coverage and evidential basis; H2 groups by reader purpose, ordered as a reading path (not alphabetically), each link with a one-sentence description |
+| Overall system design | A positioning paragraph; a module table with responsibility, dependencies, and main-article link; continuous prose on backbone interactions; global constraints |
+| Module main design | Responsibility and boundary, including what it does not do; public interface with actual signatures or inputs and outputs; main processing path; error and edge behavior; dependencies; links to topics |
+| Internal workflow | Trigger and entrypoint; participants; normal path; branches and failure handling |
+
+A small module may be short, but each applicable point gets at least one sentence. When a point cannot be established, say so once with the reason; do not create an empty section.
+
+### Chinese typography and terminology
+
+- Use full-width punctuation in Chinese sentences and “” for quotation marks. Keep half-width characters inside English, code, and numbers.
+- Put a half-width space between Chinese and English words, digits, or inline code, except next to full-width punctuation.
+- Introduce a term as 任务调度器（`Dispatcher`） on first mention, then use one name throughout the page. Use the bare identifier when no natural Chinese name exists; never coin a translation.
+- Keep list items grammatically parallel: complete sentences end with “。”, fragments take no terminal punctuation; do not mix them in one list.
+- Headings carry no terminal punctuation or colons. Avoid generic headings such as “其它”, “相关内容”, or “说明”.
+- In tables write “—” for not applicable and “未声明” for missing information; never leave a cell empty. Put units in the header.
+
+### Bringing existing libraries into line
+
+These are blocking presentation defects: an H1 that does not match the filename topic, generation-process narration in reader prose, a figure-, table-, or link-only article, and an unannotated flat `README.md` list. The collection check repairs them through the normal update lifecycle; they cannot take the no-change shortcut. Other typography differences converge only when a passage is edited for content reasons; do not rewrite unrelated passages for consistency. A presentation-only repair that does not change meaning keeps the article's last-update date.
 
 ## Evidence and limitations
 
-Explain behavior first, then add short source notes near the supported group of claims. Use original project paths, symbols, explicit document anchors, or consulted authoritative URLs. A source list without a support relationship is insufficient.
+Explain behavior first, then add short `依据：` notes near the supported group of claims. Use original project paths, symbols, explicit document anchors, or consulted authoritative URLs. A source list without a support relationship is insufficient.
 
 Markdown links are relative to the current article. A link from an official page to a root-level source therefore needs the corresponding relative path, whereas a card's `sources.path` is project-root relative. Do not mix these bases. Line numbers aid current navigation but are not identities.
 

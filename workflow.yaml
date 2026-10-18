@@ -78,6 +78,7 @@ stages:
       - Put deep module mechanisms in planned topic articles when needed; keep one principal explanation of a complex cross-module flow and link it from participating modules.
       - Build and check per-figure semantic JSON from original evidence before making SVG; bind each engineering element to support, preserve type-specific facts, and load only the selected type and common style.
       - Create static standalone SVG candidates using stable semantic IDs; revise prose and labels while preserving technical meaning, then check both actual Markdown embedding and standalone SVG rendering.
+      - Draft every article to the professional presentation rules in writing.md: page skeleton, fixed labels, minimum substance for its type, reader register, and evidence status stated once; keep generation-process narration out of reader prose.
       - Load technical-editing.md only for expression work, then compare meaning and recheck original evidence.
       - Carry forward stable card IDs, keep per-field evidence, and bind actual articles and explicit anchors.
       - Review card prose for factual consistency; v0.1 does not run a separate style pass over card JSON by default.
@@ -97,6 +98,7 @@ stages:
       - Check module recognition against original source scope separately from checking every identified module's main and necessary topic articles; do not infer coverage from file existence alone.
       - Check the overall module table against independent main articles, verify topic and cross-module links, and ensure complex flows have one principal explanation.
       - Reassess current requirements even when source files are unchanged; missing required articles or figures cannot take the no-change shortcut.
+      - Check professional presentation on every official page, including reused ones: H1 matches the filename topic, skeleton and fixed labels, README grouping with per-link descriptions, minimum substance, no generation-process narration or repeated disclaimers, and Chinese typography; blocking presentation defects prevent the no-change shortcut.
       - Check figure/list/SVG ID mapping, evidence, type semantics, two actual rendering views, active and retained ownership, hashes and all article uses under diagram-state.md.
       - Keep unfinished or unchecked required figures blocking; optional figures may be deferred only after repairing all current uses and active indexes while preserving complete prose.
       - Keep failed candidate checks and deferred figures distinct from official-collection checks and source-coverage gaps; never downgrade necessity after failure.
