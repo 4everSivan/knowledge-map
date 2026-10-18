@@ -2,7 +2,7 @@
 
 ## Versions and paths
 
-The current manifest, attempt record, and workflow description use protocol `2.0`. Figure semantic lists use `1.0`; terminology cards and optional configuration keep their independent `1.0` contracts. The skill release remains `0.1.0`. There is no legacy-library migration or conversion. Refuse unsupported state without overwriting it.
+The current manifest, attempt record, and workflow description use protocol `2.0`. Figure semantic lists use `1.0`; terminology cards and optional configuration keep their independent `1.0` contracts. The skill release remains `0.1.0`. Unsupported state versions are handled under [library-state.md](library-state.md); there is no legacy migration.
 
 Each figure ID is `d_<uuid>` obtained from a host UUID tool. Reuse it for the same logical figure across updates. Node, relation and group IDs are nonempty stable local slugs, unique across those three collections. Evidence keys are stable local slugs in a separate namespace. Do not derive identity from a timestamp, line number, label or layout. Figure titles and labels follow the document language.
 
@@ -77,12 +77,10 @@ Retain `.cards/runs/<run_id>/diagram-plan.json` when work is pending/deferred or
 
 Attempts retain the normal fields and add `deferred_figures` (array, empty when none). Each deferred record has `id`, `reason`, available candidate paths, and `remaining_work`. Keep these separate from required/source `pending`. Include retained SVG copies and actual written/removed paths in the existing write record.
 
-Checks have `name`, `method`, `result`, `evidence`, plus `required` (boolean), `scope` (`official_collection` or `candidate`) and optional `figure_ids`. Mark a check required from the plan before its result is known. A candidate failure remains failed even when that optional figure is excluded. Required official checks determine overall validation. Unfinished required work prevents confirmation; deferring an optional drawing cannot conceal unread evidence or incomplete necessary prose.
+Checks have `name`, `method`, `result`, `evidence`, plus `required` (boolean), `scope` (`official_collection` or `candidate`) and optional `figure_ids`. Mark a check required from the plan before its result is known. A candidate failure remains failed even when that optional figure is excluded. Required official checks determine overall validation. Deferring an optional drawing never hides unread evidence or incomplete necessary prose.
 
-Rendering check evidence identifies viewer/tool, actually observed environment, article paths, figure hashes, inspected results and available captured-artifact paths. Reuse names an existing check and applicable conditions, and is recorded as reuse rather than a fabricated fresh rendering. Do not invent unavailable versions or artifacts.
+Rendering check evidence identifies viewer/tool, actually observed environment, article paths, figure hashes, inspected results and available captured-artifact paths. Reuse names an existing check and applicable conditions, and is recorded as reuse rather than a fabricated fresh rendering.
 
 ## Delivery and continuation
 
-Plan all articles, cards, semantic lists, SVGs, active/retained records and retirements as one collection. Recheck critical source and managed hashes immediately before writing. Optional figures can be excluded only after repairing all uses and ensuring the remaining prose and official checks are complete. Preserve their candidate checks and deferred plan. Otherwise retain candidates and the confirmed collection.
-
-Verify actual written bytes and associations, then write the manifest last. Interrupted writes record the actual mixed set and never claim a successful revision; inspect it first on repeat invocation. Use trustworthy recovery material if available. This is not a multi-file transaction, locking service, automatic rollback or legacy migration.
+Put semantic lists, SVGs, active and retained figure records, and figure retirements in the same write plan as articles and cards, and deliver them through the publication steps in [library-state.md](library-state.md#reuse-conflicts-and-publication), including the hash recheck immediately before writing and the manifest written last. Optional figures are excluded only under the deferral conditions in [diagrams.md](diagrams.md#required-checks); keep their candidate checks and deferred plan.

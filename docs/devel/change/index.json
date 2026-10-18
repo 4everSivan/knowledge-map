@@ -1,12 +1,18 @@
 {
   "$schema": "https://ad-flow.org/schemas/change-index.v1.json",
   "version": "1.0",
-  "updated_at": "2026-10-17",
+  "updated_at": "2026-10-18",
   "topics": {
     "KnowledgeWriting": {
       "design_doc": "docs/devel/design/04-生产文档编写规范.md",
       "cards": [
         "C001"
+      ]
+    },
+    "KnowledgeMapWorkflow": {
+      "design_doc": "docs/devel/design/00-系统总体设计.md",
+      "cards": [
+        "C002"
       ]
     }
   },
@@ -14,6 +20,12 @@
     "C001": {
       "file": "docs/devel/change/C001.json",
       "title": "收紧生产文档的专业呈现与版式一致性",
+      "version": "v0.1.0",
+      "status": "verified"
+    },
+    "C002": {
+      "file": "docs/devel/change/C002.json",
+      "title": "精简技能指令：单一规则归属、四阶段 workflow 与正向原则",
       "version": "v0.1.0",
       "status": "verified"
     }

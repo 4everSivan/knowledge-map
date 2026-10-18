@@ -1,0 +1,114 @@
+{
+  "$schema": "https://ad-flow.org/schemas/change-card.v1.json",
+  "id": "C002",
+  "title": "精简技能指令：单一规则归属、四阶段 workflow 与正向原则",
+  "version": "v0.1.0",
+  "type": "Refactor",
+  "status": "verified",
+  "branch": "fix/C002-streamline-skill-instructions",
+  "is_hotfix": false,
+  "target": {
+    "module": "km 执行指引",
+    "component": "SKILL.md、workflow.yaml、references/*.md",
+    "design_doc": "docs/devel/design/00-系统总体设计.md",
+    "design_topic": "KnowledgeMapWorkflow"
+  },
+  "why": "2026-10-18 的技能写法评审发现：19 个指令文件约 12,680 词，含 111 处“do not/never”、109 处“actual”、28 处“fabricate/invent”；同一规则在 5~7 个文件重复（模块全覆盖 17 处/5 文件，生成物非证据 19 处/7 文件，选配图暂缓 15 处/6 文件，产物归属 15 处/7 文件），C001 一条规则即需改 6 个文件；workflow.yaml 60 条长句动作且无程序解析；SKILL.md 输出契约复述参考；参考中混入项目沿革说明；九种状态词无集中定义；关键规则缺少正误示例。用户确认按评审顺序处理第 1~3 项，并决定保留 JSON 术语卡（将被其它文档平台读取）与独立的“去 AI 味”表达修订阶段。",
+  "precheck": {
+    "description": "确认评审所述重复与七阶段结构仍存在",
+    "command": "python3 -c \"import yaml;print(len(yaml.safe_load(open('workflow.yaml'))['stages']))\" && grep -ci 'main design\\|main article' SKILL.md workflow.yaml references/*.md",
+    "expected": "输出 7 个阶段，模块主设计规则出现在多个文件",
+    "is_completed": false,
+    "evidence": "2026-10-18 实际运行 Exit 0：输出 7 个阶段；模块主设计规则出现在 workflow.yaml(5)、SKILL.md(1)、authoring.md(2)、writing.md(8)、library-state.md(1)，判定重复与七阶段结构存在。"
+  },
+  "callback": {
+    "before": [
+      "git branch --show-current"
+    ],
+    "after": [
+      "python3 /Users/sivan/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
+      "python3 -c \"import yaml;yaml.safe_load(open('workflow.yaml'))\"",
+      "scripts/adflow-verify --json",
+      "scripts/adflow-verify  # 收口前门禁：Exit 4 禁止置 closed；目标状态预检使用 --card C002 --to <目标状态> --record，仅回写本卡 gate，Exit 0 后再同步状态"
+    ]
+  },
+  "changes": [
+    {
+      "scope": "参考结构 / 规则归属",
+      "before": "证据原则、模块全覆盖、选配图暂缓、产物归属等规则在 SKILL.md、workflow 与多份参考中各自复述。",
+      "after": "每条规则只在一个归属文件完整表述，其余位置以一句话和链接引用；SKILL.md 集中给出正向的证据与诚实原则。",
+      "impact": "规则语义不变；后续修改只需改归属文件。"
+    },
+    {
+      "scope": "workflow 结构",
+      "before": "七个阶段（establish_context、inventory、establish_architecture、author_by_topic、check_collection、deliver、report），60 条长句动作。",
+      "after": "四个阶段（scope、plan、write、check_and_deliver），保留每阶段 read/inputs/actions/outputs/done_if/on_failure，动作改为短句并指向归属参考；运行报告改为独立的 report 块，所有运行（含失败、部分与无变化）结束后执行。",
+      "impact": "单篇写作仍为分析→起草→表达修订（去 AI 味）→事实回查，表达修订保持独立阶段；不改变用户调用方式。"
+    },
+    {
+      "scope": "写法约定",
+      "before": "大量禁止式表述；参考中有项目沿革说明；状态词无定义；卡片与写作缺少示例。",
+      "after": "以正向指令为主；移除沿革说明；library-state.md 增加状态词表；knowledge-cards.md 增加示例卡片，writing.md 增加正误对照。",
+      "impact": "卡片协议 1.0、manifest/尝试协议 2.0、图稿清单 1.0 的字段与取值不变。"
+    }
+  ],
+  "design": {
+    "doc": "docs/devel/design/00-系统总体设计.md",
+    "topic": "KnowledgeMapWorkflow",
+    "modified": true,
+    "rule_diff": {
+      "before": "建议内部顺序为“盘点 → 规划 → 阅读取证 → 生成候选 → 检查修订 → 更新交付”，workflow 实现为七阶段。",
+      "after": "workflow 以四阶段实现同一顺序：范围（盘点）→ 规划 → 编写（阅读取证、生成候选，含独立表达修订）→ 检查与交付（检查修订、更新交付、报告）；每条执行规则只有一个归属参考。"
+    }
+  },
+  "verification": {
+    "result": true,
+    "run_id": "local-20261018",
+    "user_quote": "approved, thanks!",
+    "signoff": "用户于 2026-10-18 在会话中确认，AI 代签",
+    "checks": [
+      {
+        "item": "结构与解析",
+        "true_if": "quick_validate 通过；workflow.yaml 可解析且每阶段含 read/inputs/actions/outputs/done_if/on_failure；所有相对链接与锚点存在；adflow-verify 普通校验 Exit 0",
+        "false_if": "任一校验失败、阶段字段缺失或链接失效",
+        "evidence": "quick_validate.py：Skill is valid!，Exit 0；workflow.yaml 解析 Exit 0，四阶段均含 id/read/inputs/actions/outputs/done_if/on_failure，read 路径全部存在；SKILL.md、README.md、CHANGELOG.md、references/**/*.md 与 docs/devel/design/*.md 共 28 个文件的相对链接与锚点 0 处问题；技能文件中无旧阶段名残留；scripts/adflow-verify --json Exit 0（errors 0 / warnings 0 / advisories 0）。",
+        "result": true
+      },
+      {
+        "item": "规则无遗失",
+        "true_if": "改写前建立的规则清单逐条在改写后的归属文件中找到等价表述；协议字段表与改写前一致",
+        "false_if": "任一规则丢失、被放宽，或协议字段、取值发生变化",
+        "evidence": "以改写前快照（scratchpad c002-before）逐句比对：395 句不再逐字出现，其中 89 句为近似改写（相似度≥0.8），其余 306 句逐条人工核对去向。发现 4 处遗失或弱化并已补回：遵循目标工程规则（SKILL.md）、缺失来源识别（scope）、不得静默缩小范围（check_and_deliver 覆盖检查）、图稿记录/归属/哈希核对指向 diagram-state.md（check_and_deliver）。library-state.md、diagram-state.md、knowledge-cards.md 及 references/diagrams/ 全部表格行与代码块与改写前逐字一致；references/diagrams/ 文件未改动。",
+        "result": true
+      },
+      {
+        "item": "精简效果",
+        "true_if": "指令总词数、禁止式表述数量及跨文件重复次数较改写前明显下降",
+        "false_if": "总量未下降或重复仍分散于多个文件",
+        "evidence": "总词数 12,680 → 11,918（−6%；新增状态词表、示例卡片、原则块与正误对照约 600 词）；workflow.yaml 1,717 → 1,001 词，动作 60 → 27 条；“do not/never/don't” 111 → 57；“fabricate/invent” 28 → 13；“actual” 109 → 81。完整表述次数：生成物非证据 7 → 1（SKILL.md 原则 1）；选配图暂缓条件 6 处 → 1（diagrams.md），其余为字段名或链接；模块全覆盖完整规则仅在 writing.md，其余为检查项或链接；宿主工具约束 11 → 6 处提及。总量降幅低于评审时估计的 20~30%，原因是新增示例与词表，以及协议正文按要求未压缩。",
+        "result": true
+      },
+      {
+        "item": "用户决定保留项",
+        "true_if": "JSON 术语卡协议未变；表达修订（去 AI 味）仍为单篇流程中的独立阶段并加载 technical-editing.md",
+        "false_if": "卡片字段被改动或表达修订被并入起草",
+        "evidence": "knowledge-cards.md 卡片协议 1.0 字段表逐字未变，新增示例卡经字段校验无缺失与未知字段，supports 覆盖 definition 与 project_usage，并写明卡片将被其它文档平台读取；authoring.md 明确四个独立阶段，表达修订（去 AI 味）在内容核对后单独加载 technical-editing.md，workflow write 阶段同样要求其为独立一遍。",
+        "result": true
+      }
+    ]
+  },
+  "rejections": [],
+  "sync": {
+    "design_pinned": false,
+    "changelog": false,
+    "commit": "",
+    "tag": ""
+  },
+  "gate": {
+    "tool": "adflow-verify",
+    "version": "1.4.0",
+    "ran_at": "2026-10-18",
+    "exit_code": 0,
+    "target_status": "verified"
+  }
+}
