@@ -20,7 +20,7 @@ The caller supplies the candidate, its inspected evidence, its document purpose,
 
 Preserve who acts, what triggers the action, prerequisites, scope, defaults, precedence, units, limits, exceptions, failures, state transitions, and recovery behavior. Preserve negation and the difference between possible, required, expected, implemented, and observed behavior.
 
-Keep code blocks, inline code, formulas, commands, identifiers, precise values, placeholders, paths, link targets, explicit anchors, and quoted source text unchanged during this pass. Keep headings, section order, table structure, and ordered steps. Return any needed correction of those items to drafting.
+Keep code blocks, inline code, formulas, commands, identifiers, precise values, placeholders, paths, link targets, explicit anchors, and quoted source text unchanged during this pass. Keep headings, section order, table structure, and ordered steps; heading punctuation and the fixed labels listed below may be normalized. Return any needed correction of those items to drafting.
 
 Keep source attribution attached to the claims it supports. Do not turn design intentions into implementation claims, static source observations into runtime evidence, or incomplete coverage into verified absence. Leave uncertainty visible where it affects the reader.
 
@@ -32,6 +32,17 @@ Identify a concrete reading problem before revising a passage. Prefer specific a
 
 Keep necessary explanation and useful repetition across independently read reference entries. A clear summary, a parameter table, or a predictable procedure can be the right technical form. Do not replace technical terms with varied synonyms or remove meaningful qualifications for brevity.
 
+Check the permitted passages against the professional presentation rules in [writing.md](writing.md#professional-presentation). Diagnose these defects and route them as shown:
+
+| Defect | Handling in this pass |
+|---|---|
+| Generation-process narration (“本轮”, “经分析”, “未读取到”, check results, samples) | Remove when the page's introduction or the library `README.md` already states the evidential basis; otherwise return to drafting to add that statement once |
+| The same verification disclaimer repeated across paragraphs | Keep one statement at the claim or in the scope; remove repetitions that add no claim-specific condition |
+| Colloquial, promotional, or first-person wording; exclamations; rhetorical questions | Rewrite as neutral declarative prose with the same meaning |
+| Mixed labels (`来源：`, `实现依据：`, ad hoc callouts) or a misplaced update date | Normalize to `依据：`, `> **说明**：`, `> **注意**：`, and a final `最后更新：` line without changing link targets |
+| Chinese punctuation, spacing, or inconsistent term naming | Apply the typography rules; keep identifiers byte-identical |
+| H1 not matching the filename, missing introduction, figure-, table-, or link-only article, flat `README.md` list | Structural; return to drafting |
+
 Work within paragraphs. Split or combine sentences when this clarifies an existing relationship without changing its meaning. If readability requires new evidence, a different outline, or reordered information, return that issue to drafting.
 
 Do not introduce anecdotes, imagined outcomes, an author's persona, deliberate mistakes, or irregular rhythm. Do not use word bans, deletion quotas, detector scores, or a claim that the result is demonstrably human-written. If no actual expression problem exists, leave the passage unchanged.
@@ -39,7 +50,7 @@ Do not introduce anecdotes, imagined outcomes, an author's persona, deliberate m
 ## Editing sequence
 
 1. Check the candidate against the inspected evidence. Identify unsupported claims and missing conditions before prose work; return those issues to analysis or drafting.
-2. Locate the permitted passages and note the specific readability defects. Keep this working record separate from the reader's document.
+2. Locate the permitted passages and note the specific readability and presentation defects. Keep this working record separate from the reader's document.
 3. Make the smallest useful expression changes while preserving the technical invariants.
 4. Compare the edited candidate with the draft. Revert any expression change that alters an invariant or reaches beyond the allowed scope.
 5. Recheck affected claims against their original evidence, including conditions and exceptions. Comparing two drafts alone cannot establish factual correctness. Return unresolved content issues to analysis or drafting.

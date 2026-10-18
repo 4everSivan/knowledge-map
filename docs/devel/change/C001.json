@@ -1,0 +1,107 @@
+{
+  "$schema": "https://ad-flow.org/schemas/change-card.v1.json",
+  "id": "C001",
+  "title": "收紧生产文档的专业呈现与版式一致性",
+  "version": "v0.1.0",
+  "type": "Enhancement",
+  "status": "verified",
+  "branch": "fix/C001-professional-doc-presentation",
+  "is_hotfix": false,
+  "target": {
+    "module": "生产文档编写",
+    "component": "references/writing.md、references/technical-editing.md、workflow.yaml、SKILL.md",
+    "design_doc": "docs/devel/design/04-生产文档编写规范.md",
+    "design_topic": "KnowledgeWriting"
+  },
+  "why": "用户要求生成文档“way more professional”。T01–T03 的同会话样例显示：正文混入生成过程叙述（“本轮未运行…”“是否得到预期结果尚未通过运行程序验证”）；图稿演练文章只有一句话加一张图；系统总体设计.md 的 H1 取自图名“模块协作关系”；README 为无说明的平铺列表；依据标签混用“来源/依据/实现依据”；中英混排空格与标点不统一。现行规则侧重证据纪律，缺少读者语域、页面骨架、最低实质内容、中文排版和统一标签的正面约束，也未在整库检查中拦截这些问题。",
+  "precheck": {
+    "description": "确认写作参考尚未包含专业呈现约束",
+    "command": "grep -n \"Professional presentation\\|最后更新：YYYY-MM-DD\\|generation process\" references/writing.md references/technical-editing.md workflow.yaml",
+    "expected": "无匹配（Exit 1），说明规则尚未实现",
+    "is_completed": false,
+    "evidence": "2026-10-17 实际运行，grep 无匹配，Exit 1；判定规则尚未实现。"
+  },
+  "callback": {
+    "before": [
+      "git branch --show-current"
+    ],
+    "after": [
+      "python3 -c \"import yaml;yaml.safe_load(open('workflow.yaml'))\"",
+      "scripts/adflow-verify --json",
+      "scripts/adflow-verify  # 收口前门禁：Exit 4 禁止置 closed；目标状态预检使用 --card C001 --to <目标状态> --record，仅回写本卡 gate，Exit 0 后再同步状态"
+    ]
+  },
+  "changes": [
+    {
+      "scope": "业务规则 / 写作参考",
+      "before": "writing.md 规定页面顺序、文类大纲和证据呈现，但未规定读者语域、固定标签、篇末日期格式、最低实质内容和中文排版；小模块“可以简短”被用作只写一两句的理由。",
+      "after": "writing.md 新增专业呈现规则：读者语域与禁止生成过程叙述、证据状态集中表述、统一页面骨架与标签（依据/注意/说明/相关文档/最后更新）、README 按阅读目的分组并逐项说明、各文类最低实质内容、图前导语与图注、中文排版与术语首现规则。",
+      "impact": "新生成及更新涉及的文章；已有文章中的阻断级呈现缺陷在整库检查时修复，其余版式差异随正常更新逐段收敛。"
+    },
+    {
+      "scope": "表达修订 / 整库检查",
+      "before": "technical-editing.md 只概括“空泛重复、宣传口吻、助手叙述”；workflow 整库检查不核对 H1 与文件名、骨架、标签及过程叙述。",
+      "after": "technical-editing.md 列出可诊断的呈现缺陷及其处理去向；workflow 的起草与整库检查加入专业呈现核对，阻断级缺陷不能走无变化短路。",
+      "impact": "km 执行流程；不新增脚本、阶段、用户命令或状态字段。"
+    }
+  ],
+  "design": {
+    "doc": "docs/devel/design/04-生产文档编写规范.md",
+    "topic": "KnowledgeWriting",
+    "modified": true,
+    "rule_diff": {
+      "before": "默认编写约定与 Markdown 元素表约束格式，未规定语域、统一标签、最低实质内容、中文排版及过程叙述隔离。",
+      "after": "新增 4.4 专业呈现与版式一致性，并将对应项纳入 4.7 写作检查。"
+    }
+  },
+  "verification": {
+    "result": true,
+    "run_id": "local-20261017-23",
+    "user_quote": "okey, approved",
+    "signoff": "用户于 2026-10-17 在会话中确认，AI 代签",
+    "checks": [
+      {
+        "item": "参考与流程解析",
+        "true_if": "workflow.yaml 可解析；SKILL.md、workflow 与 references 的相对链接全部存在；adflow-verify 普通校验 Exit 0",
+        "false_if": "任一解析失败、链接缺失或校验器非 0 退出",
+        "evidence": "python3 yaml.safe_load(workflow.yaml) 成功 Exit 0；SKILL.md、README.md、CHANGELOG.md、references/**/*.md 与 04 设计文档的相对链接及锚点检查 0 处问题；scripts/adflow-verify --json Exit 0（errors 0 / warnings 0 / advisories 0）。",
+        "result": true
+      },
+      {
+        "item": "规则覆盖样例缺陷",
+        "true_if": "T01–T03 样例中观察到的每类呈现缺陷都能对应到 writing.md 的具体规则和 workflow 的检查项",
+        "false_if": "存在未被任何规则或检查覆盖的已观察缺陷",
+        "evidence": "样例缺陷与规则对应：过程叙述 → writing.md Register；逐段免责声明 → Evidence status, stated once；H1 取图名 → skeleton 与阻断缺陷；一句话加图 → Minimum substance；平铺 README → README 行；来源/依据/实现依据混用 → Fixed labels；日期位置 → Update date；中英混排 → Chinese typography。workflow author_by_topic 与 check_collection 各新增一项对应检查。",
+        "result": true
+      },
+      {
+        "item": "同会话改写演练",
+        "true_if": "按新规则改写 module-docs 样例的 README、系统总体设计与一篇模块主设计，事实与原始来源一致，过程叙述与标签检查无残留",
+        "false_if": "改写引入来源不支持的结论，或仍残留过程叙述、混用标签、H1 与文件名不一致",
+        "evidence": "local/acceptance/writing-quality/local-20261017-234416：按新规则改写 module-docs 样例的 README、系统总体设计、任务调度设计，逐句对照 runner.py、tasks/dispatcher.py、policies/replay.py、execution.py、storage.py、domain.md；源码无类型注解处已标为推断。同目录 scan.py（同会话一次性检查，非 km 运行脚本）结果见 scan-result.json：改写后 3 篇 0 问题；改写前检出过程叙述（本轮/未运行/样例）、H1 与文件名不一致、“来源：”标签、日期非末行、README 无 H2。改写前文件复制出原目标后链接失效属复制产物，不计为缺陷。属同会话演练，非独立执行验证。",
+        "result": true
+      },
+      {
+        "item": "反向影响排查",
+        "true_if": "证据纪律、增量范围、卡片与图稿协议未被放宽；未新增脚本、阶段或状态字段",
+        "false_if": "新规则与既有证据或增量规则冲突，或引入新的运行依赖",
+        "evidence": "git diff 中被删除的规则行均为原位改写；证据分类、增量范围、卡片与图稿协议条款未删除或放宽；未新增脚本、workflow 阶段、用户命令或状态字段。",
+        "result": true
+      }
+    ]
+  },
+  "rejections": [],
+  "sync": {
+    "design_pinned": false,
+    "changelog": false,
+    "commit": "",
+    "tag": ""
+  },
+  "gate": {
+    "tool": "adflow-verify",
+    "version": "1.4.0",
+    "ran_at": "2026-10-17",
+    "exit_code": 0,
+    "target_status": "verified"
+  }
+}
