@@ -1,0 +1,98 @@
+{
+  "$schema": "https://ad-flow.org/schemas/change-card.v1.json",
+  "id": "C005",
+  "title": "以需求和约束解释设计机制，并核对实际文档样本",
+  "version": "v0.1.0",
+  "type": "Enhancement",
+  "status": "in_progress",
+  "branch": "codex/fix-C005-requirement-led-writing",
+  "is_hotfix": false,
+  "target": {
+    "module": "生产文档编写",
+    "component": "design-outlines、writing、authoring、technical-editing",
+    "design_doc": "docs/devel/design/04-生产文档编写规范.md",
+    "design_topic": "KnowledgeWriting"
+  },
+  "why": "用户确认将章节编辑提示词融入既有规范，并要求抽查一份改动文档。现有规则覆盖事实保真和详设深度，但没有集中说明需求、目标、机制的对应关系；提示词中的固定句数、三类异常和结构重排需按既有边界适配。",
+  "precheck": {
+    "description": "检查是否已有需求先行规则、异常维度说明以及仅改句子的边界，避免重复实现",
+    "command": "python3 -c \"from pathlib import Path; print({'requirement_led_rule': 'requirement-led-explanation' in Path('references/design-outlines.md').read_text(), 'orthogonal_error_description': 'diagnostic retention' in Path('references/writing.md').read_text(), 'sentence_only_boundary': 'adding a heading or reorganizing the article belongs to drafting' in Path('references/technical-editing.md').read_text()})\"",
+    "expected": "前两项缺失且句子修改边界存在时，补齐内容组织规则并保留表达权限",
+    "is_completed": false,
+    "evidence": "2026-10-22 实际预检 Exit 0：requirement_led_rule=false，orthogonal_error_description=false，sentence_only_boundary=true；C005 尚不存在。修改前治理检查 Exit 0，errors/warnings/advisories 均为 0。"
+  },
+  "callback": {
+    "before": [
+      "git branch --show-current"
+    ],
+    "after": [
+      "python3 /Users/sivan/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
+      "git diff --check",
+      "scripts/adflow-verify --json"
+    ]
+  },
+  "changes": [
+    {
+      "scope": "需求、目标和机制的解释顺序",
+      "before": "功能点清单和详设深度已有要求，尚无集中对应规则。",
+      "after": "完整设计主题先说明需求与约束，再解释目标、机制和边界；目标需有依据，历史动机不能从代码反推，简单条目引用上层说明。",
+      "impact": "九类设计大纲保持，操作指南和查询参考沿用自身结构。"
+    },
+    {
+      "scope": "诊断、异常与编辑权限",
+      "before": "段落诊断侧重表达，提示词可能引入强制三分类、禁词或越权结构重排。",
+      "after": "结构与证据问题返回分析或起草，句子问题在独立表达阶段处理；异常分述结果、状态和诊断行为，表图按信息选择。",
+      "impact": "不增加 workflow 阶段、协议字段、执行脚本或外部依赖。"
+    },
+    {
+      "scope": "实际文档抽查",
+      "before": "尚未按本次提示词审阅修改文档。",
+      "after": "以生产文档编写规范 4.5 为一份真实样本，记录逐段诊断、完整修改及回查，区分工具检查和同会话语义审阅。",
+      "impact": "不重生成外部工程知识库，不将单样本判断当作泛化保证。"
+    }
+  ],
+  "design": {
+    "doc": "docs/devel/design/04-生产文档编写规范.md",
+    "topic": "KnowledgeWriting",
+    "modified": true,
+    "rule_diff": {
+      "before": "详设说明目标、契约和机制，未集中要求需求与设计机制对应。",
+      "after": "在原大纲内按需求、目标、机制和边界组织完整功能点；明确证据要求、异常维度与起草/表达边界。"
+    }
+  },
+  "verification": {
+    "result": null,
+    "run_id": "3c743817-5642-47b9-b8ea-9b918be53c3a",
+    "user_quote": "",
+    "signoff": "",
+    "checks": [
+      {
+        "item": "技能与文档结构",
+        "true_if": "技能基础、YAML/JSON、本地引用、保护内容和治理检查均通过",
+        "false_if": "任一检查失败、来源或原有无关改动被覆盖",
+        "evidence": "quick_validate 输出 Skill is valid!，git diff --check、scripts/adflow-verify --json 均 Exit 0，治理 errors/warnings/advisories 均 0。14 项文档结构检查通过，含 YAML/JSON、105 处本地引用及原标题、表格、代码、字面量、来源和引用保护。原有 72 份文件中 63 份字节不变，9 份叠加本卡修改；新增 C005 和检查页，既有 C003/C004、SKILL/workflow 与历史验收均未改。证据位于本卡批次的 command-checks.json 与 document-checks.json；初始分支权限和 Python 编码失败另留 initial-command-issues.json。",
+        "result": true
+      },
+      {
+        "item": "一份实际修改文档的逐段检查",
+        "true_if": "样本有需求起点、目标对应、机制说明和边界；事实、标题、锚点、表格及引用受保护，异常说明不编造技术行为",
+        "false_if": "只有规则声明而无实际样本，或补造事实、动机、错误类别或验收结论",
+        "evidence": "tests/requirement-led-writing.md 对生产文档编写规范 4.5 全节逐段核对原提示词五项诊断：补入需求概括、三项可追溯目标及机制对应，拆开版式与证据说明，独立列出边界；规则先说明目的与输入，异常按实际结果、状态与诊断处理。sample-before.md/sample-after.md 保存完整前后章节。结论由同会话对原提示词、确认分析、快照与修改稿审阅得出，非独立模型或自动语义证明；不重生成外部工程文档，未执行页面渲染、应用或设备验收。",
+        "result": true
+      }
+    ]
+  },
+  "rejections": [],
+  "sync": {
+    "design_pinned": false,
+    "changelog": true,
+    "commit": "",
+    "tag": ""
+  },
+  "gate": {
+    "tool": "adflow-verify",
+    "version": "1.4.0",
+    "ran_at": "2026-10-22",
+    "exit_code": 0
+  }
+}

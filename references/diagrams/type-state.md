@@ -1,6 +1,6 @@
 # State
 
-Show one subject's business states and permitted transitions. Distinguish these from execution steps and inter-actor messages.
+Show one named subject's business states or evidenced object/resource lifecycle and permitted transitions. States can be encoded by fields or conditions rather than an enum. Distinguish them from execution steps, inter-actor messages and result codes that are not stored states.
 
 ## Semantic fields
 

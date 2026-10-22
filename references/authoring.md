@@ -6,31 +6,32 @@ Every article passes through four separate stages: analysis, drafting with a sou
 
 ## New article
 
-1. **Analyse.** Read original code and project documents. Trace the relevant entrypoint, prerequisites, normal path, branches, errors, and termination. Choose the reader's question, document type, and supported scope.
-2. **Draft and check sources.** Draft using [writing.md](writing.md). Before touching expression, check every claim against evidence, including actors, defaults, precedence, failures, and declared versus implemented behavior. Return unsupported content to analysis or drafting.
-3. **Edit expression.** Load [technical-editing.md](technical-editing.md) and revise expression within the supported draft, protecting technical facts and structure.
+1. **Analyse.** Read original code and project documents. Trace the relevant entrypoint, prerequisites, normal path, branches, errors, and termination. Choose the reader questions, document type and supported scope. For designs, load [design-outlines.md](design-outlines.md), inventory concrete functional points from sources, choose the category and map points to planned sections; for each design article identify the actual internal mechanisms and assess its figure needs under diagrams.md. Use the requirement-led diagnosis in design-outlines.md to locate unsupported needs/goals or a mechanism lacking its purpose/contract. Record source-supported questions in the working plan.
+2. **Draft and check sources.** Draft using [writing.md](writing.md) and the chosen design outline, including its [requirement-led explanation](design-outlines.md#requirement-led-explanation) for coherent design concerns. Expand each functional point beyond its inventory row, with rules, paths and results at precise answering sections. Before touching expression, check every claim against evidence, including actors, defaults, precedence, failures, and declared versus implemented behavior. Use writing.md's detailed-design depth for design articles, trace normal and important alternative outcomes, and map questions to actual answer sections. Return unsupported or insufficiently explained content to analysis or drafting.
+3. **Edit expression.** Load [technical-editing.md](technical-editing.md), apply its [sentence construction rules](technical-editing.md#sentence-construction) within the supported draft, and protect technical facts and structure.
 4. **Recheck facts.** Compare the edited candidate with the draft and recheck affected claims against original sources. Revert expression drift. Fix content defects in analysis or drafting and repeat the affected checks.
 
-The article is complete when its content is supported, its structure suits the reader, its technical meaning survived editing, and each source association can be explained. A source link alone does not establish support. When necessary evidence is missing, keep the gap and the candidate.
+The article is complete when its content is supported, its structure suits the reader, its technical meaning survived editing, and each source association can be explained. For design articles the category outline/layout and source-backed functional-point coverage must pass, its reader questions must be substantively answered, the normal/alternative walkthroughs checked where applicable, and all required figures finished; use the actual prose and original sources, not just headings or a self-declared checklist. A source link alone does not establish support. When necessary evidence is missing, keep the gap and the candidate.
 
 ## Update article
 
 1. **Analyse the change.** Read changed sources and trace affected callers, configuration consumers, and shared contracts, using original project documents as declarations where appropriate. Widen the analysis if the impact cannot be bounded.
-2. **Compare.** Check the existing article's affected assertions against current evidence. Classify each as a semantic change, a reference-only change, previously incorrect content, or a change with no documented impact.
+2. **Compare.** Check the existing article's affected assertions against current evidence. Classify each as a semantic change, a reference-only change, previously incorrect content, or a change with no documented impact. Diagnose organization in the affected design explanations under design-outlines.md; distinguish missing evidence or needed restructuring from sentence-level defects before editing.
 3. **Update content.** Update affected content, examples, conditions, and references. Make necessary outline or anchor changes here and fix incoming navigation and card bindings. Review the corrected candidate against sources before editing expression.
 4. **Edit expression locally.** Apply technical editing only to changed passages and the context needed to understand them. Unrelated valid text stays byte-identical.
 5. **Recheck.** Check the content update and the expression changes separately: original evidence, protected literals, conditions, references, and affected card meanings. Return the checked candidate and its actual change scope.
 
 Reuse an article when reliable evidence shows its content and references still apply and its output ownership is intact; keep its content date. Source verification metadata can change without a knowledge-content revision. Previous partial coverage, unknown source changes, or unverifiable output edits rule out the no-change shortcut.
 
-Classify module updates before choosing pages to edit. An internal mechanism change with unchanged responsibilities and external contracts may touch only the module's main design or relevant topics. Changed interfaces, state ownership, dependencies, or backbone interactions also require checking the overall design, participating modules, and the principal cross-module flow; rewrite those pages only where their content or references are actually affected.
+Classify module and design-topic updates before choosing pages to edit. Check the mapped overall section whenever a detailed design changes; rewrite it only if its meaning or references are affected. An internal mechanism change with unchanged responsibilities and external contracts may touch only the relevant detailed article. Changed interfaces, state ownership, dependencies, or backbone interactions also require checking participating modules and the principal cross-module flow. New topics, renamed or split articles, and changed requirements also require reconciling the overall/detail plan and current incoming associations under writing.md and library-state.md.
 
 ## Return paths
 
 | Finding | Return to |
 |---|---|
 | Wrong fact, missing prerequisite, unsupported claim, or unclear source | Analysis and drafting |
-| Mixed reader purposes, needed section moves, title changes, or page splits | Planning or drafting; repair incoming references |
+| Mixed reader purposes, needed section moves, title changes, or page splits | Planning or drafting; repair incoming references and keep source notes attached to supported claims |
+| Missing need/goal evidence, unexplained rule purpose/input, or an imposed error category | Analysis and drafting; explain only supported relationships and behavior |
 | Changed literal, qualifier, limit, negation, or certainty during editing | Revert that expression change and recheck evidence |
 | Conflicting or unavailable source | The workflow's coverage and validation decision |
 | No readability defect | Keep the passage unchanged |

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://ad-flow.org/schemas/change-card.v1.json",
+  "id": "C004",
+  "title": "按主谓宾收紧句子表达与保真修订",
+  "version": "v0.1.0",
+  "type": "Enhancement",
+  "status": "in_progress",
+  "branch": "codex/fix-C004-sentence-clarity",
+  "is_hotfix": false,
+  "target": {
+    "module": "中文技术表达",
+    "component": "technical-editing、authoring、writing",
+    "design_doc": "docs/devel/design/04-生产文档编写规范.md",
+    "design_topic": "KnowledgeWriting"
+  },
+  "why": "用户提供已有写作提示词，要求主要围绕主谓宾优化当前 skill。既有参考只概述具体主体和直接动词，没有说明自然主语与省略、多执行者归属、条件范围、直接否定及结果保真，容易机械拆句或补造结果。",
+  "precheck": {
+    "description": "确认现有规则只有概括性主体/动词提示，尚无逐句规则与中文边界样例",
+    "command": "python3 -c \"from pathlib import Path; s=Path('references/technical-editing.md').read_text(); print({'direct_actor_hint': 'Prefer specific actors and direct verbs' in s, 'sentence_contract': '## Sentence construction' in s})\"",
+    "expected": "direct_actor_hint=true、sentence_contract=false 时继续补齐；已有完整规则时审阅语义后避免重复",
+    "is_completed": false,
+    "evidence": "2026-10-22 实际运行 Exit 0：direct_actor_hint=True，sentence_contract=False。原工作区22项未提交改动已建立只读比较快照，后续仅在相关文件上叠加本卡修改。"
+  },
+  "callback": {
+    "before": [
+      "git branch --show-current"
+    ],
+    "after": [
+      "python3 /Users/sivan/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
+      "python3 -c \"import yaml; yaml.safe_load(open('workflow.yaml'))\"",
+      "git diff --check",
+      "scripts/adflow-verify --json"
+    ]
+  },
+  "changes": [
+    {
+      "scope": "句子表达与语义边界",
+      "before": "只概括具体主体、直接动词与事实保护，没有逐动作核对和中文正反例。",
+      "after": "集中定义自然主语、动作归属、具体动词/对象、一句一事、条件范围、直接否定、主动表达和有据结果；以中文样例区分允许修订与必须退回的内容缺口。",
+      "impact": "初次与局部更新的独立表达修订；已有四阶段、卡片协议与图稿协议不变。"
+    },
+    {
+      "scope": "规则路由与回查",
+      "before": "独立表达修订已接入，但写作参考和生命周期未指向具体句子规则。",
+      "after": "通过既有写作/修订入口加载唯一规则正文，回查动作主体、条件范围、否定及结果；不新增流程阶段或审批。",
+      "impact": "只修改允许的句子；保留标题、分节、段落、字面量和原文的不确定性，不重写稳定正文。"
+    }
+  ],
+  "design": {
+    "doc": "docs/devel/design/04-生产文档编写规范.md",
+    "topic": "KnowledgeWriting",
+    "modified": true,
+    "rule_diff": {
+      "before": "正文采用直接、具体的中文，主体、条件和结果只作概括要求。",
+      "after": "逐动作核对主谓宾与条件范围，有据描述结果；句子修订不改变事实和结构，详细准则集中在 technical-editing 的独立阶段。"
+    }
+  },
+  "verification": {
+    "result": null,
+    "run_id": "b27a8e91-cf35-41af-8670-4c9338f0b98a",
+    "user_quote": "",
+    "signoff": "",
+    "checks": [
+      {
+        "item": "技能、路由与文档结构",
+        "true_if": "quick_validate、YAML/JSON、变更引用、保护字面量/结构与治理检查均通过",
+        "false_if": "任一结构检查失败或原有修改被覆盖",
+        "evidence": "quick_validate输出Skill is valid!，Exit 0；PyYAML解析、git diff --check、scripts/adflow-verify --json各Exit 0，errors/warnings/advisories均0。维护检查覆盖四阶段与10条read路由、15份治理JSON和6份本卡Markdown的50处有效本地引用，0错误。24份比较快照中18份字节不变；原有22项修改完整保留，本卡仅叠加6个既有文件与2个新文件；C003卡片和原索引记录、SKILL/workflow、技术不变量及历史来源段未改。详见本批次command-checks.json及document-checks.json。",
+        "result": true
+      },
+      {
+        "item": "主谓宾与语义边界演练",
+        "true_if": "同会话逐例核对主体、动作、对象、条件、顺序、否定、确定性和结果；缺失来源不得补造，保留原有结构和修改范围",
+        "false_if": "补造执行者或结果、必要条件改成充分条件、软约束改硬禁止，或把同会话审阅宣称为独立验证",
+        "evidence": "tests/sentence-clarity.md：同会话12组自建来源/句子对照，修订8、保留3、返回分析1；逐组核对动作归属、具体动词/对象、必要条件、条件范围、直接否定、成功失败结果、自然省略、可能性及建议、未知主体、技术词和顺序。每例9项结构断言共108项通过；5个误改反例分别因归属、逻辑、条件范围、确定性或补造结果被同会话审阅拒绝。初轮S06/S08/S11样例声明措辞澄清保留初稿；并非自动语义证明或独立模型前向验证，未重生成外部工程文档。",
+        "result": true
+      }
+    ]
+  },
+  "rejections": [],
+  "sync": {
+    "design_pinned": false,
+    "changelog": true,
+    "commit": "",
+    "tag": ""
+  },
+  "gate": {
+    "tool": "adflow-verify",
+    "version": "1.4.0",
+    "ran_at": "2026-10-22",
+    "exit_code": 0
+  }
+}

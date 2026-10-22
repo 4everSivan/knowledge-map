@@ -1,0 +1,17 @@
+# Git & IDE
+.git/
+.idea/
+.vscode/
+.DS_Store
+
+# 本机验收产物（local/acceptance 约 22M）
+local/
+
+# Python 运行产物
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+
+# Node（如有）
+node_modules/
