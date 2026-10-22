@@ -32,16 +32,18 @@ stages:
     on_failure: Preserve existing files; report the missing context or state conflict.
 
   - id: plan
-    read: [references/writing.md]
+    read: [references/writing.md, references/design-outlines.md, references/diagrams.md]
     inputs: Source inventory, entrypoints, original design declarations, prior state.
     actions:
       - Trace real entrypoints and major calls to establish boundaries, module roles, data, and state. For long-running services include background work, coordination, and shutdown.
       - Identify business modules and plan each module's article set and the cross-module flow articles (writing.md, module planning). Review the module list against the sources for omissions and unresolved boundaries.
-      - Plan reader questions, document types, and topic batches; adjust them as evidence changes.
-      - Plan required and optional figure uses, owners, and shared figures (diagrams.md, plan from reader questions).
+      - Identify design topics from original designs and actual contracts as well as module roles. Plan the required overall article, substantive topic sections, and corresponding independent detailed articles under writing.md; retain their source and anchor map under library-state.md.
+      - Decompose source-backed capabilities into concrete functional points and consequential subscenarios, select each design article's category and prescribed outline (design-outlines.md), and retain the overall/detail/answer mapping (library-state.md). Do not replace functional coverage with module, class or topic lists.
+      - Plan each design article's reader questions and original sources, actual internal mechanisms, and needed answer scope under writing.md; record article assessments in the document plan (library-state.md). Choose document types and batches from that scope.
+      - Assess independent architecture, control, interaction, state/lifecycle, data-lineage, entity, deployment and dependency questions against the type-specific triggers in diagrams.md. Retain eight-type view assessments in diagram-plan.json (diagram-state.md), with needed article uses or concrete no-view reasons; existing flowcharts do not settle other views.
       - For updates, trace affected consumers, shared contracts, and shared figures with all their article uses; widen the analysis when impact cannot be bounded. Reuse the prior architecture only where its evidence still applies.
-    outputs: Evidence-grounded architecture, reviewed module list, article and figure plan, and impact scope.
-    done_if: The plan follows actual project roles and entrypoints, not filenames or directories.
+    outputs: Evidence-grounded architecture, reviewed module and design-topic lists, overall/detail map, article and figure plan, and impact scope.
+    done_if: The plan follows actual roles, original design concerns and entrypoints, with an explicit overall path and a section/detail mapping for every design topic; unresolved recognition is recorded, and every design article has a selected outline, planned functional-point coverage, reader questions and per-point figure assessments.
     on_failure: Return to source reading; leave gaps visible instead of filling them with template prose.
 
   - id: write
@@ -50,13 +52,13 @@ stages:
     actions:
       - Work through topic batches, collecting enough original evidence before drafting each topic.
       - Run the authoring.md lifecycle for every new or updated article. Expression editing is its own pass, loading technical-editing.md only after the content check, and is followed by a fact recheck.
-      - Draft to the professional presentation rules in writing.md.
+      - Draft to the selected design-outlines.md category and writing.md, expanding each functional point beyond its index row and covering actual contracts, ordered mechanisms, consequential branches, state/data effects and failure behavior; check source-grounded normal and alternative walkthroughs for complex mechanisms, and map reader questions to substantive answer sections.
       - Create or update cards under knowledge-cards.md with stable IDs, per-field evidence, and article bindings.
       - For each figure, check its semantic list against evidence before drawing the SVG, then check the Markdown embedding and the standalone SVG (diagrams.md, semantic first).
-      - After detailed reading, refine module boundaries and backfill the overall design's module summaries, dependencies, and links.
+      - Draft the planned overall article and finalize every design-topic section from detailed reading, including its mechanisms, relationships, constraints, and detail link (writing.md); reconcile the retained plan when boundaries change.
       - Leave valid unchanged articles untouched; carry unfinished topics and modules forward as pending.
     outputs: Article, card, semantic-list, and SVG candidates with source associations, rendering evidence, change scope, deferred optional figures, and pending work.
-    done_if: Each completed topic has supported content and a fact recheck; each completed module has its checked main design and needed topic articles.
+    done_if: The overall article has substantive checked sections for every completed design topic and corresponding detailed articles; completed modules have their checked main and needed topic articles; each design article answers its reader questions at detailed depth and contains its required figures; unfinished scope stays pending.
     on_failure: Return factual or structural defects to analysis or drafting; keep unfinished candidates partial.
 
   - id: check_and_deliver
@@ -65,22 +67,24 @@ stages:
     actions:
       - Check structure with existing parsing and link tools where available — naming, headings, links, explicit anchors, JSON fields, IDs, card article bindings, and figure ID mappings.
       - Check meaning across articles, cards, and figures — terminology, shared contracts, evidence categories, dates, and conclusions.
-      - Check coverage — module recognition against the source scope, separately from each module's article set; the overall module table against main designs; one principal explanation per complex flow; planned scope addressed or listed as pending, never silently narrowed (writing.md).
-      - Check professional presentation on every official page, including reused pages (writing.md).
+      - Check coverage against the retained plan and original sources — design-topic recognition, substantive overall sections and independent details, module recognition and article sets, and one principal explanation per complex flow (writing.md). Keep unfinished scope pending, never silently narrowed.
+      - Record the required design_topic_coverage, document_outline, functional_point_coverage, detailed_design_depth, article_figure_coverage, figure_view_coverage, document_naming, and document_associations checks under library-state.md. Semantically review each design article against original sources and its questions, functional points and needed view meanings, not only names, headings, word counts, figure/type counts or valid links.
+      - Check professional presentation on every official page, including reused pages (writing.md), and inspect design contents, chapter hierarchy, tables and image readability in the actual Markdown preview.
       - Check figures under the required checks in diagrams.md, and figure records, ownership, hashes, and article uses under diagram-state.md.
       - Reassess current requirements even when sources are unchanged. Missing required articles or figures and blocking presentation defects cannot take the no-change shortcut.
       - Record tool checks separately from semantic review, then decide coverage_status and validation_status (library-state.md).
+      - Repair correctable content, depth and figure gaps in this invocation within SKILL.md's repair limit; return to their source stage and rerun affected checks without a routine user checkpoint.
       - Deliver only with complete coverage, passed required checks, and no blocking conflict, following the publication steps in library-state.md. Otherwise keep the confirmed collection, retain candidates, and record the attempt.
     outputs: Confirmed collection or retained candidates, an updated manifest only after a confirmed delivery, and the attempt record.
     done_if: Actual files and the manifest agree, or the attempt is recorded as unconfirmed with its actual written and pending paths.
-    on_failure: Stop further replacement, preserve available evidence, and record what was written and what remains.
+    on_failure: Before delivery, return correctable defects to planning or writing within the repair limit; real blockers keep the attempt incomplete. If replacement has failed or been interrupted, stop further replacement and record actual writes and pending work.
 
 report:
   when: After every run, including failed, partial, and no-change runs.
   language: The user's language.
   include:
     - Project, declared scope, exclusions, and created, updated, retired, or reused knowledge with the reuse basis.
-    - Unresolved module boundaries, missing main designs, pending topics or figures, deferred optional figures, and required and candidate check results.
+    - The overall-design link, design-topic/detail coverage, unresolved module boundaries, missing designs, pending topics or figures, deferred optional figures, and required and candidate check results; actual figure types, necessary views and reasons other views were unnecessary or pending.
     - The Markdown and SVG preview environments actually used and their limits.
     - Which results come from tool checks and which from semantic review; no software runtime or production acceptance claims.
     - A link to docs/official/README.md when a confirmed entrypoint exists, with retained candidates linked separately.

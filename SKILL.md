@@ -14,6 +14,7 @@ Build or refresh a Chinese knowledge library for a project from its code and ori
 - Follow [workflow.yaml](workflow.yaml) stage by stage. It is a procedure for you to read, not an engine. Do the work with the host's existing search, read, diff, and edit tools; do not install engines, write helper scripts, or require another skill.
 - The target is the project the user names, otherwise the current directory. If neither is clear, ask for the location before writing. Follow the target project's applicable rules, and resolve this skill's resources relative to this file.
 - The user repeats the same invocation for the first build and every update. Decide between initial build, update, and recovery of an interrupted attempt from the files themselves.
+- Carry the authorized build through planning, complete articles and figures, checks, local repairs, and collection delivery in the same invocation. Routine drafting and checking do not need user checkpoints. Stop only for a real scope, access, evidence, or repair-limit blocker; keep and report incomplete work honestly.
 
 ## Principles
 
@@ -33,11 +34,12 @@ Each rule is stated in full in one reference. Read a reference at the stage that
 | Reference | Owns |
 |---|---|
 | [library-state](references/library-state.md) | State vocabulary, paths and exclusions, configuration, manifest and attempt protocols, coverage and validation status, reuse, conflicts, and delivery |
-| [writing](references/writing.md) | Library layout, outlines, module and article ownership, professional presentation, and how evidence appears to readers |
+| [writing](references/writing.md) | Library layout, module and article ownership, professional presentation, and how evidence appears to readers |
+| [design-outlines](references/design-outlines.md) | Design categories and chapter contracts, functional-point decomposition, and outline review |
 | [authoring](references/authoring.md) | The per-article lifecycle: analysis, drafting, expression editing as its own pass, fact recheck; update scope and return paths |
 | [technical-editing](references/technical-editing.md) | The expression-editing (去 AI 味) pass and the technical invariants it protects |
 | [knowledge-cards](references/knowledge-cards.md) | Card selection, identity, card protocol 1.0, article bindings, and freshness |
-| [diagrams](references/diagrams.md) | Figure necessity, semantic-first creation, required checks, and deferral of optional figures |
+| [diagrams](references/diagrams.md) | Type-specific triggers and view coverage, semantic-first creation, required checks, and deferral of optional figures |
 | [diagram-state](references/diagram-state.md) | Figure semantic list 1.0, manifest figure records, figure plans, and attempts |
 
 Drawing rules in `references/diagrams/` load only when a figure is drawn.

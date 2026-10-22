@@ -1,0 +1,150 @@
+{
+  "$schema": "https://ad-flow.org/schemas/change-card.v1.json",
+  "id": "C003",
+  "title": "补齐分类大纲、功能点下钻与配图的交付契约",
+  "version": "v0.1.0",
+  "type": "BugFix",
+  "status": "in_progress",
+  "branch": "codex/fix-C003-design-coverage",
+  "is_hotfix": false,
+  "target": {
+    "module": "km 文档组织与覆盖",
+    "component": "design-outlines, writing, diagrams, workflow, library-state, authoring",
+    "design_doc": "docs/devel/design/01-文档库与命名规范.md",
+    "design_topic": "DesignCoverage"
+  },
+  "why": "Bruce 实测产物将总设计写为架构概览，菜单栏与设置校准被合并到平台文章；12 篇普通文章采用英文文件名，但生成记录仍为 complete/passed。用户确认修复产物契约、主题拆分、完成条件和验收，并在验证后整理 Bruce 文档。 用户进一步指出详设缺图且内容偏浅，并要求完善技能，使一次调用能产出符合要求的完整库；本轮继续修复内容深度、内部机制配图与同次调用自检修复。 2026-10-20 用户继续指出功能点下钻不足、图片少、版式欠佳，给出总设计七章和功能设计示例，要求按文类细分大纲；本轮增加分类大纲、功能点覆盖、逐机制配图和设计版式检查。 2026-10-20 用户继续指出图稿几乎只有流程图，要求调整其它图型的触发机制；实测上次样例为1架构/6流程。增加八类独立视角触发、图型评估留存和 figure_view_coverage，避免图稿存在却缺关键时序、状态或数据解释。",
+  "precheck": {
+    "description": "检查 Bruce 现有产物的中文命名及总设计主题计划",
+    "command": "python3 -c \"from pathlib import Path; import json,re; p=Path('/Users/sivan/code_project/my_project/app_project/Bruce/docs/official'); d=json.loads(next((p/'.cards/runs').glob('*/document-plan.json')).read_text()); print({'non_chinese_names':[x.name for x in p.glob('*.md') if x.name!='README.md' and not re.search('[\\u4e00-\\u9fff]',x.stem)], 'overall_article':'overall_article' in d, 'design_topics':'design_topics' in d})\"",
+    "expected": "输出 12 个英文普通文章名，计划缺少 overall_article 和 design_topics",
+    "is_completed": false,
+    "evidence": "2026-10-19 实际预检 Exit 0：12 个英文普通文章名；overall_default_present=false；plan_has_overall_article=false；plan_has_design_topics=false。规则尚未修复，继续实施。"
+  },
+  "callback": {
+    "before": [
+      "git branch --show-current"
+    ],
+    "after": [
+      "python3 /Users/sivan/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
+      "python3 -c \"import yaml; yaml.safe_load(open('workflow.yaml'))\"",
+      "scripts/adflow-verify --json"
+    ]
+  },
+  "changes": [
+    {
+      "scope": "总设计与主题详设",
+      "before": "总设计按需选择并偏向架构摘要；规划只登记模块文章。",
+      "after": "总设计必产且逐主题有实质说明；每个完整设计主题拥有独立详设；工作计划登记总设计章节和详设映射。",
+      "impact": "新建、结构修复和无变化复用前的整库覆盖判断。"
+    },
+    {
+      "scope": "交付检查与命名",
+      "before": "英文文件名和主题遗漏未阻止 complete/passed。",
+      "after": "命名、总设计内容与设计主题覆盖作为独立必需检查；保留工具检查和语义审阅的真实结果。",
+      "impact": "完整交付判定、当前关联更新及历史证据保护。"
+    },
+    {
+      "scope": "详设内容深度",
+      "before": "存在详设与少量概要内容即可通过，复杂机制未逐项展开。",
+      "after": "按来源建立逐篇读者问题，展开契约、步骤、关键分支、状态与失败；复杂流程用有据案例推演并做独立深度检查。",
+      "impact": "新建、更新和结构修复时的详设起草及整库验收。"
+    },
+    {
+      "scope": "逐篇配图与同次调用完成",
+      "before": "配图触发偏重总体与跨模块；文档检查过于依赖结构和主题存在。",
+      "after": "模块内部复杂分支、数据变换、状态与交接同样触发必需图；每篇记录图稿评估；同次调用内生成、语义检查、修复和交付。",
+      "impact": "图稿计划、缺图判断、已授权任务的持续执行。"
+    },
+    {
+      "scope": "清单卡片路径基准",
+      "before": "执行参考没有直接写明卡记录path的文档根基准，前向生成误写项目根相对路径。",
+      "after": "明确卡记录path为.cards/k_<uuid>.json，按每类字段的既有基准检查实际文件；不改协议字段及版本。",
+      "impact": "清单、卡片与其它消费者的路径一致性。"
+    },
+    {
+      "scope": "分类大纲、功能点与设计版式",
+      "before": "文类仅有建议顺序，按模块和主题覆盖不能证明具体功能已展开；生产标题一律无编号。",
+      "after": "九类设计明确章节；总体按用户七章，功能点从实际入口识别并映射正文/案例/图稿；设计正文编号并提供目录，逐机制评估图示，增加大纲及功能覆盖检查。",
+      "impact": "新建、结构修复、旧设计复用与整库交付；查询/操作等非设计文类保持自身目的。"
+    },
+    {
+      "scope": "八类图型触发与视角覆盖",
+      "before": "有八类类型参考，但共同触发和逐篇有图检查没有逐视角核对，复杂协作、状态、血缘易统一画成流程。",
+      "after": "按八类事实触发分别评估问题与必要视图；整库留存八类判断，必要图保留专属语义与实际嵌入；新增figure_view_coverage，不以数量、标签或比例认定覆盖。",
+      "impact": "规划、图型选择、逐篇图示、无变化复用和整库交付；不新增图型枚举或正式协议字段。"
+    }
+  ],
+  "design": {
+    "doc": "docs/devel/design/01-文档库与命名规范.md",
+    "topic": "DesignCoverage",
+    "modified": true,
+    "rule_diff": {
+      "before": "总体保留主干与模块摘要，其它文类按需；每模块独立主设计。",
+      "after": "总设计必产并覆盖全部设计主题，每主题对应独立详设；保留模块独立覆盖，检查中文命名及对应关系；逐篇详设按读者问题检查深度与适用图稿，在同次调用内完成生成、检查和有界修复。 按文类选大纲并逐功能点下钻，独立检查大纲、版式及功能覆盖。 分别评估八类工程视角并保留来源、问题和必要/无需/待定理由，独立检查 figure_view_coverage，不能以流程图、类型标签或数量替代其它必要视角。"
+    }
+  },
+  "verification": {
+    "result": null,
+    "run_id": "532450ab-d288-422a-af06-626713bbd93e",
+    "user_quote": "",
+    "signoff": "",
+    "checks": [
+      {
+        "item": "技能格式与协议解析",
+        "true_if": "技能格式、YAML/JSON、相对引用和项目治理检查通过",
+        "false_if": "任一必需检查失败",
+        "evidence": "quick_validate：Skill is valid!，Exit 0；YAML四阶段与read路由、卡片/索引JSON解析通过；29份MD的176处有效相对引用通过；已安装20份运行资源字节一致；git diff --check Exit 0；scripts/adflow-verify --json Exit 0，errors/warnings/advisories各0。首次链接检查误纳围栏示例，修正后通过，首轮记录保留在 skill-checks-initial.json。 本轮12acb69e-7ee6-4baa-9ad1-bb406e66b255：quick_validate Exit 0；四阶段/引用路由及JSON/YAML解析通过；30份MD的182处有效引用通过；20份安装资源字节一致；卡片/图稿协议及manifest字段版本不变，明确已有卡路径基准。 2026-10-20 分类大纲批次：quick_validate和git diff --check均Exit 0；40份受版本控制/非忽略维护Markdown的170处有效相对引用、四阶段路由和14份治理JSON解析通过；21份安装资源哈希一致，协议所有者及状态JSON示例不变。 2026-10-20 图型批次532450ab-d288-422a-af06-626713bbd93e：quick_validate、git diff --check均Exit 0；50份非忽略维护Markdown的282处本地引用、四阶段与10条read路由、14份治理JSON解析通过；21份安装资源哈希一致，协议字段版本不变。维护检查器阶段ID误写已修正并保留失败。",
+        "result": true
+      },
+      {
+        "item": "独立前向生成与失败场景",
+        "true_if": "实际加载修正后的技能生成隔离样例，检查总设计、逐主题详设及对应关系；缺失和违规场景被识别",
+        "false_if": "缺总设计、漏主题或命名违规仍被认定完整",
+        "evidence": "tests/design-coverage.md：独立子会话显式加载已安装 km，实际生成总设计及两个主题详设，12项必需检查通过；四组反例全部拒绝交付；增量默认值变化同步总体和两篇相关详设，14项当前必需检查通过。无宿主自动发现/业务运行结论。",
+        "result": true
+      },
+      {
+        "item": "Bruce 文档修复",
+        "true_if": "核对最新来源及归属后完成总设计、详设拆分、中文命名与全部当前关联，完整集合检查通过",
+        "false_if": "来源或归属不明、主题未完成、引用失效或未能安全交付",
+        "evidence": "Bruce docs/official/ 已实际交付：15篇MD、10卡、7组图稿；10主题章节/详设对应；386本地引用；39内容文件字节一致，12旧英文文章路径已退场；425原始来源写入前后不变。独立首轮3项问题修复后二轮通过，首轮失败保留。详见 tests/design-coverage.md 及 local/acceptance/design-coverage/722e8074-a29b-4f6e-9307-0eb5d003e6ce/bruce/publication-result.json。 此项仅记录首轮主题覆盖、中文命名及关联修复，不表示已通过后续新增的详设深度/逐篇配图标准；本轮新要求由新增检查项另行验证。",
+        "result": true
+      },
+      {
+        "item": "复杂样例的详设深度与逐篇配图",
+        "true_if": "独立子会话依据已安装技能在同次用户请求内完成复杂样例的生成、检查与有界修复；正文能解释契约/分支/状态/异常与案例，内部机制有对应图，反例能被拒绝。",
+        "false_if": "仍仅生成概要、漏必要图、以总图替代细节或用结构检查冒充语义通过。",
+        "result": true,
+        "evidence": "tests/detail-depth.md：11个原始文件/207行Python样例实际产出7篇MD、4卡、6组SVG；5篇设计的18项读者问题均有实质回答；独立读取全部来源和23内容文件的语义审阅通过，作者完成实际SVG/Markdown视觉检查。三组反例分别以重复概要、缺内部图、总图替代细节而被拒绝；108候选文件未变。两篇旧Bruce文章按当前深度与配图标准被拒绝。最终集成发现并澄清4个清单卡路径基准问题，保留失败后由作者修复；当前全路径/哈希/关联复验Exit 0。原11文件和23内容文件保持原字节，元数据修复批次51340ad6-2d08-4c6f-8cfe-97d3bed7886d，revision=2/published=false。未运行应用或代签。"
+      },
+      {
+        "item": "分类大纲与功能点下钻",
+        "true_if": "独立前向生成符合所选文类大纲，具体功能点及重要子场景有实质正文/案例/必要图，并通过实际页面检查；大纲齐全但漏功能的候选不能通过。",
+        "false_if": "只补齐标题或单行功能清单、遗漏重要子场景、必要图未覆盖或未实际检查页面。",
+        "result": true,
+        "evidence": "tests/design-outlines.md：独立前向生成7篇MD、5卡、7组SVG/语义清单，五类设计大纲分别展开，11个主要功能点和15个读者问题有回答/案例锚；实际查看7页、10表及8嵌图。独立正文审阅按18个细分点有界通过A，保留全部章节但缺记录校验判据的B被拒；审阅记录Semble自动暴露生成片段的限制，不宣称完全盲审。父集成复核Exit 0、0错误，26内容文件的哈希/字段路径/正反向关联一致，14篇审阅正文、11原始文件及18反例文件不变；21份安装资源一致。其它四类大纲未在本批次生成对应文章，未重生成Bruce或执行业务/人工验收。"
+      },
+      {
+        "item": "八类图型触发与视角覆盖",
+        "true_if": "按原始来源独立规划各视角，必要图实际具有匹配的时序/状态/数据等语义；有来源的无需理由可核实，单纯流程图或类型标签不能代替必要视角。",
+        "false_if": "仍把所有机制压成流程、伪造状态/实体/部署事实或以图型数量代替语义验证。",
+        "result": true,
+        "evidence": "tests/figure-views.md：独立前向规划依据7份原始资料识别八类视角，在任务提交候选实际生成流程/时序/状态/数据流4组SVG与语义清单，源码语义及真实渲染检查通过；架构/ER/部署另属后续文章，依赖等价性仍待定，整库partial/not_run/published=false。独立旧图审阅确认7张历史图可复用，但仍缺时序、生命周期/领域状态和数据血缘语义；不强加无来源的ER或部署。父集成Exit 0、0错误；7原始文件、39历史文件未变，21安装资源哈希一致，协议字段版本不变。初始绘图遮挡、Chrome/截图失败及父检查器字段误读保留，修复后复验；未运行应用或代签。"
+      }
+    ]
+  },
+  "rejections": [],
+  "sync": {
+    "design_pinned": false,
+    "changelog": true,
+    "commit": "",
+    "tag": ""
+  },
+  "gate": {
+    "tool": "adflow-verify",
+    "version": "1.4.0",
+    "ran_at": "2026-10-20",
+    "exit_code": 0
+  }
+}
