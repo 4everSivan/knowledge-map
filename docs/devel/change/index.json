@@ -34,37 +34,37 @@
   },
   "cards": {
     "C001": {
-      "file": "docs/devel/change/C001.json",
+      "file": "docs/archive/v0.1.0/change/C001.json",
       "title": "收紧生产文档的专业呈现与版式一致性",
       "version": "v0.1.0",
       "status": "closed"
     },
     "C002": {
-      "file": "docs/devel/change/C002.json",
+      "file": "docs/archive/v0.1.0/change/C002.json",
       "title": "精简技能指令：单一规则归属、四阶段 workflow 与正向原则",
       "version": "v0.1.0",
       "status": "closed"
     },
     "C003": {
-      "file": "docs/devel/change/C003.json",
+      "file": "docs/archive/v0.1.0/change/C003.json",
       "title": "补齐分类大纲、功能点下钻与配图的交付契约",
       "version": "v0.1.0",
       "status": "closed"
     },
     "C004": {
-      "file": "docs/devel/change/C004.json",
+      "file": "docs/archive/v0.1.0/change/C004.json",
       "title": "按主谓宾收紧句子表达与保真修订",
       "version": "v0.1.0",
       "status": "closed"
     },
     "C005": {
-      "file": "docs/devel/change/C005.json",
+      "file": "docs/archive/v0.1.0/change/C005.json",
       "title": "以需求和约束解释设计机制，并核对实际文档样本",
       "version": "v0.1.0",
       "status": "closed"
     },
     "C006": {
-      "file": "docs/devel/change/C006.json",
+      "file": "docs/archive/v0.1.0/change/C006.json",
       "title": "使生产文章独立完整，并按互联网资料实际使用生成参考文献",
       "version": "v0.1.0",
       "status": "closed"

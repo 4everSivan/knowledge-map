@@ -1,7 +1,7 @@
 {
   "$schema": "https://ad-flow.org/schemas/task-index.v1.json",
   "phase": "v0.1.0",
-  "updated_at": "2026-10-16",
+  "updated_at": "2026-10-26",
   "milestones": {
     "M2-module-docs": {
       "title": "业务模块分层文档",
@@ -90,21 +90,21 @@
   },
   "tasks": {
     "T02": {
-      "file": "docs/devel/task/T02.json",
+      "file": "docs/archive/v0.1.0/task/T02.json",
       "title": "落实业务模块全覆盖与分层文档规则",
       "version": "v0.1.0",
       "milestone": "M2-module-docs",
       "status": "completed"
     },
     "T01": {
-      "file": "docs/devel/task/T01.json",
+      "file": "docs/archive/v0.1.0/task/T01.json",
       "title": "交付 km v0.1 文档知识库技能",
       "version": "v0.1.0",
       "milestone": "M1-km-v0.1",
       "status": "completed"
     },
     "T03": {
-      "file": "docs/devel/task/T03.json",
+      "file": "docs/archive/v0.1.0/task/T03.json",
       "title": "集成语义先行的工程制图工作流",
       "version": "v0.1.0",
       "milestone": "M3-diagrams",

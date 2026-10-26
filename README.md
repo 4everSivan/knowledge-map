@@ -2,7 +2,7 @@
 
 km 根据项目代码和原有文档，生成可追溯的中文 Markdown 文档库、JSON 术语卡与有据工程图。源码或文档变化后，再次调用同一技能，更新受影响内容。
 
-当前实现对应 v0.1.0 设计基线，发布候选与任务状态见 [CHANGELOG](CHANGELOG.md) 和 [任务总账](docs/devel/task/index.json)。
+当前版本 v0.1.0（2026-10-26 发布，本批次卡片已归档至 [docs/archive/v0.1.0/](docs/archive/README.md)），变更明细见 [CHANGELOG](CHANGELOG.md)，任务状态见 [任务总账](docs/devel/task/index.json)。
 
 ## 使用
 
