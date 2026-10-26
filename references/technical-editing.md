@@ -37,7 +37,8 @@ Check the permitted passages against the professional presentation rules in [wri
 | Generation-process narration (“本轮”, “经分析”, “未读取到”, check results, samples) | Remove when the page's introduction or the library `README.md` already states the evidential basis; otherwise return to drafting to add that statement once |
 | The same verification disclaimer repeated across paragraphs | Keep one statement at the claim or in the scope; remove repetitions that add no claim-specific condition |
 | Colloquial, promotional, or first-person wording; exclamations; rhetorical questions | Rewrite as neutral declarative prose with the same meaning |
-| Mixed labels (`来源：`, `实现依据：`, ad hoc callouts) or a misplaced update date | Normalize to `依据：`, `> **说明**：`, `> **注意**：`, and a final `最后更新：` line without changing link targets |
+| Mixed note/risk labels or a misplaced update date | Normalize to `> **说明**：`, `> **注意**：` and a final `最后更新：` line without changing link targets |
+| Local source-link lists, referrals to other documents, or an inapplicable bibliography | Return to drafting under writing.md; this expression-only pass cannot remove links, chapters or necessary context |
 | Chinese punctuation, spacing, or inconsistent term naming | Apply the typography rules; keep identifiers byte-identical |
 | H1 not matching the filename, missing introduction, figure-, table-, or link-only article, flat `README.md` list | Structural; return to drafting |
 | A design explanation opens with mechanics without its need/purpose, goals have no supported constraint, or inputs and boundaries are mixed | Return to analysis or drafting under design-outlines.md; do not add motives or reorder paragraphs in this pass |

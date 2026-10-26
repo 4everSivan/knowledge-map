@@ -10,23 +10,35 @@ Write Chinese prose by default. Put official Markdown directly and flat in `docs
 
 Every design article has a plain Markdown link table of contents after its introduction/scope, covering all H2 chapters and useful functional H3 sections. Other long pages add one when it helps. Use ordinary links rather than `[TOC]`, theme components, or HTML layout. For lasting section references, add an explicit stable anchor such as `<a id="retry-policy"></a>` and verify it exists. Where an explicit anchor is unnecessary or unsupported, bind the whole article instead of guessing a renderer's slug.
 
-Each article has one last-update date. Change it only when content or references change substantively. Run IDs, coverage counts, hashes, and verification timestamps live in `.cards/`. Link related reading where it helps the reader continue, without manufactured previous/next sequences.
+Each article has one last-update date. Change it only when content or references change substantively. Run IDs, coverage counts, hashes, and verification timestamps live in `.cards/`.
+
+<a id="self-contained-articles"></a>
+
+## Self-contained articles and references
+
+Every official article except the navigation `README.md` must be understandable on its own within its declared scope. Put the necessary definitions, prerequisites, shared contracts, steps, conditions, failures and conclusions directly in that article. Integrate relevant content from verified original sources rather than sending readers elsewhere; generated articles remain comparison material, not factual evidence. Necessary repetition across independently read articles is valid. Include only what serves this article, and check repeated contracts against the same original evidence when they change.
+
+Do not link to another article, original project document or source file from prose, tables, footnotes or end matter, including another official article. Do not replace a link with a bare filename or “详见某文档” and leave the explanation outside. `README.md` may navigate to existing official articles. In-page contents/anchors and embedded engineering SVGs remain allowed; do not wrap them in links to other documents. Identifiers, paths and commands needed to explain behavior may remain as inline code. Keep overall/detail mappings, claim-to-source associations and original evidence in `.cards/` and the working plan, not reader-facing local source lists. This restriction applies to generated official pages, not this skill's references or project governance documents.
+
+Create `参考文献` only when this article actually uses consulted Internet material. Explain the used content in the body, cite its entry through an in-page reference, and give each entry's title, actual URL and supported claim. Do not list merely discovered URLs, sources used only by another article or the skill's writing guidance, or unrelated further reading. Online copies of this project's code, original documents or generated articles remain project evidence, not an Internet-bibliography workaround. Internet references provide attribution and traceability; they must not replace a necessary explanation. With no Internet material used, omit the entire chapter and its contents entry, including any “无” or “未使用” placeholder. This applies to every article type.
+
+Check both destinations and meaning before delivery: inspect inline, reference-style, autolink, HTML and footnote links, plus textual referrals. Allow only the navigation, in-page, figure and actually used Internet-reference cases above. Then read each article without other documents to verify that its applicable reader questions can be answered locally. A link-free page can still fail this review. Keep missing original evidence pending; do not fabricate content to make a page appear independent.
 
 ## Outlines by document type
 
 The overall design, every identified business module's main design, and every identified design topic's detailed article are required (see [module planning](#module-planning-and-content-ownership)). A module main design or principal flow article can be the detailed article for that same topic. Choose other document types and deeper topics by reader needs and evidence, including only sections with applicable facts.
 
-Read [design-outlines.md](design-outlines.md) before planning or drafting any design article. Select its category and use the prescribed chapters and concrete functional-point decomposition. The overall design follows the seven chapters requested by the user; feature, architecture, module/mechanism, flow/state, data, API, configuration and deployment designs have their own outlines. Do not use the non-design progressions below to bypass design requirements.
+Read [design-outlines.md](design-outlines.md) before planning or drafting any design article. Select its category and use the prescribed substantive chapters and concrete functional-point decomposition; the final bibliography is conditional under the rule above. Feature, architecture, module/mechanism, flow/state, data, API, configuration and deployment designs have their own outlines. Do not use the non-design progressions below to bypass design requirements.
 
 | Non-design document type | Progression |
 |---|---|
 | Operation guide | Goal; applicable conditions and preparation; ordered actions; result checks; failure handling |
-| Quick start | Expected outcome; minimum preparation; one complete supported experience; completion check; next reading |
+| Quick start | Expected outcome; minimum preparation; one complete supported experience; completion check; failure handling |
 | Configuration or API lookup reference | Scope; common rules; consistent entries; examples; constraints and errors |
 | Troubleshooting | Symptom; evidence gathering; distinguish causes; supported treatment; recovery check |
-| Glossary | Domain or concept groups; meaning; project context; boundaries and related reading |
+| Glossary | Domain or concept groups; meaning; project context and boundaries |
 
-Configuration entries give the actual name, type, default, allowed values, precedence, and activation timing as applicable; API entries give actual inputs, outputs, errors, and constraints. Leave a missing default as missing. Explain shared rules once. Keep mechanisms, such as the service startup flow, separate from human operations, such as starting a service.
+Configuration entries give the actual name, type, default, allowed values, precedence, and activation timing as applicable; API entries give actual inputs, outputs, errors, and constraints. Leave a missing default as missing. Explain shared rules once within the article, repeating necessary context in independently read entries. Keep mechanisms, such as the service startup flow, separate from human operations, such as starting a service.
 
 ### Minimum substance
 
@@ -35,8 +47,8 @@ Every article has an introduction and at least one substantive body section. A f
 | Document | Must cover at least |
 |---|---|
 | `README.md` | Title `<project name> 知识库`; introduction stating coverage and evidential basis; H2 groups by reader purpose, ordered as a reading path (not alphabetically), each link with a one-sentence description |
-| Overall system design | Positioning and global architecture; a responsibility/dependency table; a substantive section for every design topic explaining its purpose, responsibilities/contracts, key mechanisms, relationships and constraints, linked to its detailed article; backbone interactions and global constraints |
-| Module main design | Responsibility/boundary, actual external contracts and dependencies, internal components and main processing path; applicable detailed-design depth below; links to deeper topics |
+| Overall system design | Positioning and global architecture; a responsibility/dependency table; a substantive section for every design topic explaining its purpose, responsibilities/contracts, key mechanisms, relationships and constraints; backbone interactions and global constraints; detail mappings retained in the plan |
+| Module main design | Responsibility/boundary, actual external contracts and dependencies, internal components and main processing path; applicable detailed-design depth below and the shared context needed within its scope |
 | Detailed design / module topic | The applicable contracts, ordered mechanism, consequential branches, state/data effects, failures/recovery and worked cases below; its relation to the overall design and any module main article |
 | Internal workflow | Trigger and entrypoint; participants; normal path; branches and failure handling |
 
@@ -62,7 +74,7 @@ For missing fields, malformed inputs and parsing failures, explain the actual tr
 
 Walkthroughs may use clearly labelled illustrative inputs derived from actual contracts. Identify them as static source-based reasoning unless executed; do not invent benchmark, network, or acceptance results. A simple lookup or field-only contract can be complete without artificial multi-step examples. Absent mechanisms do not need empty chapters.
 
-Before calling an article complete, use its reader questions to trace a real mechanism from entry to output and its important alternative outcome using the prose. A reader should understand the ordering, decision conditions, data/state effects, and failure consequences without having to reconstruct them from source links. Follow linked principal explanations when they own a shared detail; do not leave a chain of summaries with the mechanism explained nowhere. Reject synopsis-only details, interface-name catalogues, unexplained tables, code dumps, repeated overall background, or filler added to meet a word count. Judge substance and correctness, not length.
+Before calling an article complete, use its reader questions to trace a real mechanism from entry to output and its important alternative outcome using only this article. A reader should understand ordering, decision conditions, data/state effects and failure consequences without opening sources or other articles. Integrate necessary shared details here. Reject synopsis-only details, interface-name catalogues, unexplained tables, code dumps, irrelevant repeated background or filler added to meet a word count. Judge substance and correctness, not length.
 
 Assess each design article's figures under diagrams.md. An overall figure does not replace a needed internal flow, interaction, state or data explanation. Keep reader-question/answer and figure assessments in the working plan under library-state.md; these review notes stay out of reader prose.
 
@@ -74,14 +86,14 @@ Review module recognition against the declared source scope before judging docum
 
 Identify design topics alongside modules from original design declarations, responsibilities, contracts, state ownership, and actual entrypoints. A design topic is a coherent design concern with its own behavior or rules; it may belong to one module or cross modules. Distinct concerns such as dashboard interaction and settings calibration keep separate detailed articles even when they share a platform. Individual fields, helpers, and minor constraints remain within their owning topic. Do not replace topic recognition with a list of platforms, directories, or existing articles.
 
-Map each design topic to its original sources, one explicit stable section anchor in the overall design, and its detailed article. The overall section must explain the design sufficiently to understand the whole system before reading details; a title, short label, diagram, or link alone is insufficient. The detailed article expands contracts, algorithms, states, and failures and links back to that overall section. A module main design or principal cross-module flow may fulfill the same topic's detail role without a duplicate article; distinct complete topics cannot all be assigned to a generic platform overview. Retain this plan under library-state.md.
+Map each design topic to its original sources, one explicit stable section anchor in the overall design, and its detailed article in the working plan under library-state.md. The overall section must explain the design sufficiently to understand the whole system; a title, short label, diagram or map alone is insufficient. The detailed article expands contracts, algorithms, states and failures with its own necessary context. Do not require article-to-article links. A module main design or principal cross-module flow may fulfill the same topic's detail role without a duplicate article; distinct complete topics cannot all be assigned to a generic platform overview.
 
 | Article | Owns |
 |---|---|
-| Overall system design | The complete system-level explanation of every design topic and its relationships, plus boundaries, module responsibilities/dependencies, backbone scenarios, shared state and global constraints; stable sections link to corresponding detailed designs |
+| Overall system design | The complete system-level explanation of every design topic and its relationships, plus boundaries, module responsibilities/dependencies, backbone scenarios, shared state and global constraints; stable sections map to details in the working plan |
 | Module main design | The whole-module explanation, for every module including small ones. Small modules stay in their own article, short but complete; complex modules move deep detail to topic articles |
 | Module topic | One focused mechanism, flow, state rule, or contract detail |
-| Cross-module flow | The one principal explanation of a complex flow: complete interactions, branches, failures, and recovery. Participating modules explain their own part and link here; brief contextual summaries elsewhere are fine, competing complete explanations are not |
+| Cross-module flow | The complete end-to-end explanation of a complex flow: interactions, branches, failures and recovery. Participating module articles include their own part and the shared contracts or handoffs needed to understand it independently; review necessary overlap for consistency |
 
 Plan the overall article and its topic sections before drafting details; finalize those sections and relationships after detailed reading. Check topic recognition against original sources, then check every topic's overall section and detailed article, separately from each module's article set. File existence and valid links alone do not establish substantive coverage. When a batch cannot finish, retain the plan and pending work as described in [library-state.md](library-state.md). A plan change needs an evidence-based reason; an unfinished overall design, module, or design topic stays pending until done.
 
@@ -108,7 +120,7 @@ In body text, state facts in domain terms. When the source scope that would cont
 
 ### Page skeleton and fixed labels
 
-The following shared skeleton illustrates a non-design article. Design articles insert the linked contents and use their category chapters, ending in `参考文献` instead of a separate `相关文档` chapter:
+The following shared skeleton illustrates a non-design article without Internet references. Design articles insert in-page contents and use their category chapters. Add a final `参考文献` only under the self-contained-article rule; do not add a `相关文档` chapter:
 
 ```markdown
 # <title matching the filename topic>
@@ -119,11 +131,7 @@ The following shared skeleton illustrates a non-design article. Design articles 
 
 ## <body sections; numbered chapters for designs>
 
-依据：[`tasks/dispatcher.py`](../../tasks/dispatcher.py) 的 `dispatch()`；[原项目说明](../../domain.md)。
-
-## 相关文档
-
-- [任务分派流程](任务分派流程.md)：完整的跨模块交互与失败处理。
+<explain the necessary contracts, processing and boundaries here; retain local source associations in .cards/>
 
 最后更新：YYYY-MM-DD
 ```
@@ -132,15 +140,15 @@ Use one H1 per page, describing the same topic as the filename. Use continuous h
 
 | Purpose | Only allowed form |
 |---|---|
-| Section source note | A separate paragraph starting `依据：` at the end of the section it supports. Link text is the path or document title; symbols follow in inline code |
+| Local evidence | Source and claim associations in `.cards/`; identifiers needed for the explanation may appear as inline code, without source-link lists |
 | Supplementary note / risk | `> **说明**：` / `> **注意**：` |
-| Further reading | Non-design pages use final `## 相关文档`; designs place an optional numbered H3 `相关文档` inside the final `参考文献` chapter. Each link carries one descriptive clause |
+| Internet citation | An in-page body citation to the conditional `参考文献`; each entry gives title, actual URL and supported content |
 | Update date | The last line of the page: `最后更新：YYYY-MM-DD` |
 | Figure | Lead-in sentence → image with meaningful alt text → caption line `图：<figure title>。<scope>` → prose interpreting the key points. The H1 never comes from a figure title |
 
 ### Design page layout
 
-Use the category outline as the body of the page skeleton above. A design page starts with one H1, a short introduction/scope and a linked contents list. Use H2 chapters and named H3 functional/mechanism sections; avoid deep heading ladders. Keep an inventory table compact (point, behavior summary, precise detail link); put rules, steps and failure explanations in prose below it, not paragraphs inside wide cells. Separate tables, lists and fenced blocks with blank lines and label code fences. Place a figure next to its relevant explanation, with the standard lead-in, meaningful alt text, caption and interpretation. Split an unreadably dense view by semantic scope and explain how the views connect; shrinking text or adding tiny whole-system images is not a repair. Inspect the rendered design page for hierarchy, table width, image legibility, spacing and usable contents/anchors in the actual preview environment.
+Use the category outline as the body of the page skeleton above. A design page starts with one H1, a short introduction/scope and an in-page contents list. Use H2 chapters and named H3 functional/mechanism sections; avoid deep heading ladders. Keep an inventory table compact (point, behavior summary, precise in-page answer); put rules, steps and failure explanations in prose below it, not paragraphs inside wide cells. Separate tables, lists and fenced blocks with blank lines and label code fences. Place a figure next to its relevant explanation, with the standard lead-in, meaningful alt text, caption and interpretation. Split an unreadably dense view by semantic scope and explain how the views connect; shrinking text or adding tiny whole-system images is not a repair. Inspect the rendered design page for hierarchy, table width, image legibility, spacing and usable contents/anchors in the actual preview environment.
 
 ### Prose and Markdown elements
 
@@ -174,14 +182,14 @@ Figures follow [diagrams.md](diagrams.md) for necessity and checks. Official fig
 
 ### Bringing existing libraries into line
 
-These are blocking presentation defects: noncompliant article filenames, an H1 that does not match the filename topic, generation-process narration in reader prose, a figure-, table-, or link-only article, and an unannotated flat `README.md` list. Missing overall design, missing topic sections/details or functional points, and an architecture-summary-only overall article are blocking coverage defects. Design category/outline omissions and unreadable required figures or tables are blocking presentation defects; apply the current outline/layout checks before reusing an older design, repairing only affected structure, prose, links and rendering. The collection check repairs them through the normal update lifecycle; they cannot take the no-change shortcut. Other typography differences converge only when a passage is edited for content reasons. A presentation-only repair that does not change meaning keeps the article's last-update date; substantive content or reference changes follow the normal date rule.
+These are blocking presentation defects: noncompliant article filenames, an H1 that does not match the filename topic, generation-process narration in reader prose, a figure-, table-, or link-only article, and an unannotated flat `README.md` list. Missing overall design, missing topic sections/details or functional points, and an architecture-summary-only overall article are blocking coverage defects. Prohibited referrals, missing local explanations and bibliography violations under the self-contained-article rule also block delivery. Design category/outline omissions and unreadable required figures or tables are blocking presentation defects; apply current checks before reusing an older article, repairing only affected structure, prose, references and rendering. The collection check repairs them through the normal update lifecycle; they cannot take the no-change shortcut. Other typography differences converge only when a passage is edited for content reasons. A presentation-only repair that does not change meaning keeps the article's last-update date; substantive content or reference changes follow the normal date rule.
 
 ## Evidence for readers
 
-Explain behavior first, then add the `依据：` note for that group of claims. Cite original project paths, symbols, explicit document anchors, or consulted authoritative URLs, and make the support relationship clear; a bare source list is not enough.
+Explain behavior directly in the article. Keep the supporting original paths, symbols, anchors and claim associations in `.cards/` and working records. Internet citations follow [self-contained articles and references](#self-contained-articles); a bibliography never substitutes for the explanation.
 
-Markdown links are relative to the current article, so a link from an official page to a root-level source needs the matching relative path. A card's `sources.path` is project-root relative; keep the two bases apart. Line numbers help navigation but are not identities.
+Allowed Markdown navigation and image paths are relative to their containing page; card `sources.path` remains project-root relative. Keep these bases apart. Line numbers help internal source navigation but are not identities.
 
 Present historical design motives only from existing design or decision records, never inferred from current code. Keep relevant uncertainty and disagreements next to the claim. Unread material is not evidence of absence. Missing information gets a concrete reason and effect, not empty chapters or repeated placeholders.
 
-Keep repeated explanations focused on the page's context and link to the principal explanation. Present terminology naturally in a glossary, without JSON management fields. Before delivery, check names, shared contracts, sources, and card meanings across pages.
+Keep necessary repeated explanations focused on each page's context, and check them against original evidence for consistency. Present terminology naturally in a glossary, without JSON management fields. Before delivery, check names, shared contracts, sources and card meanings across pages.

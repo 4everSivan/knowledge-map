@@ -4,7 +4,7 @@
   "title": "收紧生产文档的专业呈现与版式一致性",
   "version": "v0.1.0",
   "type": "Enhancement",
-  "status": "verified",
+  "status": "closed",
   "branch": "fix/C001-professional-doc-presentation",
   "is_hotfix": false,
   "target": {
@@ -92,16 +92,16 @@
   },
   "rejections": [],
   "sync": {
-    "design_pinned": false,
-    "changelog": false,
-    "commit": "",
+    "design_pinned": true,
+    "changelog": true,
+    "commit": "7bf3a91c470a7b1fe13c7c1c19ad6e9fd6dba945",
     "tag": ""
   },
   "gate": {
     "tool": "adflow-verify",
     "version": "1.4.0",
-    "ran_at": "2026-10-17",
+    "ran_at": "2026-10-25",
     "exit_code": 0,
-    "target_status": "verified"
+    "target_status": "closed"
   }
 }

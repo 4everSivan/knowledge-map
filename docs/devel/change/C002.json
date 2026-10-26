@@ -4,7 +4,7 @@
   "title": "精简技能指令：单一规则归属、四阶段 workflow 与正向原则",
   "version": "v0.1.0",
   "type": "Refactor",
-  "status": "verified",
+  "status": "closed",
   "branch": "fix/C002-streamline-skill-instructions",
   "is_hotfix": false,
   "target": {
@@ -26,7 +26,7 @@
       "git branch --show-current"
     ],
     "after": [
-      "python3 /Users/sivan/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
+      "python3 $HOME/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
       "python3 -c \"import yaml;yaml.safe_load(open('workflow.yaml'))\"",
       "scripts/adflow-verify --json",
       "scripts/adflow-verify  # 收口前门禁：Exit 4 禁止置 closed；目标状态预检使用 --card C002 --to <目标状态> --record，仅回写本卡 gate，Exit 0 后再同步状态"
@@ -99,16 +99,16 @@
   },
   "rejections": [],
   "sync": {
-    "design_pinned": false,
-    "changelog": false,
-    "commit": "",
+    "design_pinned": true,
+    "changelog": true,
+    "commit": "d1e74463032e54b0a065640eabe621d2a95703dc",
     "tag": ""
   },
   "gate": {
     "tool": "adflow-verify",
     "version": "1.4.0",
-    "ran_at": "2026-10-18",
+    "ran_at": "2026-10-25",
     "exit_code": 0,
-    "target_status": "verified"
+    "target_status": "closed"
   }
 }

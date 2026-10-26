@@ -1,0 +1,111 @@
+{
+  "$schema": "https://ad-flow.org/schemas/change-card.v1.json",
+  "id": "C006",
+  "title": "使生产文章独立完整，并按互联网资料实际使用生成参考文献",
+  "version": "v0.1.0",
+  "type": "Enhancement",
+  "status": "in_progress",
+  "branch": "codex/fix-c006-self-contained-articles",
+  "is_hotfix": false,
+  "target": {
+    "module": "生产文档编写",
+    "component": "writing、design-outlines、authoring、technical-editing、library-state、diagrams、workflow",
+    "design_doc": "docs/devel/design/04-生产文档编写规范.md",
+    "design_topic": "KnowledgeWriting"
+  },
+  "why": "现行规则要求跨文档互链、集中主要解释和固定参考文献，导致单篇依赖其它文章且将本地资料混入文献。用户要求必要内容直接融入本篇，只有使用互联网资料才写参考文献，并授权优化。",
+  "precheck": {
+    "description": "检查单篇自包含规则、条件文献章和交付检查是否已存在",
+    "command": "python3 -c 'from pathlib import Path; print({'\"'\"'self_contained_rule'\"'\"': '\"'\"'id=\"self-contained-articles\"'\"'\"' in Path('\"'\"'references/writing.md'\"'\"').read_text(), '\"'\"'conditional_bibliography'\"'\"': '\"'\"'7. 参考文献（按需）'\"'\"' in Path('\"'\"'references/design-outlines.md'\"'\"').read_text(), '\"'\"'delivery_checks'\"'\"': all(v in Path('\"'\"'references/library-state.md'\"'\"').read_text() for v in ('\"'\"'article_self_containment'\"'\"', '\"'\"'bibliography_usage'\"'\"')), '\"'\"'legacy_cross_document_rule'\"'\"': '\"'\"'Participating modules explain their own part and link here'\"'\"' in Path('\"'\"'references/writing.md'\"'\"').read_text()})'",
+    "expected": "前三项缺失、旧跨文档规则存在时执行本卡；已满足时复核实际行为并跳过重复实现",
+    "is_completed": false,
+    "evidence": "2026-10-22 初始预检 Exit 0：self_contained_rule=false、conditional_bibliography=false、delivery_checks=false、legacy_cross_document_rule=true；初始治理 Exit 0，errors/warnings/advisories 均 0。原始证据见 local/acceptance/self-contained/a5400f74-8fe1-4ade-b4b7-a7c0bac1b44a/precheck.json。"
+  },
+  "callback": {
+    "before": [
+      "git branch --show-current"
+    ],
+    "after": [
+      "# quick_validate.py 与 import yaml 需要已安装 PyYAML 的 python3；缺少该模块时记为未执行",
+      "python3 $HOME/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
+      "git diff --check",
+      "scripts/adflow-verify --json"
+    ]
+  },
+  "changes": [
+    {
+      "scope": "单篇独立阅读与追溯",
+      "before": "主要解释集中一处，文章互链，节末直接链接源码和原项目文档。",
+      "after": "普通文章融入必要解释；README 导航、篇内锚点、SVG 嵌图保留；完整来源和总详设映射留在 .cards/，不要求正文互链。",
+      "impact": "同步影响写作、规划、局部更新、技术表达、设计基线 00/01/03/04/05 与说明。"
+    },
+    {
+      "scope": "总详设映射的定位",
+      "before": "映射写在文章互链中；工作计划仅由会被下次调用覆盖的 last_attempt.json candidate_paths 引用。",
+      "after": "工作计划是总详设对应关系的唯一记录；每次整库检查在 document_associations 证据中写明计划路径，交付后从 manifest 中 checked_at 最新的核实批次定位，找不到可信计划时按结构修复从原始来源重建。",
+      "impact": "沿用现有检查证据字段，不新增 manifest、卡片或图稿协议字段；影响 library-state、workflow scope 阶段及设计 01/03。"
+    },
+    {
+      "scope": "互联网资料的证据边界",
+      "before": "SKILL.md 原则规定原始来源是唯一证据，未说明参考文献中互联网资料的地位与使用时机。",
+      "after": "原始来源是唯一的项目证据；互联网资料仅支持外部事实并记录 URL，只在文章需要且宿主允许联网时查阅。",
+      "impact": "影响 SKILL.md 原则 1 与设计 00 的 R05；术语卡 reference_supported 规则不变。"
+    },
+    {
+      "scope": "条件参考文献",
+      "before": "九类设计固定第七章，并纳入本地代码、文档及相关文章。",
+      "after": "仅当本篇确实使用已查阅的互联网资料时提供文献；未使用则省略整章及目录项，在线项目资料不成为绕过入口。",
+      "impact": "不改变其它主体章节、元数据协议或版本。"
+    },
+    {
+      "scope": "验收与复用",
+      "before": "链接有效、覆盖充分并不证明单篇自包含或文献适用。",
+      "after": "增加 article_self_containment、bibliography_usage 必需检查，覆盖引用语法和文字跳转，并逐篇语义核对；旧集合也按当前规则复查。",
+      "impact": "补充有界前向样例和反例，保留历史证据；不重生成其它工程知识库。"
+    }
+  ],
+  "design": {
+    "doc": "docs/devel/design/04-生产文档编写规范.md",
+    "topic": "KnowledgeWriting",
+    "modified": true,
+    "rule_diff": {
+      "before": "跨文档主解释、互链、节末本地依据与固定参考文献。",
+      "after": "每篇在自身范围内完整，必要内容融入本篇，来源与总详设关联内部追溯，映射所在工作计划可经核实批次定位；文献仅按互联网资料实际使用生成，互联网资料不证明项目实现。"
+    }
+  },
+  "verification": {
+    "result": null,
+    "run_id": "local-20261022-143608",
+    "user_quote": "",
+    "signoff": "",
+    "checks": [
+      {
+        "item": "规则和文档结构",
+        "true_if": "技能格式、YAML/JSON、本地引用及治理检查通过，新增规则无互相矛盾的旧要求",
+        "false_if": "存在结构失败、失效引用、跨文档必需跳转或固定文献要求残留",
+        "evidence": "技能 quick_validate 输出 Skill is valid!，git diff --check Exit 0；首轮 22 项文档结构断言和 163 处本地引用通过，YAML/JSON 与 workflow 2.0/四阶段保持，历史验收和 C001-C005 未改。最终文档与命令回执位于本卡批次 document-checks-final.json、command-checks.json；首次预检命令 SyntaxError Exit 1 后修复 Exit 0，原回执保留。run_id local-20261022-143608 取自批次 baseline.json 的实际 started_at（2026-10-22T14:36:08.525859+08:00，按 +08:00 记录）；对应证据目录为 local/acceptance/self-contained/a5400f74-8fe1-4ade-b4b7-a7c0bac1b44a/。2026-10-25 复查发现首轮“无互相矛盾的旧要求”结论有遗漏：README.md 第 47 行、设计 00 的 R15 与设计 04 的标题修改核对项仍要求或核对跨文档链接，设计 04 决策表未注明 C006 的取代关系；已逐处修正，并补充工作计划定位规则与互联网证据边界。复查批次 local-20261025-220623 实际结果：带 PyYAML 的 python3 运行 quick_validate 输出 Skill is valid!，Exit 0；workflow.yaml 解析为 2.0 及四阶段；全部 JSON 解析、git diff --check、本地链接与锚点（0 问题）、残留互链规则扫描（0 命中）和 adflow-verify --json（errors/warnings/advisories 均 0）均 Exit 0；默认 python3 缺少 PyYAML。回执见 local/acceptance/self-contained/local-20261025-220623/command-checks.json。同次复查将 C002–C006、T01–T03 及两份历史验收中的本机绝对路径改为 $HOME 或 ~（命令含义不变），并按 local- 格式更正 C003–C006 的 run_id，因此“C001-C005 未改”仅适用于首轮。",
+        "result": true
+      },
+      {
+        "item": "有界内容与引用验证",
+        "true_if": "候选单篇可独立解释，未使用互联网资料时无文献章；反例被识别且未损失来源追溯",
+        "false_if": "仅删除链接而保留缺口，误删导航/配图/篇内锚点，或将无关资料写入文献",
+        "evidence": "未继承父会话历史的子会话依据三个原始本地文件更新两篇候选，内容/表达/事实自查通过，38 项结构与静态契约断言通过，原始来源哈希不变。另对 20 份合成策略候选判定，6 个允许案例通过、14 个违规案例拒绝，与父会话事先保留的预期全部一致。证据为 tests/self-contained-articles.md 与本卡批次 forward/review.json、forward/policy-review.json、policy-comparison.json。此为有界前向执行与同一子会话语义判断；互联网记录是离线模拟，未执行样例业务、网络访问或完整发布，所需图稿视觉检查为 not_run，未将候选声称为正式交付。",
+        "result": true
+      }
+    ]
+  },
+  "rejections": [],
+  "sync": {
+    "design_pinned": false,
+    "changelog": true,
+    "commit": "",
+    "tag": ""
+  },
+  "gate": {
+    "tool": "adflow-verify",
+    "version": "1.4.0",
+    "ran_at": "2026-10-22",
+    "exit_code": 0
+  }
+}

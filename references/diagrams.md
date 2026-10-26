@@ -10,7 +10,7 @@ Apply these triggers to every design article: overall design, module main design
 
 Assess the functional points and their important submechanisms separately within each article, using the decomposition in [design-outlines.md](design-outlines.md). Record the question, sources, needed/no-figure reason and applicable figure IDs for each point. An article-level decision is a summary of these assessments, not permission to stop after one image. Overall relationship and end-to-end views, feature flows, internal decisions, failure retention, state transitions and activation sequences can require different views. Combine questions only when the actual drawing remains complete and legible at article width. No fixed image quota replaces this review.
 
-Required figures are embedded in the articles whose explanation needs them, with captions and prose explaining the key branches or handoffs. Reuse an existing figure only when its scope and detail answer the same question; otherwise draw a focused detail view and link its place in the larger flow. Evaluate all important mechanisms: one token figure does not satisfy unrelated cache, recovery and activation questions.
+Required figures are embedded in the articles whose explanation needs them, with captions and prose explaining the key branches or handoffs. Reuse an existing figure only when its scope and detail answer the same question; otherwise draw a focused detail view and explain its place in the larger flow within the article. Evaluate all important mechanisms: one token figure does not satisfy unrelated cache, recovery and activation questions.
 
 Select an appropriate type, not a file quota. One figure may cover several questions at the same scope. Small independent modules need no decorative diagram. Record view decisions and each figure's article uses, required/optional status, trigger, original evidence, and reason under diagram-state.md. Any required use makes a shared figure required for the collection. Necessity changes only through a source-grounded change in the plan, never because drawing or previewing failed.
 
@@ -44,7 +44,7 @@ Use the selected reference before drafting its semantic list. Its fields are mea
 
 ### Keep the views distinct
 
-Start with the questions, then select the type. A save/refresh mechanism can need a flowchart for validation decisions, a sequence view for persistence and callback return ordering, and a data-flow view for the saved configuration's effect on derived results. Draw only the independently needed views and link their scopes; the existence of one does not settle the others.
+Start with the questions, then select the type. A save/refresh mechanism can need a flowchart for validation decisions, a sequence view for persistence and callback return ordering, and a data-flow view for the saved configuration's effect on derived results. Draw only the independently needed views and explain how their scopes relate; the existence of one does not settle the others.
 
 A necessary sequence view shows actors, lifelines and messages; a state view shows the subject and event/guard transitions; a data-flow view shows named payload lineage. Do not relabel a flowchart or change only its JSON `type` to claim another view. A state view must not turn `fresh`, `partial` and `failed` return values into stored states without evidence. An ER/deployment view must not invent tables, foreign keys, hosts, replicas or ports.
 
@@ -54,7 +54,7 @@ During initial builds and structural repairs, retain view assessments for all ei
 
 ## Scope and shared figures
 
-Give each logical figure one list, one SVG and one owner article. Other articles refer to it. Different views may use separate figures with explicit purpose, scope, and parent/detail links in their article captions. Summaries can omit disclosed detail, not contradict shared contracts. A split flow states entry, exit and its place in the overview. Never remove essential branches to meet a node budget.
+Give each logical figure one list, one SVG and one owner article. Other articles needing the same view embed that SVG directly with their own necessary explanation, without linking to its owner article. Different views may use separate figures with explicit purpose, scope and parent/detail relationships described in their article captions; links to explanations stay within the same article under writing.md. Summaries can omit disclosed detail, not contradict shared contracts. A split flow states entry, exit and its place in the overview. Never remove essential branches to meet a node budget.
 
 For an update compare semantic changes separately from layout and reference changes. Preserve valid unchanged SVG bytes and IDs. Change affected elements and necessary nearby routing; explain unavoidable wider reflow. Follow shared evidence and contracts to all figures and article uses. Do not reflow an entire collection for style consistency.
 

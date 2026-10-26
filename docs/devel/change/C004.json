@@ -26,7 +26,8 @@
       "git branch --show-current"
     ],
     "after": [
-      "python3 /Users/sivan/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
+      "# quick_validate.py 与 import yaml 需要已安装 PyYAML 的 python3；缺少该模块时记为未执行",
+      "python3 $HOME/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
       "python3 -c \"import yaml; yaml.safe_load(open('workflow.yaml'))\"",
       "git diff --check",
       "scripts/adflow-verify --json"
@@ -57,7 +58,7 @@
   },
   "verification": {
     "result": null,
-    "run_id": "b27a8e91-cf35-41af-8670-4c9338f0b98a",
+    "run_id": "local-20261022-004133",
     "user_quote": "",
     "signoff": "",
     "checks": [
@@ -65,7 +66,7 @@
         "item": "技能、路由与文档结构",
         "true_if": "quick_validate、YAML/JSON、变更引用、保护字面量/结构与治理检查均通过",
         "false_if": "任一结构检查失败或原有修改被覆盖",
-        "evidence": "quick_validate输出Skill is valid!，Exit 0；PyYAML解析、git diff --check、scripts/adflow-verify --json各Exit 0，errors/warnings/advisories均0。维护检查覆盖四阶段与10条read路由、15份治理JSON和6份本卡Markdown的50处有效本地引用，0错误。24份比较快照中18份字节不变；原有22项修改完整保留，本卡仅叠加6个既有文件与2个新文件；C003卡片和原索引记录、SKILL/workflow、技术不变量及历史来源段未改。详见本批次command-checks.json及document-checks.json。",
+        "evidence": "quick_validate输出Skill is valid!，Exit 0；PyYAML解析、git diff --check、scripts/adflow-verify --json各Exit 0，errors/warnings/advisories均0。维护检查覆盖四阶段与10条read路由、15份治理JSON和6份本卡Markdown的50处有效本地引用，0错误。24份比较快照中18份字节不变；原有22项修改完整保留，本卡仅叠加6个既有文件与2个新文件；C003卡片和原索引记录、SKILL/workflow、技术不变量及历史来源段未改。详见本批次command-checks.json及document-checks.json。run_id local-20261022-004133 取自批次 baseline.json 的实际 started_at（2026-10-22T00:41:33.967666+08:00，按 +08:00 记录）；对应证据目录为 local/acceptance/sentence-clarity/b27a8e91-cf35-41af-8670-4c9338f0b98a/。",
         "result": true
       },
       {

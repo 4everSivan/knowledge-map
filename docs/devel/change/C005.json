@@ -26,7 +26,8 @@
       "git branch --show-current"
     ],
     "after": [
-      "python3 /Users/sivan/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
+      "# quick_validate.py 与 import yaml 需要已安装 PyYAML 的 python3；缺少该模块时记为未执行",
+      "python3 $HOME/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
       "git diff --check",
       "scripts/adflow-verify --json"
     ]
@@ -62,7 +63,7 @@
   },
   "verification": {
     "result": null,
-    "run_id": "3c743817-5642-47b9-b8ea-9b918be53c3a",
+    "run_id": "local-20261022-115629",
     "user_quote": "",
     "signoff": "",
     "checks": [
@@ -70,7 +71,7 @@
         "item": "技能与文档结构",
         "true_if": "技能基础、YAML/JSON、本地引用、保护内容和治理检查均通过",
         "false_if": "任一检查失败、来源或原有无关改动被覆盖",
-        "evidence": "quick_validate 输出 Skill is valid!，git diff --check、scripts/adflow-verify --json 均 Exit 0，治理 errors/warnings/advisories 均 0。14 项文档结构检查通过，含 YAML/JSON、105 处本地引用及原标题、表格、代码、字面量、来源和引用保护。原有 72 份文件中 63 份字节不变，9 份叠加本卡修改；新增 C005 和检查页，既有 C003/C004、SKILL/workflow 与历史验收均未改。证据位于本卡批次的 command-checks.json 与 document-checks.json；初始分支权限和 Python 编码失败另留 initial-command-issues.json。",
+        "evidence": "quick_validate 输出 Skill is valid!，git diff --check、scripts/adflow-verify --json 均 Exit 0，治理 errors/warnings/advisories 均 0。14 项文档结构检查通过，含 YAML/JSON、105 处本地引用及原标题、表格、代码、字面量、来源和引用保护。原有 72 份文件中 63 份字节不变，9 份叠加本卡修改；新增 C005 和检查页，既有 C003/C004、SKILL/workflow 与历史验收均未改。证据位于本卡批次的 command-checks.json 与 document-checks.json；初始分支权限和 Python 编码失败另留 initial-command-issues.json。run_id local-20261022-115629 取自批次 baseline.json 的实际 started_at（2026-10-22T11:56:29.319965+08:00，按 +08:00 记录）；对应证据目录为 local/acceptance/requirement-led-writing/3c743817-5642-47b9-b8ea-9b918be53c3a/。",
         "result": true
       },
       {

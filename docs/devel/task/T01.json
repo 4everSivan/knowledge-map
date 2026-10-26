@@ -15,7 +15,7 @@
   "goal": "以英文技能指引与 workflow 实现单入口生成和更新中文文档及术语卡，落实局部表达修订与事实回查；不增加 km 运行脚本。",
   "precheck": {
     "description": "核对技能入口是否已可解析，已有实现则先验收而非覆盖重建",
-    "command": "python3 /Users/sivan/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
+    "command": "python3 $HOME/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
     "expected": "技能入口存在且基础格式检查通过，才表示可能已有实现；仍需核对 workflow 与行为样例",
     "is_completed": true,
     "evidence": "2026-10-15 实际执行 precheck.command，Exit 1：SKILL.md not found；未发现已有技能入口。当前真实分支为 feat/T01-km-v0.1。 实现后再次执行同一命令，Exit 0：Skill is valid!；YAML 单独解析通过，初始 YAML 缩进错误已修复。"
@@ -25,7 +25,7 @@
       "git branch --show-current"
     ],
     "after": [
-      "python3 /Users/sivan/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
+      "python3 $HOME/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
       "scripts/adflow-verify --mode init --json",
       "scripts/adflow-verify --json"
     ]

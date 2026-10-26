@@ -10,7 +10,7 @@ Only generate categories supported by the project. A template does not require a
 
 Use the Chinese H2 titles below in the stated order for default Chinese output, numbered `## 1. 简介`, etc. Translate the titles consistently if the user selects another language. H3 sections use `### 4.1 <specific concept>`; further local structure uses short bold labels or a justified article split. Honour an explicit user/project outline in preference to these defaults, recording the mapping and reason. An adapted outline must retain applicable substance, never hide an unfinished capability.
 
-Required top-level chapters stay recognizable. If a chapter's facts are unavailable or inapplicable, give one specific scope/effect statement there; do not invent facts or fill subordinate empty headings. Optional subsections are omitted when inapplicable. This exception does not excuse unread necessary evidence. Requirements and goals need original declarations: distinguish them from observed implementation capabilities, inferences, and unimplemented targets. Never reverse-engineer historical intent, numeric targets or acceptance results from code.
+Required substantive chapters stay recognizable. If such a chapter's facts are unavailable or inapplicable, give one specific scope/effect statement there; do not invent facts or fill subordinate empty headings. The final `参考文献（按需）` row is conditional: use the visible heading `参考文献` only when this article uses consulted Internet material under [writing.md](writing.md#self-contained-articles), otherwise omit the chapter and its contents entry entirely. Optional subsections are omitted when inapplicable. This exception does not excuse unread necessary evidence. Requirements and goals need original declarations: distinguish them from observed implementation capabilities, inferences, and unimplemented targets. Never reverse-engineer historical intent, numeric targets or acceptance results from code.
 
 Review each chapter's actual questions against the type-specific triggers in [diagrams.md](diagrams.md#select-a-type). Structural chapters can need architecture/dependency views; cross-actor activation or request/response can need sequence views; lifecycle, lineage, entity and deployment questions need their own assessments. The article category and the presence of a flowchart do not decide its other view needs.
 
@@ -26,9 +26,9 @@ For each point explain the applicable facts at its principal detail location:
 - Inputs, relevant fields, validation and decision rules, with actual predicates or precedence.
 - Processing steps and important alternative paths, including their outputs and data/state effects.
 - Failures, cancellation and boundaries: detection, retained/changed state and recovery where implemented.
-- A normal and consequential alternative walkthrough for complex behavior; source notes and focused figures as required by diagrams.md.
+- A normal and consequential alternative walkthrough for complex behavior; internal source associations and focused figures as required by diagrams.md.
 
-Use H3 sections named for actual points/mechanisms. Short bold labels within a point can separate rules, effects and cases. A feature inventory row routes the reader to these explanations; it never replaces them. Shared contracts or cross-cutting flows can be explained once and linked precisely. Do not force each helper, field or simple validation into a separate point, article or diagram.
+Use H3 sections named for actual points/mechanisms. Short bold labels within a point can separate rules, effects and cases. A feature inventory row routes the reader to explanations within this article; it never replaces them. Include shared contracts and cross-cutting flow details needed here, using in-page links to avoid repetition within the same article. Do not force each helper, field or simple validation into a separate point, article or diagram.
 
 <a id="requirement-led-explanation"></a>
 
@@ -52,14 +52,14 @@ The required file remains `<project name>设计文档.md`, or its existing compl
 | H2 chapter | Required content and useful H3 decomposition |
 |---|---|
 | 1. 简介 | System purpose, audience, scope, terminology and system boundary. State the conclusion before describing the chapter plan. |
-| 2. 需求 | Original requirements/scenarios and constraints, their sources and implementation status; roles and external dependencies. When no requirements are declared, say so and identify implemented capabilities separately. |
+| 2. 需求 | Original requirements/scenarios and constraints, whether each is declared and implemented; roles and external dependencies. When no requirements are declared, say so and identify implemented capabilities separately. |
 | 3. 目标 | Source-declared design goals, non-goals, trade-offs and constraints. Never invent performance or reliability targets. |
-| 4. 功能设计 | Group by capability; enumerate all concrete points and important subscenarios. Explain each point's purpose, entry, principal rules and result, linking its precise detail section. Include a compact functional index, with narrative for the groups. |
+| 4. 功能设计 | Group by capability; enumerate all concrete points and important subscenarios. Explain each point's purpose, entry, principal rules and result, using precise in-page sections. Include a compact functional index, with narrative for the groups. |
 | 5. 架构设计 | Boundaries, module responsibilities/dependencies, technical layers, shared data/state ownership, backbone interactions and global constraints. Relationship and end-to-end views answer distinct questions. |
-| 6. 详细设计 | A substantive H3 section with stable anchor for every design topic: contracts, key mechanisms, state/failure behavior, relationships and limits, plus its independent detailed article. This is the system-level account of all designs, not a table of links. |
-| 7. 参考文献 | Actual original documents, code entrypoints and consulted references, grouped by purpose. Include related design links here when useful; retain section-level source notes. |
+| 6. 详细设计 | A substantive H3 section with stable anchor for every design topic: contracts, key mechanisms, state/failure behavior, relationships and limits. Map each topic to its independent detailed article in the working plan; this chapter is the system-level account of all designs, not a table of links. |
+| 7. 参考文献（按需） | Internet sources actually used by this article; omit otherwise. |
 
-Chapter 4 follows capabilities, chapter 5 follows structural responsibilities, and chapter 6 follows design concerns. Summarize at each level and link principal details rather than copying the same complete explanation into all three chapters. Neither the feature index nor the topic map can substitute for the other.
+Chapter 4 follows capabilities, chapter 5 follows structural responsibilities, and chapter 6 follows design concerns. Explain each level's questions and use in-page references rather than copying the same complete explanation into all three chapters. Neither the feature index nor the internal topic map can substitute for the other.
 
 ## Feature design
 
@@ -68,10 +68,10 @@ Chapter 4 follows capabilities, chapter 5 follows structural responsibilities, a
 | 1. 目标 | Capability, actors, intended result, boundaries and supported scenarios; distinguish declared goal from current capability. |
 | 2. 设计 | Functional-point index followed by named H3 explanations of every point: entry, prerequisites, inputs, concrete rules, steps, effects and dependencies. Include interaction/display rules if implemented, not an invented UI. |
 | 3. 流程 | Named normal and alternative subflows with conditions and terminal outcomes; link each back to its point. Add the needed flow, sequence and/or state views. |
-| 4. 数据与接口 | Shared contracts, fields, validation, configuration, storage and activation timing used by those points; link principal technical references without repeating them. |
+| 4. 数据与接口 | Shared contracts, fields, validation, configuration, storage and activation timing used by those points; explain necessary technical context directly in this article. |
 | 5. 异常与边界 | Failure conditions, partial/retained state, recovery and unsupported scenarios, mapped to affected points. |
 | 6. 验证要点 | Source-based normal and alternative cases, inputs, intermediate decisions and expected state/output. Distinguish criteria, existing test coverage and actual run evidence; do not manufacture acceptance or run tests merely to write this chapter. |
-| 7. 参考文献 | Original evidence and links to the overall anchor and related detailed designs. |
+| 7. 参考文献（按需） | Internet sources actually used by this article; omit otherwise. |
 
 Avoid a single generic “design” paragraph followed by a large function-name table. A reader must be able to follow each real point through the rules, flow and outcome; the three explanatory chapters can share precise anchors without repeating all prose.
 
@@ -87,7 +87,7 @@ Use this for an independently substantial architecture topic. Keep the whole-sys
 | 4. 组件与依赖 | Responsibility allocation, contracts, dependency direction, ownership and external systems. |
 | 5. 关键场景 | Trace representative capabilities across components, including consequential handoffs, data changes and failure boundaries. |
 | 6. 质量与演进 | Supported consistency, security, performance or compatibility mechanisms, limits and declared evolution plans. Criteria and static mechanisms are not measurements or implemented future features. |
-| 7. 参考文献 | Original decisions and code evidence, overall anchor and principal feature/module designs. |
+| 7. 参考文献（按需） | Internet sources actually used by this article; omit otherwise. |
 
 ## Module or mechanism detailed design
 
@@ -96,10 +96,10 @@ Use this for an independently substantial architecture topic. Keep the whole-sys
 | 1. 目标与职责 | Responsibility, boundaries, owned capabilities, callers and connection to the overall design. |
 | 2. 对外契约 | Actual entrypoints, inputs/outputs, validation, side effects and dependencies. |
 | 3. 内部结构 | Components and responsibility allocation, data/state ownership and relevant structural relationships. |
-| 4. 详细设计 | Named mechanisms and functional points, algorithms, exact branch rules, defaults and precedence. Include normal and alternative worked cases near their mechanisms if not owned by a flow article. |
+| 4. 详细设计 | Named mechanisms and functional points, algorithms, exact branch rules, defaults and precedence. Include normal and alternative worked cases needed to understand these mechanisms, even when an independent flow article also covers them. |
 | 5. 流程与状态 | Processing order, transitions, publication points and applicable concurrency, cancellation and lifetime rules, with internal views as needed. |
 | 6. 异常与恢复 | Detection, partial results, retention/rollback, retry and recovery where implemented, plus known limitations. |
-| 7. 参考文献 | Original evidence, overall anchor and links to owned topics or principal cross-module flows. |
+| 7. 参考文献（按需） | Internet sources actually used by this article; omit otherwise. |
 
 ## Flow or state topic
 
@@ -111,7 +111,7 @@ Use this for an independently substantial architecture topic. Keep the whole-sys
 | 4. 状态与数据变化 | Actual state transitions/invariants, mutation and publication points, resource lifetime. |
 | 5. 异常与恢复 | Failure/cancellation/shutdown, partial effects and implemented recovery. |
 | 6. 场景推演 | Concrete normal and alternative cases with intermediate decisions and final state. |
-| 7. 参考文献 | Original evidence, overall anchor and participating designs. |
+| 7. 参考文献（按需） | Internet sources actually used by this article; omit otherwise. |
 
 ## Data design
 
@@ -123,7 +123,7 @@ Use this for an independently substantial architecture topic. Keep the whole-sys
 | 4. 数据生命周期 | Creation, transformation, updates, retention and removal; relevant data-flow views. |
 | 5. 一致性与兼容 | Invariants, ordering, persistence, schema/version behavior and failure effects where implemented. |
 | 6. 场景推演 | Representative data and normal/boundary transformations with resulting state. |
-| 7. 参考文献 | Original schema/code evidence and owning designs. |
+| 7. 参考文献（按需） | Internet sources actually used by this article; omit otherwise. |
 
 Do not assume an in-memory model has a database, migration strategy or durable transaction.
 
@@ -137,7 +137,7 @@ Do not assume an in-memory model has a database, migration strategy or durable t
 | 4. 调用流程 | Important multi-step interaction and dependency order; focused sequence/flow views when triggered. |
 | 5. 错误与边界 | Error semantics, partial effects, idempotence, retry and compatibility only as supported. |
 | 6. 调用示例 | Actual contract-shaped examples, normal and important error outcomes. Expected output is not observed output. |
-| 7. 参考文献 | Original declarations/implementations and owning feature designs. |
+| 7. 参考文献（按需） | Internet sources actually used by this article; omit otherwise. |
 
 ## Configuration design
 
@@ -149,7 +149,7 @@ Do not assume an in-memory model has a database, migration strategy or durable t
 | 4. 加载与生效流程 | Read/merge/validate/save/activate order, reload/restart requirements and downstream effects; focused decision/activation views. |
 | 5. 异常与安全边界 | Invalid input, failed writes, retained or changed state, recovery and sensitive-value handling as implemented. |
 | 6. 配置示例 | Normal and consequential invalid/failure cases, showing actual resulting configuration/state. |
-| 7. 参考文献 | Original evidence, overall anchor and consumers. |
+| 7. 参考文献（按需） | Internet sources actually used by this article; omit otherwise. |
 
 ## Deployment design
 
@@ -161,8 +161,8 @@ Do not assume an in-memory model has a database, migration strategy or durable t
 | 4. 组件与配置 | Roles, actual configuration/port/path contracts, persistence and secrets injection if present. |
 | 5. 部署与变更流程 | Supported startup, updates, ordering and result criteria; distinguish a design from human operation instructions. |
 | 6. 故障与恢复 | Detection and documented recovery/rollback mechanisms and their limits. |
-| 7. 参考文献 | Original manifests/guides and architecture links; no invented observations. |
+| 7. 参考文献（按需） | Internet sources actually used by this article; omit otherwise. |
 
 ## Review before delivery
 
-Check category, chapter order, relevant subsection depth and layout against the article's purpose. Then derive the functional inventory again from original sources and compare it with actual prose, precise links and figure uses. A completed template or a large collection does not prove either check. Missing points, one-line point summaries, incorrect blanket no-figure decisions and unsupported “requirements” fail semantic review. Keep missing evidence and unfinished work pending and return correctable gaps to planning/drafting in the same invocation.
+Check category, chapter order, conditional bibliography, relevant subsection depth and layout against the article's purpose. Then derive the functional inventory again from original sources and compare it with actual prose, precise in-page answers and figure uses. Apply writing.md's independent-reading and citation review. A completed template or a large collection does not prove these checks. Missing points, one-line point summaries, incorrect blanket no-figure decisions and unsupported “requirements” fail semantic review. Keep missing evidence and unfinished work pending and return correctable gaps to planning/drafting in the same invocation.

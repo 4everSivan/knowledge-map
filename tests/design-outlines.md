@@ -47,6 +47,6 @@ C003 继续处理用户对文档简单、功能点未下钻、配图少和版式
 
 父会话最终复核当前 7 篇文章、5 张卡、7 组图，共 26 个内容文件；校验实际哈希、字段路径基准、正反向绑定、SVG 语义元素、章节顺序、显式锚点、功能/案例映射和视觉回执。11 个原始文件、14 篇审阅正文及 18 个反例文件未变，14 项当前必需检查通过，结果为 Exit 0、0 错误，记录于 `parent-integration-check.json`。
 
-运行资源已按写入前哈希保护同步到 `/Users/sivan/.agents/skills/km`，21 个文件与源技能一致，原安装副本保留在父批次的 `installed-before/` 与 `installed-before-architecture/`。独立架构大纲在前向执行期间补入，但样例已选的五类大纲未变，未要求额外文章。格式、引用、YAML/JSON、协议与治理回执另见 `maintenance-checks.json`、`protocol-check.json`。
+运行资源已按写入前哈希保护同步到 `~/.agents/skills/km`，21 个文件与源技能一致，原安装副本保留在父批次的 `installed-before/` 与 `installed-before-architecture/`。独立架构大纲在前向执行期间补入，但样例已选的五类大纲未变，未要求额外文章。格式、引用、YAML/JSON、协议与治理回执另见 `maintenance-checks.json`、`protocol-check.json`。
 
 此验收限于五类实际生成大纲、同一有界原始样例和指定预览环境，不是任意大型工程一次生成质量的确定性保证；其它四类大纲已人工核对规则，未在本批次生成对应文章。未运行样例或 Bruce 应用、业务测试、设备或网络验收。本轮完善并安装技能，未按新大纲重生成 Bruce 旧库。C003 仍为 `in_progress`，人工核验未代签，未提交、推送或发版；历史验收记录保持原样。

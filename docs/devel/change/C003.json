@@ -16,7 +16,7 @@
   "why": "Bruce 实测产物将总设计写为架构概览，菜单栏与设置校准被合并到平台文章；12 篇普通文章采用英文文件名，但生成记录仍为 complete/passed。用户确认修复产物契约、主题拆分、完成条件和验收，并在验证后整理 Bruce 文档。 用户进一步指出详设缺图且内容偏浅，并要求完善技能，使一次调用能产出符合要求的完整库；本轮继续修复内容深度、内部机制配图与同次调用自检修复。 2026-10-20 用户继续指出功能点下钻不足、图片少、版式欠佳，给出总设计七章和功能设计示例，要求按文类细分大纲；本轮增加分类大纲、功能点覆盖、逐机制配图和设计版式检查。 2026-10-20 用户继续指出图稿几乎只有流程图，要求调整其它图型的触发机制；实测上次样例为1架构/6流程。增加八类独立视角触发、图型评估留存和 figure_view_coverage，避免图稿存在却缺关键时序、状态或数据解释。",
   "precheck": {
     "description": "检查 Bruce 现有产物的中文命名及总设计主题计划",
-    "command": "python3 -c \"from pathlib import Path; import json,re; p=Path('/Users/sivan/code_project/my_project/app_project/Bruce/docs/official'); d=json.loads(next((p/'.cards/runs').glob('*/document-plan.json')).read_text()); print({'non_chinese_names':[x.name for x in p.glob('*.md') if x.name!='README.md' and not re.search('[\\u4e00-\\u9fff]',x.stem)], 'overall_article':'overall_article' in d, 'design_topics':'design_topics' in d})\"",
+    "command": "python3 -c \"from pathlib import Path; import json,re; p=Path.home()/'code_project/my_project/app_project/Bruce/docs/official'; d=json.loads(next((p/'.cards/runs').glob('*/document-plan.json')).read_text()); print({'non_chinese_names':[x.name for x in p.glob('*.md') if x.name!='README.md' and not re.search('[\\u4e00-\\u9fff]',x.stem)], 'overall_article':'overall_article' in d, 'design_topics':'design_topics' in d})\"",
     "expected": "输出 12 个英文普通文章名，计划缺少 overall_article 和 design_topics",
     "is_completed": false,
     "evidence": "2026-10-19 实际预检 Exit 0：12 个英文普通文章名；overall_default_present=false；plan_has_overall_article=false；plan_has_design_topics=false。规则尚未修复，继续实施。"
@@ -26,7 +26,8 @@
       "git branch --show-current"
     ],
     "after": [
-      "python3 /Users/sivan/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
+      "# quick_validate.py 与 import yaml 需要已安装 PyYAML 的 python3；缺少该模块时记为未执行",
+      "python3 $HOME/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
       "python3 -c \"import yaml; yaml.safe_load(open('workflow.yaml'))\"",
       "scripts/adflow-verify --json"
     ]
@@ -86,7 +87,7 @@
   },
   "verification": {
     "result": null,
-    "run_id": "532450ab-d288-422a-af06-626713bbd93e",
+    "run_id": "local-20261020-143340",
     "user_quote": "",
     "signoff": "",
     "checks": [
@@ -94,7 +95,7 @@
         "item": "技能格式与协议解析",
         "true_if": "技能格式、YAML/JSON、相对引用和项目治理检查通过",
         "false_if": "任一必需检查失败",
-        "evidence": "quick_validate：Skill is valid!，Exit 0；YAML四阶段与read路由、卡片/索引JSON解析通过；29份MD的176处有效相对引用通过；已安装20份运行资源字节一致；git diff --check Exit 0；scripts/adflow-verify --json Exit 0，errors/warnings/advisories各0。首次链接检查误纳围栏示例，修正后通过，首轮记录保留在 skill-checks-initial.json。 本轮12acb69e-7ee6-4baa-9ad1-bb406e66b255：quick_validate Exit 0；四阶段/引用路由及JSON/YAML解析通过；30份MD的182处有效引用通过；20份安装资源字节一致；卡片/图稿协议及manifest字段版本不变，明确已有卡路径基准。 2026-10-20 分类大纲批次：quick_validate和git diff --check均Exit 0；40份受版本控制/非忽略维护Markdown的170处有效相对引用、四阶段路由和14份治理JSON解析通过；21份安装资源哈希一致，协议所有者及状态JSON示例不变。 2026-10-20 图型批次532450ab-d288-422a-af06-626713bbd93e：quick_validate、git diff --check均Exit 0；50份非忽略维护Markdown的282处本地引用、四阶段与10条read路由、14份治理JSON解析通过；21份安装资源哈希一致，协议字段版本不变。维护检查器阶段ID误写已修正并保留失败。",
+        "evidence": "quick_validate：Skill is valid!，Exit 0；YAML四阶段与read路由、卡片/索引JSON解析通过；29份MD的176处有效相对引用通过；已安装20份运行资源字节一致；git diff --check Exit 0；scripts/adflow-verify --json Exit 0，errors/warnings/advisories各0。首次链接检查误纳围栏示例，修正后通过，首轮记录保留在 skill-checks-initial.json。 本轮12acb69e-7ee6-4baa-9ad1-bb406e66b255：quick_validate Exit 0；四阶段/引用路由及JSON/YAML解析通过；30份MD的182处有效引用通过；20份安装资源字节一致；卡片/图稿协议及manifest字段版本不变，明确已有卡路径基准。 2026-10-20 分类大纲批次：quick_validate和git diff --check均Exit 0；40份受版本控制/非忽略维护Markdown的170处有效相对引用、四阶段路由和14份治理JSON解析通过；21份安装资源哈希一致，协议所有者及状态JSON示例不变。 2026-10-20 图型批次532450ab-d288-422a-af06-626713bbd93e：quick_validate、git diff --check均Exit 0；50份非忽略维护Markdown的282处本地引用、四阶段与10条read路由、14份治理JSON解析通过；21份安装资源哈希一致，协议字段版本不变。维护检查器阶段ID误写已修正并保留失败。run_id local-20261020-143340 取自批次 baseline.json 的实际 started_at（2026-10-20T06:33:40.998294+00:00，按 +08:00 记录）；对应证据目录为 local/acceptance/figure-views/532450ab-d288-422a-af06-626713bbd93e/。",
         "result": true
       },
       {

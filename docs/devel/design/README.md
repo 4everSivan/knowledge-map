@@ -1,6 +1,6 @@
 # 系统设计中心 (design/)
 
-> **created**: 2026-10-15 ｜ **last-change**: 2026-10-16 ｜ **status**: active
+> **created**: 2026-10-15 ｜ **last-change**: 2026-10-25 ｜ **status**: active
 
 ## 1. 简介
 
@@ -22,14 +22,13 @@
 
 | 文档名称 | 对应 Topic | 文档 ID | 核心职责概述 | 状态 | 最后更新 |
 |---|---|---|---|---|---|
-| [系统总体设计](00-系统总体设计.md) | KnowledgeMapWorkflow | DESIGN-KM-OVERVIEW | 产品边界、单入口、workflow 文件驱动 AI 与 v0.1 阶段规则 | baseline | 2026-10-15 |
-| [文档库与命名规范](01-文档库与命名规范.md) | KnowledgeLibrary | DESIGN-KM-LIBRARY | 业务模块独立主设计、专题分层、覆盖、平铺命名与引用 | baseline | 2026-10-15 |
-| [术语知识卡片设计](02-术语知识卡片设计.md) | KnowledgeCards | DESIGN-KM-CARDS | 术语语境、JSON 契约、稳定身份与证据 | baseline | 2026-10-15 |
-| [增量更新与质量控制](03-增量更新与质量控制.md) | IncrementalRefresh、KnowledgeQuality | DESIGN-KM-INCREMENTAL | 来源失效、覆盖、冲突、恢复与检查 | baseline | 2026-10-15 |
-| [生产文档编写规范](04-生产文档编写规范.md) | KnowledgeWriting | DESIGN-KM-WRITING | 页面格式、分类大纲、正文编辑与来源呈现 | baseline | 2026-10-15 |
-| [单篇文档编写流程](05-单篇文档编写流程.md) | DocumentAuthoring | DESIGN-KM-AUTHORING | 初次与更新、局部表达修订、事实回查和本地英文提示词集成 | baseline | 2026-10-15 |
-
-| [工程制图](06-工程制图.md) | EngineeringDiagrams | DESIGN-KM-DIAGRAMS | 图稿触发、语义与证据、SVG、双环境检查和受控交付 | baseline | 2026-10-16 |
+| [系统总体设计](00-系统总体设计.md) | KnowledgeMapWorkflow | DESIGN-KM-OVERVIEW | 产品边界、单入口、workflow 文件驱动 AI 与 v0.1 阶段规则 | baseline | 2026-10-25 |
+| [文档库与命名规范](01-文档库与命名规范.md) | KnowledgeLibrary、DesignCoverage | DESIGN-KM-LIBRARY | 业务模块独立主设计、专题分层、覆盖、平铺命名与引用 | baseline | 2026-10-25 |
+| [术语知识卡片设计](02-术语知识卡片设计.md) | KnowledgeCards | DESIGN-KM-CARDS | 术语语境、JSON 契约、稳定身份与证据 | baseline | 2026-10-16 |
+| [增量更新与质量控制](03-增量更新与质量控制.md) | IncrementalRefresh、KnowledgeQuality | DESIGN-KM-INCREMENTAL | 来源失效、覆盖、冲突、恢复与检查 | baseline | 2026-10-25 |
+| [生产文档编写规范](04-生产文档编写规范.md) | KnowledgeWriting | DESIGN-KM-WRITING | 页面格式、分类大纲、正文编辑与来源呈现 | baseline | 2026-10-25 |
+| [单篇文档编写流程](05-单篇文档编写流程.md) | DocumentAuthoring | DESIGN-KM-AUTHORING | 初次与更新、局部表达修订、事实回查和本地英文提示词集成 | baseline | 2026-10-22 |
+| [工程制图](06-工程制图.md) | EngineeringDiagrams | DESIGN-KM-DIAGRAMS | 图稿触发、语义与证据、SVG、双环境检查和受控交付 | baseline | 2026-10-20 |
 
 只登记已生成且有真实来源的设计，同时在 [研发索引](../index.json) 登记其路由；空项目保持清单为空。状态如实区分草稿与已批准基线，不把示例登记成项目能力。
 

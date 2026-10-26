@@ -8,4 +8,4 @@ Node roles: `source`, `process`, `store`, `sink`, `external`. Relation kinds: `t
 
 ## Draw and check
 
-Keep a dominant lineage direction. Label data and transformations precisely; distinguish a write from a read and a copy from a new derived dataset. Show meaningful boundaries with evidence. Do not invent volumes, latency, retention or delivery guarantees. When multiple control steps move the same data, explain them in an appropriate flow/sequence view instead of overloading lineage arrows. Clarify omitted branches and link necessary detail.
+Keep a dominant lineage direction. Label data and transformations precisely; distinguish a write from a read and a copy from a new derived dataset. Show meaningful boundaries with evidence. Do not invent volumes, latency, retention or delivery guarantees. When multiple control steps move the same data, explain them in an appropriate flow/sequence view instead of overloading lineage arrows. Clarify omitted branches and include necessary detail in this article.

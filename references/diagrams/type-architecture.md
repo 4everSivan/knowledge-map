@@ -8,4 +8,4 @@ Node roles: `actor`, `component`, `store`, `external`. Relation kinds: `calls`, 
 
 ## Draw and check
 
-Use labelled zones behind components. Put connectors on distinct ports; route orthogonally around unrelated boxes. Draw actual direction and label contracts where meaningful. Briefly disclose abstraction scope and link to module details. Grouping is semantic and needs evidence, not just a way to fit a canvas. Split large views without hiding necessary modules or boundary crossings. Check that static design relationships are not described as observed operation.
+Use labelled zones behind components. Put connectors on distinct ports; route orthogonally around unrelated boxes. Draw actual direction and label contracts where meaningful. Briefly disclose abstraction scope and explain necessary module details within this article. Grouping is semantic and needs evidence, not just a way to fit a canvas. Split large views without hiding necessary modules or boundary crossings. Check that static design relationships are not described as observed operation.

@@ -27,7 +27,7 @@
       "git branch --show-current"
     ],
     "after": [
-      "python3 /Users/sivan/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
+      "python3 $HOME/.codex/skills/.system/skill-creator/scripts/quick_validate.py .",
       "scripts/adflow-verify --mode init --json",
       "scripts/adflow-verify --json"
     ]
