@@ -4,7 +4,7 @@
   "title": "补齐分类大纲、功能点下钻与配图的交付契约",
   "version": "v0.1.0",
   "type": "BugFix",
-  "status": "in_progress",
+  "status": "closed",
   "branch": "codex/fix-C003-design-coverage",
   "is_hotfix": false,
   "target": {
@@ -86,10 +86,10 @@
     }
   },
   "verification": {
-    "result": null,
+    "result": true,
     "run_id": "local-20261020-143340",
-    "user_quote": "",
-    "signoff": "",
+    "user_quote": "准备发布 0.1 版本",
+    "signoff": "用户于 2026-10-26 在会话中确认，AI 代签",
     "checks": [
       {
         "item": "技能格式与协议解析",
@@ -137,15 +137,16 @@
   },
   "rejections": [],
   "sync": {
-    "design_pinned": false,
+    "design_pinned": true,
     "changelog": true,
-    "commit": "",
+    "commit": "c214f876393680ba2fa2d88d9b18893eb8bba3a9",
     "tag": ""
   },
   "gate": {
     "tool": "adflow-verify",
     "version": "1.4.0",
-    "ran_at": "2026-10-20",
-    "exit_code": 0
+    "ran_at": "2026-10-26",
+    "exit_code": 0,
+    "target_status": "closed"
   }
 }

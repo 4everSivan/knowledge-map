@@ -4,7 +4,7 @@
   "title": "使生产文章独立完整，并按互联网资料实际使用生成参考文献",
   "version": "v0.1.0",
   "type": "Enhancement",
-  "status": "in_progress",
+  "status": "closed",
   "branch": "codex/fix-c006-self-contained-articles",
   "is_hotfix": false,
   "target": {
@@ -74,10 +74,10 @@
     }
   },
   "verification": {
-    "result": null,
+    "result": true,
     "run_id": "local-20261022-143608",
-    "user_quote": "",
-    "signoff": "",
+    "user_quote": "准备发布 0.1 版本",
+    "signoff": "用户于 2026-10-26 在会话中确认，AI 代签",
     "checks": [
       {
         "item": "规则和文档结构",
@@ -97,15 +97,16 @@
   },
   "rejections": [],
   "sync": {
-    "design_pinned": false,
+    "design_pinned": true,
     "changelog": true,
-    "commit": "",
+    "commit": "c48dae20da94310434c490df4e1537fd48c185d5",
     "tag": ""
   },
   "gate": {
     "tool": "adflow-verify",
     "version": "1.4.0",
-    "ran_at": "2026-10-22",
-    "exit_code": 0
+    "ran_at": "2026-10-26",
+    "exit_code": 0,
+    "target_status": "closed"
   }
 }

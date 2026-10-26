@@ -1,7 +1,7 @@
 {
   "$schema": "https://ad-flow.org/schemas/change-index.v1.json",
   "version": "1.0",
-  "updated_at": "2026-10-25",
+  "updated_at": "2026-10-26",
   "topics": {
     "KnowledgeWriting": {
       "design_doc": "docs/devel/design/04-生产文档编写规范.md",
@@ -49,25 +49,25 @@
       "file": "docs/devel/change/C003.json",
       "title": "补齐分类大纲、功能点下钻与配图的交付契约",
       "version": "v0.1.0",
-      "status": "in_progress"
+      "status": "closed"
     },
     "C004": {
       "file": "docs/devel/change/C004.json",
       "title": "按主谓宾收紧句子表达与保真修订",
       "version": "v0.1.0",
-      "status": "in_progress"
+      "status": "closed"
     },
     "C005": {
       "file": "docs/devel/change/C005.json",
       "title": "以需求和约束解释设计机制，并核对实际文档样本",
       "version": "v0.1.0",
-      "status": "in_progress"
+      "status": "closed"
     },
     "C006": {
       "file": "docs/devel/change/C006.json",
       "title": "使生产文章独立完整，并按互联网资料实际使用生成参考文献",
       "version": "v0.1.0",
-      "status": "in_progress"
+      "status": "closed"
     }
   }
 }
