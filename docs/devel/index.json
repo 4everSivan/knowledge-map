@@ -2,7 +2,7 @@
   "$schema": "adflow-devel-index-v1",
   "project": "knowledge-map",
   "created": "2026-10-15",
-  "last_change": "2026-10-16",
+  "last_change": "2026-11-24",
   "status": "active",
   "description": "研发内场核心工作区总账路由，聚合现行设计基线与执行卡池",
   "subsystems": [
@@ -22,6 +22,12 @@
         {
           "file": "docs/devel/design/01-文档库与命名规范.md",
           "topic": "KnowledgeLibrary",
+          "status": "baseline",
+          "title": "文档库与命名规范"
+        },
+        {
+          "file": "docs/devel/design/01-文档库与命名规范.md",
+          "topic": "DesignCoverage",
           "status": "baseline",
           "title": "文档库与命名规范"
         },
