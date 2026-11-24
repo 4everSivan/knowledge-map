@@ -11,7 +11,57 @@
       "path": "docs/devel/design",
       "type": "living_baseline",
       "description": "现行系统设计基线真理源（以 @topic 锚点保持全文自洽）",
-      "readme": "docs/devel/design/README.md"
+      "readme": "docs/devel/design/README.md",
+      "designs": [
+        {
+          "file": "docs/devel/design/00-系统总体设计.md",
+          "topic": "KnowledgeMapWorkflow",
+          "status": "baseline",
+          "title": "knowledge-map 系统总体设计"
+        },
+        {
+          "file": "docs/devel/design/01-文档库与命名规范.md",
+          "topic": "KnowledgeLibrary",
+          "status": "baseline",
+          "title": "文档库与命名规范"
+        },
+        {
+          "file": "docs/devel/design/02-术语知识卡片设计.md",
+          "topic": "KnowledgeCards",
+          "status": "baseline",
+          "title": "术语知识卡片设计"
+        },
+        {
+          "file": "docs/devel/design/03-增量更新与质量控制.md",
+          "topic": "IncrementalRefresh",
+          "status": "baseline",
+          "title": "增量更新与质量控制"
+        },
+        {
+          "file": "docs/devel/design/03-增量更新与质量控制.md",
+          "topic": "KnowledgeQuality",
+          "status": "baseline",
+          "title": "增量更新与质量控制"
+        },
+        {
+          "file": "docs/devel/design/04-生产文档编写规范.md",
+          "topic": "KnowledgeWriting",
+          "status": "baseline",
+          "title": "生产文档编写规范"
+        },
+        {
+          "file": "docs/devel/design/05-单篇文档编写流程.md",
+          "topic": "DocumentAuthoring",
+          "status": "baseline",
+          "title": "单篇文档编写流程"
+        },
+        {
+          "file": "docs/devel/design/06-工程制图.md",
+          "topic": "EngineeringDiagrams",
+          "status": "baseline",
+          "title": "工程制图"
+        }
+      ]
     },
     {
       "name": "change",
@@ -42,72 +92,6 @@
       "type": "environment_governance",
       "description": "开发环境配置、依赖管理、磁盘缓存盘点与环境安全清理规范",
       "readme": "docs/devel/env/README.md"
-    }
-  ],
-  "designs": [
-    {
-      "id": "DESIGN-KM-OVERVIEW",
-      "title": "knowledge-map 系统总体设计",
-      "file": "docs/devel/design/00-系统总体设计.md",
-      "status": "baseline",
-      "topics": [
-        "KnowledgeMapWorkflow"
-      ]
-    },
-    {
-      "id": "DESIGN-KM-LIBRARY",
-      "title": "文档库与命名规范",
-      "file": "docs/devel/design/01-文档库与命名规范.md",
-      "status": "baseline",
-      "topics": [
-        "KnowledgeLibrary"
-      ]
-    },
-    {
-      "id": "DESIGN-KM-CARDS",
-      "title": "术语知识卡片设计",
-      "file": "docs/devel/design/02-术语知识卡片设计.md",
-      "status": "baseline",
-      "topics": [
-        "KnowledgeCards"
-      ]
-    },
-    {
-      "id": "DESIGN-KM-INCREMENTAL",
-      "title": "增量更新与质量控制",
-      "file": "docs/devel/design/03-增量更新与质量控制.md",
-      "status": "baseline",
-      "topics": [
-        "IncrementalRefresh",
-        "KnowledgeQuality"
-      ]
-    },
-    {
-      "id": "DESIGN-KM-WRITING",
-      "title": "生产文档编写规范",
-      "file": "docs/devel/design/04-生产文档编写规范.md",
-      "status": "baseline",
-      "topics": [
-        "KnowledgeWriting"
-      ]
-    },
-    {
-      "id": "DESIGN-KM-AUTHORING",
-      "title": "单篇文档编写流程",
-      "file": "docs/devel/design/05-单篇文档编写流程.md",
-      "status": "baseline",
-      "topics": [
-        "DocumentAuthoring"
-      ]
-    },
-    {
-      "id": "DESIGN-KM-DIAGRAMS",
-      "title": "工程制图",
-      "file": "docs/devel/design/06-工程制图.md",
-      "status": "baseline",
-      "topics": [
-        "EngineeringDiagrams"
-      ]
     }
   ]
 }
