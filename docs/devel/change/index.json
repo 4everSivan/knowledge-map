@@ -5,7 +5,7 @@
   "topics": {
     "KnowledgeWriting": {
       "design_doc": "docs/devel/design/04-生产文档编写规范.md",
-      "cards": [
+      "changes": [
         "C001",
         "C003",
         "C004",
@@ -15,19 +15,19 @@
     },
     "KnowledgeMapWorkflow": {
       "design_doc": "docs/devel/design/00-系统总体设计.md",
-      "cards": [
+      "changes": [
         "C002"
       ]
     },
     "DesignCoverage": {
       "design_doc": "docs/devel/design/01-文档库与命名规范.md",
-      "cards": [
+      "changes": [
         "C003"
       ]
     },
     "EngineeringDiagrams": {
       "design_doc": "docs/devel/design/06-工程制图.md",
-      "cards": [
+      "changes": [
         "C003"
       ]
     }
