@@ -1,0 +1,139 @@
+{
+  "$schema": "adflow-archive-batch-v1",
+  "release": "v0.1.0",
+  "archived_at": "2026-10-26",
+  "cards": {
+    "C001": {
+      "file": "docs/archive/v0.1.0/change/C001.json",
+      "title": "收紧生产文档的专业呈现与版式一致性",
+      "version": "v0.1.0",
+      "status": "closed"
+    },
+    "C002": {
+      "file": "docs/archive/v0.1.0/change/C002.json",
+      "title": "精简技能指令：单一规则归属、四阶段 workflow 与正向原则",
+      "version": "v0.1.0",
+      "status": "closed"
+    },
+    "C003": {
+      "file": "docs/archive/v0.1.0/change/C003.json",
+      "title": "补齐分类大纲、功能点下钻与配图的交付契约",
+      "version": "v0.1.0",
+      "status": "closed"
+    },
+    "C004": {
+      "file": "docs/archive/v0.1.0/change/C004.json",
+      "title": "按主谓宾收紧句子表达与保真修订",
+      "version": "v0.1.0",
+      "status": "closed"
+    },
+    "C005": {
+      "file": "docs/archive/v0.1.0/change/C005.json",
+      "title": "以需求和约束解释设计机制，并核对实际文档样本",
+      "version": "v0.1.0",
+      "status": "closed"
+    },
+    "C006": {
+      "file": "docs/archive/v0.1.0/change/C006.json",
+      "title": "使生产文章独立完整，并按互联网资料实际使用生成参考文献",
+      "version": "v0.1.0",
+      "status": "closed"
+    }
+  },
+  "tasks": {
+    "T02": {
+      "file": "docs/archive/v0.1.0/task/T02.json",
+      "title": "落实业务模块全覆盖与分层文档规则",
+      "version": "v0.1.0",
+      "milestone": "M2-module-docs",
+      "status": "completed"
+    },
+    "T01": {
+      "file": "docs/archive/v0.1.0/task/T01.json",
+      "title": "交付 km v0.1 文档知识库技能",
+      "version": "v0.1.0",
+      "milestone": "M1-km-v0.1",
+      "status": "completed"
+    },
+    "T03": {
+      "file": "docs/archive/v0.1.0/task/T03.json",
+      "title": "集成语义先行的工程制图工作流",
+      "version": "v0.1.0",
+      "milestone": "M3-diagrams",
+      "status": "completed"
+    }
+  },
+  "topics": {
+    "KnowledgeWriting": {
+      "changes": [
+        "C001",
+        "C003",
+        "C004",
+        "C005",
+        "C006"
+      ],
+      "tasks": [
+        "T01",
+        "T02",
+        "T03"
+      ]
+    },
+    "KnowledgeMapWorkflow": {
+      "changes": [
+        "C002"
+      ],
+      "tasks": [
+        "T01",
+        "T02",
+        "T03"
+      ]
+    },
+    "DesignCoverage": {
+      "changes": [
+        "C003"
+      ]
+    },
+    "EngineeringDiagrams": {
+      "changes": [
+        "C003"
+      ],
+      "tasks": [
+        "T03"
+      ]
+    },
+    "KnowledgeLibrary": {
+      "tasks": [
+        "T01",
+        "T02",
+        "T03"
+      ]
+    },
+    "KnowledgeCards": {
+      "tasks": [
+        "T01",
+        "T03"
+      ]
+    },
+    "IncrementalRefresh": {
+      "tasks": [
+        "T01",
+        "T02",
+        "T03"
+      ]
+    },
+    "KnowledgeQuality": {
+      "tasks": [
+        "T01",
+        "T02",
+        "T03"
+      ]
+    },
+    "DocumentAuthoring": {
+      "tasks": [
+        "T01",
+        "T02",
+        "T03"
+      ]
+    }
+  }
+}

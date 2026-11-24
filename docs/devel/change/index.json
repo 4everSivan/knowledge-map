@@ -1,73 +1,24 @@
 {
   "$schema": "https://ad-flow.org/schemas/change-index.v1.json",
   "version": "1.0",
-  "updated_at": "2026-10-26",
+  "updated_at": "2026-11-24",
   "topics": {
     "KnowledgeWriting": {
       "design_doc": "docs/devel/design/04-生产文档编写规范.md",
-      "changes": [
-        "C001",
-        "C003",
-        "C004",
-        "C005",
-        "C006"
-      ]
+      "changes": []
     },
     "KnowledgeMapWorkflow": {
       "design_doc": "docs/devel/design/00-系统总体设计.md",
-      "changes": [
-        "C002"
-      ]
+      "changes": []
     },
     "DesignCoverage": {
       "design_doc": "docs/devel/design/01-文档库与命名规范.md",
-      "changes": [
-        "C003"
-      ]
+      "changes": []
     },
     "EngineeringDiagrams": {
       "design_doc": "docs/devel/design/06-工程制图.md",
-      "changes": [
-        "C003"
-      ]
+      "changes": []
     }
   },
-  "cards": {
-    "C001": {
-      "file": "docs/archive/v0.1.0/change/C001.json",
-      "title": "收紧生产文档的专业呈现与版式一致性",
-      "version": "v0.1.0",
-      "status": "closed"
-    },
-    "C002": {
-      "file": "docs/archive/v0.1.0/change/C002.json",
-      "title": "精简技能指令：单一规则归属、四阶段 workflow 与正向原则",
-      "version": "v0.1.0",
-      "status": "closed"
-    },
-    "C003": {
-      "file": "docs/archive/v0.1.0/change/C003.json",
-      "title": "补齐分类大纲、功能点下钻与配图的交付契约",
-      "version": "v0.1.0",
-      "status": "closed"
-    },
-    "C004": {
-      "file": "docs/archive/v0.1.0/change/C004.json",
-      "title": "按主谓宾收紧句子表达与保真修订",
-      "version": "v0.1.0",
-      "status": "closed"
-    },
-    "C005": {
-      "file": "docs/archive/v0.1.0/change/C005.json",
-      "title": "以需求和约束解释设计机制，并核对实际文档样本",
-      "version": "v0.1.0",
-      "status": "closed"
-    },
-    "C006": {
-      "file": "docs/archive/v0.1.0/change/C006.json",
-      "title": "使生产文章独立完整，并按互联网资料实际使用生成参考文献",
-      "version": "v0.1.0",
-      "status": "closed"
-    }
-  }
+  "cards": {}
 }
