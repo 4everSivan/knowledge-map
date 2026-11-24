@@ -2,6 +2,18 @@
 
 记录项目的显著变更，分类参考 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [Unreleased]
+
+## [v0.1.1] - 2026-11-24
+
+### Changed
+
+- ad-flow 治理规范按官方 U1–U6 流程由 1.4.0 升级到 1.8.1（PR #1）。
+- 设计登记迁移为 1.8 design 子系统格式：03 号设计文档拆为 IncrementalRefresh、KnowledgeQuality 两条主题登记，补登 DesignCoverage，变更总账主题键由 `cards` 改为 `changes`。
+- 现行总账瘦身：v0.1.0 已归档卡的登记条目与主题引用迁入 [docs/archive/v0.1.0/index.json](docs/archive/v0.1.0/index.json)。
+- `km` 技能版本号由 0.1.0 改为 0.1.1，与本次发布版本对齐（由独立 PR 修改）。
+- 本版本只涉及治理文档与总账，产品能力没有变化，本批次不含任何 C/T 卡。
+
 ## [v0.1.0] - 2026-10-26
 
 ### Added
